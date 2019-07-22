@@ -1,0 +1,21 @@
+{
+  "name": "waveorb",
+  "version": "0.0.1",
+  "description": "Backend service engine",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fugroup/waveorb.git"
+  },
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "author": "fugroup <vidar@fugroup.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.5.0"
+  }
+}
