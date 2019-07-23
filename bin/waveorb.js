@@ -1,8 +1,12 @@
+#!/usr/bin/env node
 const nodemon = require('nodemon')
+const path = require('path')
+const server = path.join(__dirname, '..', 'scripts', 'server.js')
+console.log({ server })
 
 // Options: https://github.com/remy/nodemon/blob/master/doc/sample-nodemon.md
 nodemon({
-  script: 'scripts/server.js',
+  script: server,
   stdout: false,
   ignore: [
     '.git',

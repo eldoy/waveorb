@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Waveorb CLI",
   "bin": {
     "waveorb": "./bin/waveorb.js"
