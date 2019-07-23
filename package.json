@@ -1,21 +1,23 @@
 {
   "name": "waveorb",
-  "version": "0.0.1",
-  "description": "Backend service engine",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "Waveorb CLI",
+  "bin": {
+    "waveorb": "./bin/waveorb.js"
+  },
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fugroup/waveorb.git"
+    "url": "https://github.com/fugroup/waveorb-cli.git"
   },
   "scripts": {
-    "test": "jest --watch"
+    "start": "node bin/waveorb.js"
   },
-  "author": "fugroup <vidar@fugroup.net>",
-  "license": "MIT",
-  "devDependencies": {
-    "jest": "^23.5.0"
+  "author": "Vidar Eldøy <vidar@eldoy.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "nodemon": "^1.19.1"
   }
 }
