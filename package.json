@@ -18,6 +18,7 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "UNLICENSED",
   "dependencies": {
+    "colors": "^1.3.3",
     "nodemon": "^1.19.1"
   }
 }
