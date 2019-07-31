@@ -15,7 +15,7 @@ const script = scripts[arg]
 if (arg === 'serve') {
   // Options: https://github.com/remy/nodemon/blob/master/doc/sample-nodemon.md
   const ignore = ['.git', 'node_modules/**/node_modules']
-  const env = { NODE_ENV: 'development', WAVEORB_PORT: 4000 }
+  const env = { NODE_ENV: 'development' }
   nodemon({ script, ignore, env, stdout: false, verbose: true})
   .on('stderr', function(data) {
     process.stdout.write(data.toString())
