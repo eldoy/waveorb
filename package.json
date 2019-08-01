@@ -13,7 +13,8 @@
     "url": "https://github.com/fugroup/waveorb-cli.git"
   },
   "scripts": {
-    "start": "node bin/waveorb.js"
+    "start": "node bin/waveorb.js",
+    "test": "jest --watch"
   },
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "UNLICENSED",

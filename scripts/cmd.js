@@ -1,11 +1,9 @@
 const client = require('waveorb-client')
 const db = client({ ws: false }).http
 const t = require('terminal-kit').terminal
-const buffer = []
-let open = true
+const tools = require('../lib/tools.js')
 
 function terminate() {
-	// t.grabInput(false)
 	setTimeout(function() { process.exit() }, 100)
 }
 
@@ -13,7 +11,6 @@ t.bold('Waveorb command line console\n\n')
 t('Connecting to http://localhost:4000\n\n')
 t.green('Hit CTRL-C to quit.\n\n')
 
-// t.grabInput()
 t.on('key', function(name, matches, data) {
   // console.log("'key' event:", name, matches, data)
   if (name === 'CTRL_C') {
@@ -21,13 +18,41 @@ t.on('key', function(name, matches, data) {
   }
 })
 
-// const COMMANDS = [
-//   // db command
-//   /db\((.+\/.+)\)\((.+)\)/
-// ]
+function updateBuffers(input) {
+  for (const arr of [history, autoComplete]) {
+    if (arr.includes(input)) {
+      arr.splice(arr.indexOf(input), 1)
+    }
+    arr.push(input)
+  }
+}
 
-const history = []
-const autoComplete = ["await db('projects/get')()"]
+let history = []
+let autoComplete = ["db('projects/get')()"]
+
+async function run(input = '') {
+  input = input.trim()
+  updateBuffers(input)
+
+  let match
+  if (match = input.match(/^help$/)) {
+    t.green.bold('\n\n    help')
+    t.green('    show help and usage\n')
+    t.green.bold('    db')
+    t.green('      the db command\n\n')
+  } else if (match = input.match(/^db\(['"]?(.+\/.+?)['"]?\)\((.*)\)$/)) {
+    let [cmd, path, arg] = match
+    console.log({ cmd, path, arg })
+    arg = tools.toObject(arg)
+    console.log({ argobject: arg })
+    const result = await db(path)(...arg)
+
+    // console.log({ result })
+    t.green('\n%s\n', JSON.stringify(result, null, 2))
+  } else {
+    t.red('\nCommand not found\n')
+  }
+}
 
 function wrap(input) {
   return `(async function() { ${input} }())`
@@ -38,22 +63,14 @@ async function execute() {
   t.inputField(
     { history, autoComplete, autoCompleteMenu: true },
     async function(error, input) {
-      let result
-      input = wrap(input)
       try {
-        result = await eval(input)
+        await run(input)
       } catch (e) {
-        console.log(e.message)
-        result = `Unknown command: ${input}`
+        t.dim(e.message)
       }
-      t.green('\n%s\n', result)
       execute()
     }
   )
 }
 
 execute()
-
-// t.on('terminal', function(name , data) {
-// 	console.log("'terminal' event:", name, data)
-// })
