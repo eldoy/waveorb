@@ -19,6 +19,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "nodemon": "^1.19.1",
-    "terminal-kit": "^1.29.1"
+    "terminal-kit": "^1.29.1",
+    "waveorb-client": "0.0.9"
   }
 }

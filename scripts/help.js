@@ -19,4 +19,4 @@ t.green('    Start the web server\n\n')
 
 t.bold('Please report bugs to Vidar <vidar@eldoy.com>\n\n')
 
-t('© Eldoy Projects 2019\n')
+t('© Eldoy Projects 2019\n').processExit()
