@@ -12,7 +12,6 @@ t('Connecting to http://localhost:4000\n\n')
 t.green('Hit CTRL-C to quit.\n\n')
 
 t.on('key', function(name, matches, data) {
-  // console.log("'key' event:", name, matches, data)
   if (name === 'CTRL_C') {
     terminate()
   }
@@ -31,8 +30,7 @@ let history = []
 let autoComplete = ["db('projects/get')()"]
 
 async function run(input = '') {
-  input = input.trim()
-  updateBuffers(input)
+  updateBuffers(input = input.trim())
 
   let match
   if (match = input.match(/^help$/)) {
@@ -42,20 +40,12 @@ async function run(input = '') {
     t.green('      the db command\n\n')
   } else if (match = input.match(/^db\(['"]?(.+\/.+?)['"]?\)\((.*)\)$/)) {
     let [cmd, path, arg] = match
-    console.log({ cmd, path, arg })
     arg = tools.toObject(arg)
-    console.log({ argobject: arg })
     const result = await db(path)(...arg)
-
-    // console.log({ result })
     t.green('\n%s\n', JSON.stringify(result, null, 2))
   } else {
     t.red('\nCommand not found\n')
   }
-}
-
-function wrap(input) {
-  return `(async function() { ${input} }())`
 }
 
 async function execute() {
