@@ -19,8 +19,9 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "UNLICENSED",
   "dependencies": {
-    "nodemon": "^1.19.1",
-    "terminal-kit": "^1.29.1",
-    "waveorb-client": "0.0.9"
+    "dugg": "^0.1.4",
+    "nodemon": "^1.19.2",
+    "terminal-kit": "^1.31.2",
+    "waveorb-client": "0.0.15"
   }
 }

@@ -1,7 +1,7 @@
 const http = require('https')
 const fs = require('fs')
 const { exec, execSync } = require('child_process')
-const download = require('../lib/download.js')
+const { download } = require('dugg')()
 
 async function main() {
   const os = process.platform
@@ -19,7 +19,11 @@ async function main() {
   // Download file if it doesn't exist
   if (!serverFileExists) {
     const url = `https://raw.githubusercontent.com/fugroup/waveorb-bin/master/${file}`
-    await download(url)
+    await download(url, {
+      ondata: function({ percent }) {
+        process.stdout.write(`Server installing, please wait: ${percent}%\r`)
+      }
+    })
   }
   fs.chmodSync(file, 0o755)
 
