@@ -19,8 +19,8 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "UNLICENSED",
   "dependencies": {
-    "dugg": "^0.1.4",
-    "terminal-kit": "^1.31.2",
-    "waveorb-client": "0.0.15"
+    "dugg": "^0.1.7",
+    "terminal-kit": "^1.32.2",
+    "waveorb-client": "0.1.4"
   }
 }

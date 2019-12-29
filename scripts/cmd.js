@@ -1,5 +1,5 @@
 const client = require('waveorb-client')
-const db = client({ ws: false }).http
+const db = client('http://localhost:4000')
 const t = require('terminal-kit').terminal
 const tools = require('../lib/tools.js')
 
