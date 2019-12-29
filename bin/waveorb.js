@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 const fspath = require('path')
-const name = process.argv[2] || 'help'
-const path = fspath.join(__dirname, '..', 'scripts', `${name}.js`)
-try {
+const COMMANDS = ['build', 'cmd', 'create', 'deploy', 'serve', 'help']
+const command = process.argv[2] || 'help'
+
+if (COMMANDS.includes(command)) {
+  const path = fspath.join(__dirname, '..', 'scripts', `${command}.js`)
   require(path)
-} catch (e) {
-  console.log(`Command not found: ${name}`)
+} else {
+  console.log(`Command not found: ${command}`)
 }

@@ -20,6 +20,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "dugg": "^0.1.7",
+    "shelljs": "^0.8.3",
     "terminal-kit": "^1.32.2",
     "waveorb-client": "0.1.4"
   }
