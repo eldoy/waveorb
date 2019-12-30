@@ -4,4 +4,4 @@ server-macos
 server-win.exe
 server-linux
 dist
-app
+./app
