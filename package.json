@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Waveorb CLI",
   "bin": {
     "waveorb": "./bin/waveorb.js"
@@ -20,9 +20,9 @@
   "license": "UNLICENSED",
   "dependencies": {
     "dugg": "^0.1.7",
-    "presang": "^0.6.1",
+    "presang": "^0.7.7",
     "shelljs": "^0.8.3",
-    "terminal-kit": "^1.32.2",
-    "waveorb-client": "0.1.4"
+    "terminal-kit": "^1.32.3",
+    "waveorb-client": "0.1.5"
   }
 }
