@@ -6,8 +6,8 @@ t('Usage: waveorb [command]\n\n')
 
 t.dim('Commands:\n\n')
 
-t.green.bold('  create')
-t.green('   Create new application\n')
+t.green.bold('  app')
+t.green('      Create new application\n')
 
 t.green.bold('  build')
 t.green('    Build your application\n')
@@ -29,4 +29,4 @@ t.green('     Display this help text\n\n')
 
 t.bold('Please report bugs to Vidar <vidar@eldoy.com>\n\n')
 
-t('© Eldoy Projects 2019\n').processExit()
+t('© Eldoy Projects 2020\n').processExit()
