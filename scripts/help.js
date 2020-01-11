@@ -15,8 +15,8 @@ t.green('    Build your application\n')
 t.green.bold('  deploy')
 t.green('   Deploy your application\n')
 
-t.green.bold('  install')
-t.green('  Install the web server\n')
+t.green.bold('  get')
+t.green('      Get the web server\n')
 
 t.green.bold('  serve')
 t.green('    Start the web server\n')

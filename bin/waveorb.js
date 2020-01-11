@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fspath = require('path')
-const COMMANDS = ['build', 'cmd', 'app', 'deploy', 'install', 'serve', 'help']
+const COMMANDS = ['build', 'cmd', 'app', 'deploy', 'get', 'serve', 'help']
 const command = process.argv[2] || 'help'
 
 if (COMMANDS.includes(command)) {
