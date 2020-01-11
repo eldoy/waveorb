@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Waveorb CLI",
   "bin": {
     "waveorb": "./bin/waveorb.js"
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fugroup/waveorb-cli.git"
+    "url": "https://github.com/eldoy/waveorb-cli.git"
   },
   "scripts": {
     "start": "node bin/waveorb.js",
