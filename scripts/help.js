@@ -7,7 +7,7 @@ t('Usage: waveorb [command]\n\n')
 t.dim('Commands:\n\n')
 
 t.green.bold('  app')
-t.green('      Create new application\n')
+t.green('      Make new application\n')
 
 t.green.bold('  build')
 t.green('    Build your application\n')
