@@ -5,7 +5,7 @@ const { download } = require('dugg')()
 async function main() {
   const file = tools.platformFile()
   if (tools.fileExists(file)) {
-    console.log('Server is already installed.')
+    console.log('Server is already downloaded.')
   } else {
     const url = `https://raw.githubusercontent.com/eldoy/waveorb-bin/master/${file}`
     await download(url, {
