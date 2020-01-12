@@ -7,10 +7,10 @@ async function main() {
   if (tools.fileExists(file)) {
     console.log('Server is already installed.')
   } else {
-    const url = `https://raw.githubusercontent.com/fugroup/waveorb-bin/master/${file}`
+    const url = `https://raw.githubusercontent.com/eldoy/waveorb-bin/master/${file}`
     await download(url, {
       ondata: function({ percent }) {
-        process.stdout.write(`Server installing, please wait: ${percent}%\r`)
+        process.stdout.write(`Server downloading, please wait: ${percent}%\r`)
       }
     })
   }
