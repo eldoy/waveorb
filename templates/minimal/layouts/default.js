@@ -1,5 +1,5 @@
 module.exports = async function($) {
-  function current () {
+  function current() {
     var a = q(`nav a[href="${ location.pathname }"]`) || q('nav a')
     a.classList.add('active-link')
   }
