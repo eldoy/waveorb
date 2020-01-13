@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "Waveorb command line interface",
   "bin": {
     "waveorb": "./bin/waveorb.js"
@@ -22,7 +22,7 @@
     "dugg": "^0.1.7",
     "presang": "^0.8.1",
     "shelljs": "^0.8.3",
-    "sverd": "^0.2.1",
+    "sverd": "^0.2.2",
     "terminal-kit": "^1.32.3",
     "waveorb-client": "0.1.5"
   }
