@@ -1,6 +1,6 @@
 const fspath = require('path')
 const package = require(fspath.join(__dirname, '..', 'package.json'))
-console.log(`\nWaveorb repl v${package.version}\n`)
+console.log(`\nWaveorb cmd v${package.version}\n`)
 
 const server = process.argv[3]
 if (!server) {
@@ -15,7 +15,7 @@ const client = waveorb(server)
 
 const api = {}
 api.help = function() {
-  console.log('\nInteract with your waveorb server.\n')
+  console.log('\nInteract with your waveorb server.\n\n')
   console.log('Example usage:\n  result = await fetch({})\n')
 }
 
