@@ -1,6 +1,8 @@
+const fspath = require('path')
+const package = require(fspath.join(__dirname, '..', 'package.json'))
 const t = require('terminal-kit').terminal
 
-t.bold('\nWaveorb command line help page\n\n')
+t.bold(`\nWaveorb command line interface v${package.version}\n\n`)
 
 t('Usage: waveorb [command]\n\n')
 
