@@ -1,66 +1,37 @@
-const client = require('waveorb-client')
-const db = client('http://localhost:4000')
-const t = require('terminal-kit').terminal
-const tools = require('../lib/tools.js')
+const fspath = require('path')
+const package = require(fspath.join(__dirname, '..', 'package.json'))
+console.log(`\nWaveorb repl v${package.version}\n`)
 
-function terminate() {
-	setTimeout(function() { process.exit() }, 100)
+const server = process.argv[3]
+if (!server) {
+  console.log(`Usage: waveorb cmd [server]`)
+  console.log(`Example: waveorb cmd http://localhost:5000`)
+  process.exit(1)
 }
 
-t.bold('Waveorb command line console\n\n')
-t('Connecting to http://localhost:4000\n\n')
-t.green('Hit CTRL-C to quit.\n\n')
+const repl = require('repl')
+const waveorb = require('waveorb-client')
+const client = waveorb(server)
 
-t.on('key', function(name, matches, data) {
-  if (name === 'CTRL_C') {
-    terminate()
-  }
-})
-
-function updateBuffers(input) {
-  for (const arr of [history, autoComplete]) {
-    if (arr.includes(input)) {
-      arr.splice(arr.indexOf(input), 1)
-    }
-    arr.push(input)
-  }
+const api = {}
+api.help = function() {
+  console.log('\nInteract with your waveorb server.\n')
+  console.log('Example usage:\n  result = await fetch({})\n')
 }
 
-let history = []
-let autoComplete = ["db('projects/get')()"]
-
-async function run(input = '') {
-  updateBuffers(input = input.trim())
-
-  let match
-  if (match = input.match(/^help$/)) {
-    t.green.bold('\n\n    help')
-    t.green('    show help and usage\n')
-    t.green.bold('    db')
-    t.green('      the db command\n\n')
-  } else if (match = input.match(/^db\(['"]?(.+\/.+?)['"]?\)\((.*)\)$/)) {
-    let [cmd, path, arg] = match
-    arg = tools.toObject(arg)
-    const result = await db(path)(...arg)
-    t.green('\n%s\n', JSON.stringify(result, null, 2))
-  } else {
-    t.red('\nCommand not found\n')
+api.fetch = async function(args) {
+  try {
+    return await client.fetch(args)
+  } catch (e) {
+    console.log(`${e.name}: ${e.message}`)
   }
 }
 
-async function execute() {
-  t('> ')
-  t.inputField(
-    { history, autoComplete, autoCompleteMenu: true },
-    async function(error, input) {
-      try {
-        await run(input)
-      } catch (e) {
-        t.dim(e.message)
-      }
-      execute()
-    }
-  )
-}
+console.log([
+  'Available functions:\n',
+  Object.keys(api).map(x => `  ${x}`).join('\n'),
+  ''
+].join('\n'))
 
-execute()
+const cmd = repl.start('λ ')
+Object.assign(cmd.context, api)
