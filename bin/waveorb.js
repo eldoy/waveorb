@@ -1,5 +1,4 @@
-#!/bin/sh
-":" //# comment; exec /usr/bin/env node --experimental-repl-await "$0" "$@"
+#!/usr/bin/env node --experimental-repl-await
 const fspath = require('path')
 const sh = require('shelljs')
 const commands = {
