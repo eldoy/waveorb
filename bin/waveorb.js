@@ -1,8 +1,8 @@
 #!/usr/bin/env node --experimental-repl-await
 const fspath = require('path')
 const commands = {
-  presang: ['serve', 'build'],
-  sverd: ['boot', 'install', 'update', 'deploy'],
+  presang: ['start', 'build'],
+  sverd: ['server', 'install', 'update', 'deploy'],
   waveorb: ['create', 'get', 'help', 'cmd']
 }
 const command = (process.argv[2] || 'help').trim()
@@ -21,6 +21,6 @@ if (commands.presang.includes(command)) {
   require(fspath.join(__dirname, '..', 'scripts', `${command}.js`))
 
 } else {
-  console.log(`Command not found: ${command}`)
+  console.log(`\nCommand not found: ${command}`)
   console.log(`\nRun 'waveorb help' to see available commands.`)
 }

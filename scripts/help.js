@@ -8,8 +8,8 @@ t('Usage: waveorb [command]\n\n')
 
 t.dim('Commands:\n\n')
 
-t.green.bold('  boot')
-t.green('     Boot a server\n')
+t.green.bold('  server')
+t.green('   Create a server\n')
 
 t.green.bold('  install')
 t.green('  Install server software\n')
@@ -29,7 +29,7 @@ t.green('   Deploy application\n')
 t.green.bold('  get')
 t.green('      Download web server\n')
 
-t.green.bold('  serve')
+t.green.bold('  start')
 t.green('    Start web server\n')
 
 t.green.bold('  cmd')
