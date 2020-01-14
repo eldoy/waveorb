@@ -18,8 +18,7 @@ if (commands.presang.includes(command)) {
   moduleBin('sverd')
 
 } else if (commands.waveorb.includes(command)) {
-  const path = fspath.join(__dirname, '..', 'scripts', `${command}.js`)
-  require(path)
+  require(fspath.join(__dirname, '..', 'scripts', `${command}.js`))
 
 } else {
   console.log(`Command not found: ${command}`)
