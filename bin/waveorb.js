@@ -1,6 +1,5 @@
 #!/usr/bin/env node --experimental-repl-await
 const fspath = require('path')
-const sh = require('shelljs')
 const commands = {
   presang: ['serve', 'build'],
   sverd: ['boot', 'install', 'update', 'deploy'],
@@ -9,8 +8,7 @@ const commands = {
 const command = (process.argv[2] || 'help').trim()
 
 function moduleBin(name) {
-  const path = fspath.join(__dirname, '..', 'node_modules', name, 'bin', `${name}.js`)
-  sh.exec(`${path} ${command}`)
+  require(fspath.join(__dirname, '..', 'node_modules', name, 'bin', `${name}.js`))
 }
 
 if (commands.presang.includes(command)) {
