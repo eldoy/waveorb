@@ -3,12 +3,12 @@
 This is the repository for the [Waveorb Javascript web application framework.](https://waveorb.com)
 
 ### Install
-```javascript
+```bash
 npm i -g waveorb
 ```
 
 ### Usage
-```javascript
+```bash
 waveorb help
 ```
 
