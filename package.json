@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.4.23",
+  "version": "0.4.24",
   "description": "Waveorb command line interface",
   "bin": {
     "waveorb": "./bin/waveorb.js"
