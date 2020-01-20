@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.4.25",
+  "version": "0.4.26",
   "description": "Waveorb command line interface",
   "bin": {
     "waveorb": "./bin/waveorb.js"
@@ -20,11 +20,11 @@
   "license": "MIT",
   "dependencies": {
     "dugg": "^0.1.7",
-    "presang": "^0.10.0",
+    "presang": "^0.10.1",
     "shelljs": "^0.8.3",
     "sverd": "^0.4.0",
     "terminal-kit": "^1.32.3",
     "waveorb-client": "0.2.0",
-    "waveorb-core": "^0.2.1"
+    "waveorb-core": "^0.2.2"
   }
 }
