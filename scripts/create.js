@@ -11,12 +11,12 @@ if (fs.existsSync(appName)) {
   console.log(`\nPlease delete it and try again.`)
   process.exit(1)
 }
-
+const crypto = require('crypto')
 const os = require('os')
 const fspath = require('path')
 const sh = require('shelljs')
 const repo = 'https://github.com/eldoy/waveorb-templates.git'
-const dir = Math.random().toString(36).slice(2)
+const dir = crypto.randomBytes(20).toString('hex')
 const tmp = fspath.join(os.tmpdir(), dir)
 sh.exec(`git clone --depth 1 ${repo} ${tmp}`)
 
