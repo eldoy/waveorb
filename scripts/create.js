@@ -28,7 +28,7 @@ if (fs.existsSync(path)) {
     `\nApp ${templateName} copied to ${appName}, now do:\n`,
     `cd ${appName}`,
     `npm i`,
-    `waveorb serve\n`,
+    `npm run serve\n`,
     `Docs: https://waveorb.com/docs`,
     `Issues: https://github.com/eldoy/waveorb/issues\n`,
     `Created by Eldøy Projects, https://eldoy.com`
