@@ -1,7 +1,7 @@
 {
   "name": "waveorb",
-  "version": "0.4.29",
-  "description": "Waveorb command line interface",
+  "version": "0.4.30",
+  "description": "Waveorb Javascript web development framework",
   "bin": {
     "waveorb": "./bin/waveorb.js"
   },
@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "dugg": "^0.1.7",
-    "presang": "^0.10.2",
+    "presang": "^0.10.3",
     "shelljs": "^0.8.3",
     "sverd": "^0.4.0",
     "terminal-kit": "^1.32.3",

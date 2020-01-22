@@ -29,7 +29,7 @@ if (fs.existsSync(path)) {
     `cd ${appName}`,
     `npm i`,
     `npm run serve\n`,
-    `Docs: https://waveorb.com/docs`,
+    `Docs: https://waveorb.com/docs.html`,
     `Issues: https://github.com/eldoy/waveorb/issues\n`,
     `Created by Eldøy Projects, https://eldoy.com`
   ].join('\n'))
