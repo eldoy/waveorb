@@ -1,6 +1,6 @@
 # Javascript Jamstack web app development framework
 
-This is the repository for the [Waveorb Javascript web application framework.](https://waveorb.com)
+This is the repository for the [Waveorb Javascript web app development framework.](https://waveorb.com)
 
 ### Install
 ```bash
