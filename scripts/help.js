@@ -41,4 +41,4 @@ t.green('     Display this help text\n\n')
 t.bold('Docs: https://waveorb.com/docs.html\n')
 t.bold('Issues: https://github.com/eldoy/waveorb/issues\n\n')
 
-t('Created by Eldøy Projects, https://eldoy.com').processExit()
+t('Created by Eldøy Projects, https://eldoy.com\n').processExit()
