@@ -1,5 +1,6 @@
 #!/usr/bin/env node --experimental-repl-await
 const fspath = require('path')
+global.$require = name => require(fspath.join(process.cwd(), name))
 const commands = {
   presang: ['build'],
   sverd: ['boot', 'install', 'update', 'deploy'],
