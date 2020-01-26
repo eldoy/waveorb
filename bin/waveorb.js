@@ -1,4 +1,4 @@
-#!/usr/bin/env node --experimental-repl-await
+#!/usr/bin/env -S node --experimental-repl-await
 const fspath = require('path')
 global.$require = name => require(fspath.join(process.cwd(), name))
 const commands = {
