@@ -26,5 +26,8 @@
     "terminal-kit": "^1.32.3",
     "waveorb-client": "0.2.0",
     "waveorb-core": "^0.3.3"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }
