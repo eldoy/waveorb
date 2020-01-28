@@ -11,17 +11,26 @@ const api = {}
 api.help = function() {
   console.log([
     `\nWaveorb cmd v${package.version}\n`,
-    `Usage: waveorb cmd [server]`,
-    `Example: result = await fetch({})\n`,
+    `Usage: waveorb cmd [server]\n`,
+    `Example: await fetch({ action: 'name' })\n`,
+    `Docs: https://waveorb.com/doc/command-line.html#cmd\n`,
     'Available functions:\n',
     Object.keys(api).map(x => `  ${x}()`).join('\n'),
     `\nConnected to ${server}\n`
   ].join('\n'))
 }
 
-api.fetch = async function(args) {
+api.fetch = async function(params, options) {
   try {
-    return await client.fetch(args)
+    return await client.fetch(params, options)
+  } catch (e) {
+    console.log(`${e.name}: ${e.message}`)
+  }
+}
+
+api.upload = async function(params, options) {
+  try {
+    return await client.upload(params, options)
   } catch (e) {
     console.log(`${e.name}: ${e.message}`)
   }
