@@ -29,6 +29,9 @@ t.green('    Start app server\n')
 t.green.bold('  build')
 t.green('    Build app to dist\n')
 
+t.green.bold('  sitemap')
+t.green('  Generate sitemap\n')
+
 t.green.bold('  get')
 t.green('      Download app server\n')
 
