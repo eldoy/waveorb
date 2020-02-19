@@ -6,7 +6,7 @@ const commands = {
   sverd: ['boot', 'install', 'update', 'deploy'],
   generate: ['generate'],
   translate: ['translate'],
-  waveorb: ['serve', 'create', 'get', 'help', 'cmd']
+  waveorb: ['serve', 'create', 'get', 'help', 'cmd', 'ping']
 }
 const command = (process.argv[2] || 'help').trim()
 

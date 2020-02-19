@@ -30,7 +30,10 @@ t.green.bold('  build')
 t.green('      Build app to dist\n')
 
 t.green.bold('  sitemap')
-t.green('    Generate sitemap\n')
+t.green('    Create sitemap\n')
+
+t.green.bold('  ping')
+t.green('       Ping search engines\n')
 
 t.green.bold('  generate')
 t.green('   Generate templates\n')
