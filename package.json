@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.7.16",
+  "version": "0.8.0",
   "description": "Waveorb Javascript Jamstack web app development framework",
   "bin": {
     "waveorb": "./bin/waveorb.js"
@@ -22,8 +22,9 @@
     "dugg": "^0.1.7",
     "presang": "^0.14.15",
     "shelljs": "^0.8.3",
+    "snakk": "^0.1.4",
     "sverd": "^0.4.0",
-    "terminal-kit": "^1.33.10",
+    "terminal-kit": "^1.33.15",
     "waveorb-client": "0.3.4",
     "waveorb-core": "^0.3.16",
     "waveorb-generate": "^0.4.0"

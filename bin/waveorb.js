@@ -5,6 +5,7 @@ const commands = {
   presang: ['build', 'sitemap'],
   sverd: ['boot', 'install', 'update', 'deploy'],
   generate: ['generate'],
+  translate: ['translate'],
   waveorb: ['serve', 'create', 'get', 'help', 'cmd']
 }
 const command = (process.argv[2] || 'help').trim()
@@ -21,6 +22,10 @@ if (commands.presang.includes(command)) {
 
 } else if (commands.generate.includes(command)) {
   require('waveorb-generate')
+
+} else if (commands.translate.includes(command)) {
+  process.env.SNAKK_EXEC = 'waveorb'
+  require('snakk')
 
 } else if (commands.waveorb.includes(command)) {
   require(fspath.join(__dirname, '..', 'scripts', `${command}.js`))
