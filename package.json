@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Waveorb Javascript Jamstack web app development framework",
   "bin": {
     "waveorb": "./bin/waveorb.js"
@@ -27,7 +27,7 @@
     "terminal-kit": "^1.33.15",
     "waveorb-client": "0.3.4",
     "waveorb-core": "^0.3.16",
-    "waveorb-generate": "^0.4.0"
+    "waveorb-generate": "^0.4.1"
   },
   "devDependencies": {
     "jest": "^25.1.0"
