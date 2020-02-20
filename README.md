@@ -16,7 +16,6 @@ Waveorb is built from the following libraries:
 
 * [waveorb-core](https://github.com/eldoy/waveorb-core)
 * [waveorb-client](https://github.com/eldoy/waveorb-client)
-* [waveorb-site](https://github.com/eldoy/waveorb-site)
 * [presang](https://github.com/eldoy/presang)
 * [sverd](https://github.com/eldoy/sverd)
 * [sirloin](https://github.com/eldoy/sirloin)
@@ -24,8 +23,11 @@ Waveorb is built from the following libraries:
 * [rainlog](https://github.com/eldoy/rainlog)
 * [wcookie](https://github.com/eldoy/wcookie)
 * [hangersteak](https://github.com/eldoy/hangersteak)
+* [waveorb-site](https://github.com/eldoy/waveorb-site)
 * [waveorb-bin](https://github.com/eldoy/waveorb-bin)
 * [waveorb-templates](https://github.com/eldoy/waveorb-templates)
+* [waveorb-generate](https://github.com/eldoy/waveorb-generate)
+* [conficurse](https://github.com/eldoy/conficurse)
 * [haka](https://github.com/eldoy/haka)
 * [dugg](https://github.com/eldoy/dugg)
 * [wcrypt](https://github.com/eldoy/wcrypt)
@@ -34,7 +36,6 @@ Waveorb is built from the following libraries:
 * [wavedb](https://github.com/eldoy/wavedb)
 * [wpay](https://github.com/eldoy/wpay)
 * [wsrecon](https://github.com/eldoy/wsrecon)
-* [conficurse](https://github.com/eldoy/conficurse)
 * [taarn](https://github.com/eldoy/taarn)
 * [snakk](https://github.com/eldoy/snakk)
 
