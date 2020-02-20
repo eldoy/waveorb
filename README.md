@@ -35,6 +35,8 @@ Waveorb is built from the following libraries:
 * [wpay](https://github.com/eldoy/wpay)
 * [wsrecon](https://github.com/eldoy/wsrecon)
 * [conficurse](https://github.com/eldoy/conficurse)
+* [taarn](https://github.com/eldoy/taarn)
+* [snakk](https://github.com/eldoy/snakk)
 
 MIT licensed. Enjoy!
 
