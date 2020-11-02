@@ -20,13 +20,13 @@
   "license": "MIT",
   "dependencies": {
     "dugg": "^0.1.9",
-    "presang": "^0.18.2",
+    "presang": "^0.18.3",
     "shelljs": "^0.8.4",
     "snakk": "^0.1.4",
     "sverd": "^0.4.0",
     "terminal-kit": "^1.44.0",
     "waveorb-client": "0.4.1",
-    "waveorb-core": "^0.6.5",
+    "waveorb-core": "^0.6.6",
     "waveorb-generate": "^0.4.1"
   },
   "devDependencies": {
