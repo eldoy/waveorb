@@ -19,7 +19,7 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "dugg": "^0.1.9",
+    "dugg": "^0.1.10",
     "presang": "^0.18.4",
     "shelljs": "^0.8.4",
     "snakk": "^0.1.4",
@@ -27,9 +27,9 @@
     "terminal-kit": "^1.44.0",
     "waveorb-client": "0.4.1",
     "waveorb-core": "^0.6.7",
-    "waveorb-generate": "^0.4.1"
+    "waveorb-generate": "^0.5.0"
   },
   "devDependencies": {
-    "jest": "^26.6.2"
+    "jest": "^26.6.3"
   }
 }
