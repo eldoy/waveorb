@@ -15,4 +15,9 @@ describe('tools', () => {
     expect(result[0].name).toEqual('hello')
     expect(result[1].name).toEqual('bye')
   })
+
+  it('should sort by number', () => {
+    let result = tools.sortByNumber(['222', '2', '1_a', '11_a', 'aa'])
+    expect(result).toEqual(['aa', '1_a', '2', '11_a', '222'])
+  })
 })
