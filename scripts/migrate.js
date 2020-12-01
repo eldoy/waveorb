@@ -13,15 +13,14 @@ try {
 }
 
 const { loader } = require('presang')
-const $ = {}
 
 async function migrate() {
-  $.app = await loader()
+  const app = await loader()
   for (const file of files) {
     const script = require(fspath.join(base, file))
     if (typeof script === 'function') {
       t.bold(`* Migrating: ${file}\n`)
-      await script($)
+      await script(app)
     }
   }
   console.log('Done.')
