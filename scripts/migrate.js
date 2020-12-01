@@ -24,6 +24,7 @@ async function migrate() {
     }
   }
   console.log('Done.')
+  process.exit(0)
 }
 
 migrate()
