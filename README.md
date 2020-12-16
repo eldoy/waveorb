@@ -14,7 +14,6 @@ waveorb help
 
 Waveorb is built from the following libraries:
 
-* [waveorb-core](https://github.com/eldoy/waveorb-core)
 * [waveorb-client](https://github.com/eldoy/waveorb-client)
 * [presang](https://github.com/eldoy/presang)
 * [sverd](https://github.com/eldoy/sverd)
