@@ -2,7 +2,7 @@
 const fspath = require('path')
 global.$require = name => require(fspath.join(process.cwd(), name))
 const commands = {
-  presang: ['build', 'sitemap'],
+  presang: ['serve', 'build', 'sitemap'],
   sverd: ['boot', 'install', 'update', 'deploy'],
   generate: ['generate'],
   translate: ['translate'],
