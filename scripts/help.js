@@ -41,9 +41,6 @@ t.green('   Generate templates\n')
 t.green.bold('  translate')
 t.green('  Translate locales\n')
 
-t.green.bold('  get')
-t.green('        Download app server\n')
-
 t.green.bold('  cmd')
 t.green('        Run command line console\n')
 

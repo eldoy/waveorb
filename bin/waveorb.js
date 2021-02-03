@@ -1,12 +1,11 @@
 #!/usr/bin/env -S node --experimental-repl-await
 const fspath = require('path')
-global.$require = name => require(fspath.join(process.cwd(), name))
 const commands = {
   presang: ['serve', 'build', 'sitemap'],
   sverd: ['boot', 'install', 'update', 'deploy'],
   generate: ['generate'],
   translate: ['translate'],
-  waveorb: ['serve', 'create', 'get', 'help', 'cmd', 'ping', 'migrate']
+  waveorb: ['serve', 'create', 'help', 'cmd', 'ping', 'migrate']
 }
 const command = (process.argv[2] || 'help').trim()
 
