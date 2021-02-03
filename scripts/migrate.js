@@ -1,12 +1,11 @@
-const fs = require('fs')
 const fspath = require('path')
-const tools = require('../lib/tools.js')
+const { dir } = require('extras')
 const base = fspath.join(process.cwd(), 'migrations')
 const t = require('terminal-kit').terminal
 
 let files = []
 try {
-  files = tools.sortByNumber(fs.readdirSync(base))
+  files = dir(base)
 } catch(e) {
   console.log('No migrations found.')
   process.exit(0)
