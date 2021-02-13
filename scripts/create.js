@@ -37,7 +37,7 @@ if (!extras.exist(dir)) {
   process.exit(1)
 }
 
-extras.copy(path.join(dir, '**'), '.')
+extras.copy(path.join(dir, '*'), '.')
 extras.run('npm install')
 
 console.log(`\nWaveorb app created, now do:\n`)
