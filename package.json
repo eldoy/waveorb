@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "dugg": "^0.1.10",
-    "extras": "^0.4.0",
+    "extras": "^0.4.1",
     "presang": "^0.19.10",
     "shelljs": "^0.8.4",
     "snakk": "^0.1.4",

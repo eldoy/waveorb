@@ -1,5 +1,5 @@
 #!/usr/bin/env -S node --experimental-repl-await
-const fspath = require('path')
+const path = require('path')
 const commands = {
   presang: ['serve', 'build', 'sitemap'],
   sverd: ['boot', 'install', 'update', 'deploy'],
@@ -10,7 +10,7 @@ const commands = {
 const command = (process.argv[2] || 'help').trim()
 
 function moduleBin(name, dir) {
-  require(fspath.join(__dirname, '..', 'node_modules', dir || name, 'bin', `${name}.js`))
+  require(path.join(__dirname, '..', 'node_modules', dir || name, 'bin', `${name}.js`))
 }
 
 if (commands.presang.includes(command)) {
@@ -27,7 +27,7 @@ if (commands.presang.includes(command)) {
   require('snakk')
 
 } else if (commands.waveorb.includes(command)) {
-  require(fspath.join(__dirname, '..', 'scripts', `${command}.js`))
+  require(path.join(__dirname, '..', 'scripts', `${command}.js`))
 
 } else {
   console.log(`\nCommand not found: ${command}`)
