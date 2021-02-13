@@ -19,12 +19,12 @@ if (fs.existsSync(appName)) {
 }
 
 const repo = 'https://github.com/eldoy/waveorb-templates.git'
-const dir = crypto.randomBytes(20).toString('hex')
-const tmp = path.join(os.tmpdir(), dir)
-sh.exec(`git clone --depth 1 ${repo} ${tmp}`)
+const tmpDirName = crypto.randomBytes(20).toString('hex')
+const tmpDir = path.join(os.tmpdir(), tmpDirName)
+sh.exec(`git clone --depth 1 ${repo} ${tmpDir}`)
 
 const templateName = process.argv[4] || 'default'
-const dir = path.join(tmp, templateName)
+const dir = path.join(tmpDir, templateName)
 
 if (fs.existsSync(dir)) {
   sh.cp('-R', dir, appName)
