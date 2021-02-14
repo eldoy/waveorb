@@ -21,7 +21,7 @@
   "dependencies": {
     "dugg": "^0.1.10",
     "extras": "^0.4.4",
-    "presang": "^0.20.0",
+    "presang": "^0.20.1",
     "shelljs": "^0.8.4",
     "snakk": "^0.1.4",
     "sverd": "^0.4.0",
