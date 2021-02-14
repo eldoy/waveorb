@@ -27,7 +27,7 @@
     "sverd": "^0.4.0",
     "terminal-kit": "^1.47.0",
     "waveorb-client": "0.4.1",
-    "waveorb-generate": "^0.6.3"
+    "waveorb-generate": "^0.6.4"
   },
   "devDependencies": {
     "jest": "^26.6.3"
