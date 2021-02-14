@@ -38,6 +38,7 @@ if (!extras.exist(dir)) {
 }
 
 extras.copy(path.join(dir, '*'), '.')
+console.log('\nInstalling, please wait...\n')
 extras.run('npm install --quiet --silent --no-progress --no-fund --no-audit')
 
 console.log(`\nWaveorb app created, now do:\n`)
