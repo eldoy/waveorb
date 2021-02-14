@@ -38,11 +38,14 @@ if (!extras.exist(dir)) {
 }
 
 extras.copy(path.join(dir, '*'), '.')
-console.log('\nInstalling, please wait...\n')
-extras.run('npm install --quiet --silent --no-progress --no-fund --no-audit')
+extras.copy(path.join(dir, '.*'), '.')
 
-console.log(`\nWaveorb app created, now do:\n`)
-t.green(`cd ${name}\nnpm run serve\n\n`)
+t('\nInstalling, please wait...\n\n')
+extras.run('npm install', { silent: true })
+
+t.bold(`\nWaveorb app created, now do:\n\n`)
+if (name != '.') t.green(`cd ${name}\n`)
+t.green(`npm run serve\n\n`)
 console.log([
   `Docs: https://waveorb.com/docs.html`,
   `Issues: https://github.com/eldoy/waveorb/issues\n`,
