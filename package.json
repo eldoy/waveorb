@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.10.41",
+  "version": "0.10.42",
   "description": "Waveorb Javascript Jamstack web app development framework",
   "bin": {
     "waveorb": "./bin/waveorb.js"
