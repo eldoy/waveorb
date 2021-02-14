@@ -38,7 +38,7 @@ if (!extras.exist(dir)) {
 }
 
 extras.copy(path.join(dir, '*'), '.')
-extras.run('npm install')
+extras.run('npm --quiet install')
 
 console.log(`\nWaveorb app created, now do:\n`)
 t.green(`cd ${name}\nnpm run serve\n\n`)
