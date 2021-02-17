@@ -12,24 +12,14 @@
     "type": "git",
     "url": "https://github.com/eldoy/waveorb.git"
   },
-  "scripts": {
-    "start": "node bin/waveorb.js",
-    "test": "jest --watch"
-  },
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "dugg": "^0.1.10",
     "extras": "^0.4.4",
     "presang": "^0.20.1",
-    "shelljs": "^0.8.4",
-    "snakk": "^0.1.4",
-    "sverd": "^0.4.0",
     "terminal-kit": "^1.47.0",
-    "waveorb-client": "0.4.1",
+    "waveorb-client": "^0.4.1",
     "waveorb-generate": "^0.6.7"
   },
-  "devDependencies": {
-    "jest": "^26.6.3"
-  }
+  "devDependencies": {}
 }
