@@ -3,7 +3,7 @@ const path = require('path')
 const commands = {
   presang: ['serve', 'build', 'sitemap'],
   generate: ['generate'],
-  waveorb: ['serve', 'create', 'help', 'cmd', 'ping', 'migrate']
+  waveorb: ['create', 'help', 'cmd', 'ping', 'migrate']
 }
 const command = (process.argv[2] || 'help').trim()
 
