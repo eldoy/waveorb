@@ -1,0 +1,8 @@
+hostname: http://example.com
+urls:
+  - url: /
+    changefreq: monthly
+    priority: 0.9
+  - url: /about.html
+    changefreq: weekly
+    priority: 0.5

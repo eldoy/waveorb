@@ -1,0 +1,8 @@
+lang: en
+pretty: true
+compile: true
+routemap:
+  /: en@index
+  /no/: no@index
+  /about.html: en@about
+  /no/om-oss.html: no@about
