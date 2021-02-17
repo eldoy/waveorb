@@ -5,8 +5,12 @@
   "bin": {
     "waveorb": "./bin/waveorb.js"
   },
-  "directories": {
-    "test": "test"
+  "scripts": {
+    "test": "WAVEORB_PORT=5060 jest --watch",
+    "serve:test": "WAVEORB_PORT=5060 nodemon ./bin/waveorb.js serve",
+    "serve": "nodemon ./bin/waveorb.js serve",
+    "build": "rm -rf ./dist && node ./bin/presang.js build",
+    "help": "node ./bin/waveorb.js help"
   },
   "repository": {
     "type": "git",
@@ -16,10 +20,38 @@
   "license": "MIT",
   "dependencies": {
     "extras": "^0.4.4",
-    "presang": "^0.20.1",
     "terminal-kit": "^1.47.0",
     "waveorb-client": "^0.4.1",
-    "waveorb-generate": "^0.6.7"
+    "waveorb-generate": "^0.6.7",
+    "bcryptjs": "^2.4.3",
+    "conficurse": "0.3.1",
+    "cuid": "^2.1.8",
+    "lodash": "^4.17.20",
+    "pretty": "^2.0.0",
+    "request": "^2.88.2",
+    "sirloin": "^0.18.2",
+    "sitemap": "^6.3.6",
+    "uuid": "^8.3.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "jest": "^26.6.3"
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "fast",
+    "tiny",
+    "web app",
+    "framework",
+    "front end",
+    "html",
+    "template",
+    "literal",
+    "no webpack",
+    "ssr",
+    "static site generator",
+    "isomorphic",
+    "jamstack"
+  ]
 }

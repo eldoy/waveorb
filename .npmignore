@@ -1,6 +1,5 @@
-./test
-server-macos
-server-win.exe
-server-linux
-./dist
-./app
+/test
+/dist
+/app
+/docs
+/build.js
