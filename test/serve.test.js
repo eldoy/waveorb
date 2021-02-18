@@ -1,13 +1,5 @@
-const axios = require('axios')
+const got = require('got')
 const base = `http://localhost:${process.env.WAVEORB_PORT}`
-
-function api(path, data = {}, method = 'post') {
-  try {
-    return axios({ method, url: base + path, data })
-  } catch (e) {
-    return e.response
-  }
-}
 
 describe('serve', () => {
   beforeAll(async () => {
@@ -15,20 +7,26 @@ describe('serve', () => {
   })
 
   it('should return success on empty app', async () => {
-    const result = await api('/project/create')
-    expect(result.data).toBe('')
-    expect(result.status).toBe(200)
+    const result = await got(`${base}/project/create`, {
+      method: 'POST',
+      responseType: 'json'
+    })
+    expect(result.body).toBe('')
+    expect(result.statusCode).toBe(200)
   })
 
   it('should serve HTML', async () => {
-    const result = await api('/about.html', {}, 'get')
-    expect(result.data).toContain('html>')
-    expect(result.status).toBe(200)
+    const result = await got(`${base}/about.html`)
+    expect(result.body).toContain('html>')
+    expect(result.statusCode).toBe(200)
   })
 
   it('should serve actions', async () => {
-    const result = await api('/project/find')
-    expect(result.data).toEqual({ hello: 'project/find' })
-    expect(result.status).toBe(200)
+    const result = await got(`${base}/project/find`, {
+      method: 'POST',
+      responseType: 'json'
+    })
+    expect(result.body).toEqual({ hello: 'project/find' })
+    expect(result.statusCode).toBe(200)
   })
 })

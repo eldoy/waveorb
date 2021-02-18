@@ -19,19 +19,16 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "extras": "^0.4.4",
-    "terminal-kit": "^1.47.0",
-    "waveorb-client": "^0.4.1",
-    "waveorb-generate": "^0.6.7",
-    "bcryptjs": "^2.4.3",
     "conficurse": "0.3.1",
-    "cuid": "^2.1.8",
+    "extras": "^0.4.5",
+    "got": "^11.8.1",
     "lodash": "^4.17.20",
     "pretty": "^2.0.0",
-    "request": "^2.88.2",
     "sirloin": "^0.18.2",
-    "sitemap": "^6.3.6",
-    "uuid": "^8.3.2"
+    "sitemap": "^6.4.0",
+    "terminal-kit": "^1.48.1",
+    "waveorb-client": "^0.4.1",
+    "waveorb-generate": "^0.6.7"
   },
   "devDependencies": {
     "axios": "^0.21.1",

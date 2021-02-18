@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const extras = require('extras')
-const request = require('request')
+const got = require('got')
 const loader = require('../lib/loader.js')
 const root = process.cwd()
 const dist = path.join(root, 'dist')
@@ -41,9 +41,7 @@ async function build() {
     const stream = fs.createWriteStream(path.join(dist, dir, file))
     const address = `${builder.host}${url}`
     try {
-      request.get({
-        url: address,
-        gzip: true,
+      got.stream(address, {
         headers: { 'x-waveorb-build': 'true' }
       }).pipe(stream)
     } catch(e) {
