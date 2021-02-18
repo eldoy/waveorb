@@ -19,7 +19,7 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "conficurse": "0.3.1",
+    "conficurse": "0.3.2",
     "extras": "^0.4.5",
     "got": "^11.8.1",
     "lodash": "^4.17.20",
