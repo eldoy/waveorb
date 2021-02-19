@@ -106,7 +106,7 @@ async function build() {
   copy(path.join('app', 'assets', '*'), 'dist')
   console.log(`\nFiles written to '${dist}'`)
   console.log(`Done.`)
-  process.exit(1)
+  process.exit(0)
 }
 
 build()
