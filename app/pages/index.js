@@ -5,7 +5,7 @@ module.exports = async function($) {
     <h1>home</h1>
     <p>
       this is your shiny new <strong>blazing</strong> fast
-      <a href="https://github.com/eldoy/presang" target="_blank">presang app!</a>
+      <a href="https://github.com/eldoy/waveorb" target="_blank">waveorb app!</a>
     </p>
   `
 }

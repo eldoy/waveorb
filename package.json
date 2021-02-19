@@ -9,7 +9,7 @@
     "test": "WAVEORB_PORT=5060 jest --watch",
     "serve:test": "WAVEORB_PORT=5060 nodemon ./bin/waveorb.js serve",
     "serve": "nodemon ./bin/waveorb.js serve",
-    "build": "rm -rf ./dist && node ./bin/presang.js build",
+    "build": "rm -rf ./dist && node ./bin/waveorb.js build",
     "help": "node ./bin/waveorb.js help"
   },
   "repository": {
@@ -21,6 +21,7 @@
   "dependencies": {
     "conficurse": "0.3.2",
     "extras": "^0.4.5",
+    "fport": "^0.1.0",
     "got": "^11.8.1",
     "lodash": "^4.17.20",
     "pretty": "^2.0.0",
