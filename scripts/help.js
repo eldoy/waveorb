@@ -29,9 +29,6 @@ t.green('       Ping search engines\n')
 t.green.bold('  generate')
 t.green('   Generate templates\n')
 
-t.green.bold('  translate')
-t.green('  Translate locales\n')
-
 t.green.bold('  cmd')
 t.green('        Run command line console\n')
 
