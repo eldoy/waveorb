@@ -105,7 +105,6 @@ async function build() {
   // Copy assets
   copy(path.join('app', 'assets', '*'), 'dist')
   console.log(`\nFiles written to '${dist}'`)
-  console.log(`Done.`)
   process.exit(0)
 }
 

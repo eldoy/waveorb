@@ -8,15 +8,6 @@ t('Usage: waveorb [command]\n\n')
 
 t.dim('Commands:\n\n')
 
-t.green.bold('  boot')
-t.green('       Boot a VPS server\n')
-
-t.green.bold('  install')
-t.green('    Install VPS server\n')
-
-t.green.bold('  update')
-t.green('     Update VPS server\n')
-
 t.green.bold('  create')
 t.green('     Create new app\n')
 
