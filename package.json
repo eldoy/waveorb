@@ -1,9 +1,9 @@
 {
   "name": "waveorb",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "description": "Waveorb Javascript Jamstack web app development framework",
   "bin": {
-    "waveorb": "./bin/waveorb.js"
+    "waveorb": "bin/waveorb.js"
   },
   "scripts": {
     "test": "WAVEORB_PORT=5060 jest --watch",
