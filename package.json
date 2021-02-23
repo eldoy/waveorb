@@ -25,7 +25,7 @@
     "got": "^11.8.1",
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
-    "sirloin": "^0.19.2",
+    "sirloin": "^0.19.3",
     "sitemap": "^6.4.0",
     "terminal-kit": "^2.0.3",
     "waveorb-client": "^0.4.1",
