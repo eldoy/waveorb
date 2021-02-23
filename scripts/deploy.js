@@ -7,7 +7,6 @@ if (!repo) exit('Git repository URL not found!')
 if (/github\.com/.test(repo)) {
   repo = repo.replace(/\.git$/, '')
 }
-console.log(`Found repo ${repo}`)
 
 // Find domain from waveorb.json
 let config
