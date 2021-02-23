@@ -45,8 +45,6 @@ async function build() {
   port = port || (await fport.port())
   const host = `${protocol}//${hostname}:${port}`
 
-  console.log(`Build server: ${host}`)
-
   const { server, app } = await serve({ port })
 
   // Wait for server start
