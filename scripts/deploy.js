@@ -9,12 +9,12 @@ if (/github\.com/.test(repo)) {
 }
 console.log(`Found repo ${repo}`)
 
-// Find domain from waveorb.js
+// Find domain from waveorb.json
 let config
 try {
-  config = read('waveorb.js')
+  config = read('waveorb.json')
 } catch(e) {
-  exit(`No waveorb.js file found!`)
+  exit(`No waveorb.json file found!`)
 }
 
 const domain = (config.domains || config.domains?.[0]?.names || '').split(' ')[0]
