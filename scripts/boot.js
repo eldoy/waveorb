@@ -1,11 +1,4 @@
-// Ask for API key if not found in ~/.waveorb.json
+const t = require('terminal-kit').terminal
 
-// Create new server:
-// Name
-// @Cloud compute
-// Select location
-// @Server type Debian 10
-// Server size
-// Select SSH key or upload from file
-// Create server
-// Run install script
+t.bold(`\nTo boot a waveorb server see here:\n\n`)
+t(`https://github.com/eldoy/waveorb-server\n`)
