@@ -18,7 +18,7 @@ try {
 }
 
 const domain = (config.domains || config.domains?.[0]?.names || '').split(' ')[0]
-if (!domain) exit(`No valid domain name was found`)
+if (!domain) exit(`No valid domain name was found!`)
 
 // ssh into domain and run deploy.js
 run(`ssh root@${domain} 'cd waveorb-server && node deploy.js ${repo}'`)
