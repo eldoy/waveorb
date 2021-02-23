@@ -6,13 +6,19 @@ t.bold(`\nWaveorb command line interface v${package.version}\n\n`)
 
 t('Usage: waveorb [command]\n\n')
 
-t.dim('Commands:\n\n')
+t.bold('Commands:\n\n')
 
 t.green.bold('  create')
 t.green('     Create new app\n')
 
+t.green.bold('  boot')
+t.green('       Boot new app server\n')
+
+t.green.bold('  update')
+t.green('     Update app server\n')
+
 t.green.bold('  deploy')
-t.green('     Deploy app to VPS\n')
+t.green('     Deploy app to server\n')
 
 t.green.bold('  serve')
 t.green('      Start app server\n')
@@ -38,7 +44,7 @@ t.green('    Run migrations\n')
 t.green.bold('  help')
 t.green('       Display this help text\n\n')
 
-t.bold('Docs: https://waveorb.com/docs.html\n')
-t.bold('Issues: https://github.com/eldoy/waveorb/issues\n\n')
+t('Docs: https://waveorb.com/docs.html\n')
+t('Issues: https://github.com/eldoy/waveorb/issues\n\n')
 
-t('Created by Eldøy Projects, https://eldoy.com\n').processExit()
+t.dim('Created by Eldøy Projects, https://eldoy.com').processExit()

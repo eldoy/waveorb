@@ -2,7 +2,7 @@
 const path = require('path')
 const commands = {
   generate: ['generate'],
-  waveorb: ['create', 'help', 'cmd', 'ping', 'migrate', 'serve', 'build', 'sitemap']
+  waveorb: ['create', 'boot', 'update', 'deploy', 'help', 'cmd', 'ping', 'migrate', 'serve', 'build', 'sitemap']
 }
 const command = (process.argv[2] || 'help').trim()
 
