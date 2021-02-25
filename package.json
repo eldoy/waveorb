@@ -30,7 +30,7 @@
     "sitemap": "^6.4.0",
     "terminal-kit": "^2.0.3",
     "uglify-js": "^3.12.8",
-    "waveorb-client": "^0.4.1",
+    "waveorb-client": "^0.5.1",
     "waveorb-generate": "^0.6.7"
   },
   "devDependencies": {
