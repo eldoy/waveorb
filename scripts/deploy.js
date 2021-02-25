@@ -1,3 +1,4 @@
+const dns = require('dns')
 const { run, read, exit, get } = require('extras')
 
 // Find git repo address
