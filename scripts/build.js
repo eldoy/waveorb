@@ -7,6 +7,8 @@ const { promisify } = require('util')
 const _ = require('lodash')
 const { dir, exist, mkdir, rmdir, read, write, copy, tree, run, sleep } = require('extras')
 const got = require('got')
+const uglifyjs = require('uglify-js')
+const sass = require('sass')
 const fport = require('fport')
 const loader = require('../lib/loader.js')
 const serve = require('../lib/serve.js')
@@ -86,7 +88,9 @@ async function build() {
   await sleep(1)
 
   // Build assets
+  console.log('Compressing assets...')
   const assets = _.get(app, 'config.assets.bundle')
+
   if (assets) {
     Object.keys(assets).forEach(function(type) {
       console.log(`Building ${type} files...`)
@@ -94,9 +98,36 @@ async function build() {
       const bundle = files.map(function(file) {
         const inpath = path.join(root, 'app', 'assets', file)
         return read(inpath, 'utf8')
-      }).join(type === 'js' ? ';' : '\n')
+      }).join(type == 'js' ? ';' : '\n')
       const outpath = path.join(dist, `bundle.${type}`)
       write(outpath, bundle)
+
+      // Source map path
+      const mapPath = outpath + '.map'
+
+      // Compress Javascript bundle
+      if (type == 'js') {
+        const result = uglifyjs.minify(bundle, {
+          sourceMap: {
+            filename: 'bundle.js',
+            url: 'bundle.js.map'
+          }
+        })
+        write(outpath, result.code)
+        write(mapPath, result.map)
+      }
+
+      // Compress CSS bundle
+      if (type == 'css') {
+        const result = sass.renderSync({
+          file: outpath,
+          outFile: outpath,
+          outputStyle: 'compressed',
+          sourceMap: true
+        })
+        write(outpath, result.css)
+        write(mapPath, result.map)
+      }
     })
   }
 

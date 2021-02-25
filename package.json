@@ -25,9 +25,11 @@
     "got": "^11.8.1",
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
+    "sass": "^1.32.8",
     "sirloin": "^0.19.6",
     "sitemap": "^6.4.0",
     "terminal-kit": "^2.0.3",
+    "uglify-js": "^3.12.8",
     "waveorb-client": "^0.4.1",
     "waveorb-generate": "^0.6.7"
   },
