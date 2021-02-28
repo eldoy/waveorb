@@ -82,8 +82,6 @@ async function build() {
     }
   }
   console.log(`Build complete...\n`)
-  await sleep(1)
-  console.log(`Shutting down build server...\n`)
   server.http.close()
   await sleep(1)
 
