@@ -7,7 +7,7 @@ const { promisify } = require('util')
 const _ = require('lodash')
 const { dir, exist, mkdir, rmdir, read, write, copy, tree, run, sleep } = require('extras')
 const got = require('got')
-const uglifyjs = require('uglify-js')
+const terser = require('terser')
 const sass = require('sass')
 const fport = require('fport')
 const loader = require('../lib/loader.js')
@@ -87,18 +87,22 @@ async function build() {
   server.http.close()
   await sleep(1)
 
+  // Copy assets
+  copy(path.join('app', 'assets', '*'), 'dist')
+
   // Build assets
   console.log('Compressing assets...')
   const assets = _.get(app, 'config.assets.bundle')
 
   if (assets) {
-    Object.keys(assets).forEach(function(type) {
+    for (const type of Object.keys(assets)) {
       console.log(`Building ${type} files...`)
       const files = assets[type] || []
       const bundle = files.map(function(file) {
         const inpath = path.join(root, 'app', 'assets', file)
         return read(inpath, 'utf8')
       }).join(type == 'js' ? ';' : '\n')
+
       const bundlePath = path.join(dist, `bundle.${type}`)
       write(bundlePath, bundle)
 
@@ -107,14 +111,23 @@ async function build() {
 
       // Compress Javascript bundle
       if (type == 'js') {
-        const result = uglifyjs.minify(bundle, {
+        const files = assets[type] || []
+
+        const code = {}
+        files.forEach(file => {
+          code[file] = read(path.join(dist, file), 'utf8')
+        })
+        console.log(code)
+        const bundle = await terser.minify(code, {
           sourceMap: {
             filename: 'bundle.js',
             url: 'bundle.js.map'
           }
         })
-        write(bundlePath, result.code)
-        write(mapPath, result.map)
+        console.log(bundle)
+
+        write(bundlePath, bundle.code)
+        write(mapPath, bundle.map)
       }
 
       // Compress CSS bundle
@@ -128,11 +141,9 @@ async function build() {
         write(bundlePath, result.css)
         write(mapPath, result.map)
       }
-    })
+    }
   }
 
-  // Copy assets
-  copy(path.join('app', 'assets', '*'), 'dist')
   console.log(`\nFiles written to '${dist}'`)
   process.exit(0)
 }
