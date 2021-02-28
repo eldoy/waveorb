@@ -103,6 +103,7 @@ async function build() {
         return read(inpath, 'utf8')
       }).join(type == 'js' ? ';' : '\n')
 
+      // Write bundle uncompressed to bundle path
       const bundlePath = path.join(dist, `bundle.${type}`)
       write(bundlePath, bundle)
 
@@ -111,23 +112,18 @@ async function build() {
 
       // Compress Javascript bundle
       if (type == 'js') {
-        const files = assets[type] || []
-
         const code = {}
         files.forEach(file => {
           code[file] = read(path.join(dist, file), 'utf8')
         })
-        console.log(code)
-        const bundle = await terser.minify(code, {
+        const result = await terser.minify(code, {
           sourceMap: {
             filename: 'bundle.js',
             url: 'bundle.js.map'
           }
         })
-        console.log(bundle)
-
-        write(bundlePath, bundle.code)
-        write(mapPath, bundle.map)
+        write(bundlePath, result.code)
+        write(mapPath, result.map)
       }
 
       // Compress CSS bundle
