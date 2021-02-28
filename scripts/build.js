@@ -99,11 +99,11 @@ async function build() {
         const inpath = path.join(root, 'app', 'assets', file)
         return read(inpath, 'utf8')
       }).join(type == 'js' ? ';' : '\n')
-      const outpath = path.join(dist, `bundle.${type}`)
-      write(outpath, bundle)
+      const bundlePath = path.join(dist, `bundle.${type}`)
+      write(bundlePath, bundle)
 
       // Source map path
-      const mapPath = outpath + '.map'
+      const mapPath = bundlePath + '.map'
 
       // Compress Javascript bundle
       if (type == 'js') {
@@ -113,19 +113,19 @@ async function build() {
             url: 'bundle.js.map'
           }
         })
-        write(outpath, result.code)
+        write(bundlePath, result.code)
         write(mapPath, result.map)
       }
 
       // Compress CSS bundle
       if (type == 'css') {
         const result = sass.renderSync({
-          file: outpath,
-          outFile: outpath,
+          file: bundlePath,
+          outFile: bundlePath,
           outputStyle: 'compressed',
           sourceMap: true
         })
-        write(outpath, result.css)
+        write(bundlePath, result.css)
         write(mapPath, result.map)
       }
     })
