@@ -89,12 +89,11 @@ async function build() {
   copy(path.join('app', 'assets', '*'), 'dist')
 
   // Build assets
-  console.log('Compressing assets...')
   const assets = _.get(app, 'config.assets.bundle')
 
   if (assets) {
     for (const type of Object.keys(assets)) {
-      console.log(`Building ${type} files...`)
+      console.log(`Bundling ${type} files...`)
       const files = assets[type] || []
       const bundle = files.map(function(file) {
         const inpath = path.join(root, 'app', 'assets', file)
