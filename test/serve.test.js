@@ -21,6 +21,12 @@ describe('serve', () => {
     expect(result.statusCode).toBe(200)
   })
 
+  it('should serve markdown pages', async () => {
+    const result = await got(`${base}/markdown.html`)
+    expect(result.body).toContain('html>')
+    expect(result.statusCode).toBe(200)
+  })
+
   it('should serve actions', async () => {
     const result = await got(`${base}/project/find`, {
       method: 'POST',

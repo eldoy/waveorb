@@ -9,9 +9,9 @@ async function layout($) {
   return `
     <!doctype html>
     <html>
-      <head><title>${ $.page.title }</title></head>
+      <head><title>${$.page.title}</title></head>
       <body>
-        ${ $.page.content }
+        ${$.page.content}
       </body>
     </html>`
 }
@@ -41,15 +41,15 @@ const compile = async function($) {
   function hello() {
     return $.t('name')
   }
-  return `<div>${ hello }</div>`
+  return `<div>${hello}</div>`
 }
 
 const compileBacktick = async function($) {
   $.page.title = 'Compile Backtick'
   function hello(type) {
-    return $.t(`name.${ type }`)
+    return $.t(`name.${type}`)
   }
-  return `<div>${ hello }</div>`
+  return `<div>${hello}</div>`
 }
 
 const app = {

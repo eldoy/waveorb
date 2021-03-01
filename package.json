@@ -19,11 +19,12 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "conficurse": "0.3.2",
+    "conficurse": "0.3.3",
     "extras": "^0.5.0",
     "fport": "^0.2.2",
     "got": "^11.8.2",
     "lodash": "^4.17.21",
+    "marked": "^2.0.1",
     "pretty": "^2.0.0",
     "sass": "^1.32.8",
     "sirloin": "^0.19.14",
