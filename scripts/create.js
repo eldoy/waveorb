@@ -45,7 +45,7 @@ extras.run('npm install', { silent: true })
 
 t.bold(`\nWaveorb app created, now do:\n\n`)
 if (name != '.') t.green(`cd ${name}\n`)
-t.green(`npm run serve\n\n`)
+t.green(`npm run dev\n\n`)
 console.log([
   `Docs: https://waveorb.com/docs.html`,
   `Issues: https://github.com/eldoy/waveorb/issues\n`,
