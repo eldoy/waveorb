@@ -38,7 +38,7 @@ describe('loader', () => {
   it('should load markdown files', async () => {
     process.env.WAVEORB_APP = 'test/apps/app21'
     const app = await loader()
-    expect(typeof app.pages.article).toBe('object')
-    expect(typeof app.pages.data).toBe('object')
+    expect(typeof app.pages.article).toBe('function')
+    expect(typeof app.pages.data).toBe('function')
   })
 })
