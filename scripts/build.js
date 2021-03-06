@@ -19,15 +19,14 @@ async function build() {
   const builder = process.argv[3] || 'build.js'
   const config = exist(builder) ? await read(builder)() : {}
 
-  let urls = config.urls
+  let { urls } = config
 
-  // If urls == 'routemap', build from routemap
-  if (urls == 'routemap') {
+  // If urls not found, build from routemap
+  if (!urls) {
     try {
       urls = Object.keys(read('app/config/routes.yml').routemap)
     } catch (e) {
       console.log('Routemap not found!')
-      urls = null
     }
   }
 
