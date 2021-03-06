@@ -25,8 +25,9 @@ async function build() {
   if (!urls) {
     try {
       urls = Object.keys(read('app/config/routes.yml').routemap)
+      console.log('Building from routemap config...')
     } catch (e) {
-      console.log('Routemap not found!')
+      console.log('Building without routemap config...')
     }
   }
 
