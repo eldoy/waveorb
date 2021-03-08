@@ -5,10 +5,6 @@ const { run, read, exit, get } = require('extras')
 let repo = get(`git config --get remote.origin.url`)
 if (!repo) exit('Git repository URL not found!')
 
-if (/github\.com/.test(repo)) {
-  repo = repo.replace(/\.git$/, '')
-}
-
 // Find domain from waveorb.json
 let config
 try {
