@@ -2,7 +2,7 @@ const got = require('got')
 const { exist, read } = require('extras')
 let sitemap = process.argv[3]
 if (exist('waveorb.json')) {
-  const config = tools.read('waveorb.json')
+  const config = read('waveorb.json')
   if (typeof config.sitemap == 'string') {
     sitemap = config.sitemap
   } else if (typeof config.domains == 'string') {
