@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "conficurse": "0.3.4",
-    "extras": "^0.6.1",
+    "extras": "^0.7.0",
     "fport": "^0.2.2",
     "got": "^11.8.2",
     "lodash": "^4.17.21",
@@ -30,7 +30,7 @@
     "sitemap": "^6.4.0",
     "terminal-kit": "^2.0.5",
     "terser": "^5.6.0",
-    "tomarkup": "^0.4.3",
+    "tomarkup": "^0.5.0",
     "waveorb-client": "^0.5.1",
     "waveorb-generate": "^0.7.3"
   },
