@@ -30,7 +30,7 @@
     "sitemap": "^6.4.0",
     "terminal-kit": "^2.0.5",
     "terser": "^5.6.0",
-    "tomarkup": "^0.4.1",
+    "tomarkup": "^0.4.2",
     "waveorb-client": "^0.5.1",
     "waveorb-generate": "^0.7.3"
   },
