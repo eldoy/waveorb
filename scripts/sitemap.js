@@ -14,7 +14,9 @@ async function sitemap() {
   if (config) {
     console.log('Building sitemap.xml...')
     const result = await builder(config)
-    const outpath = path.join(process.cwd(), 'app', 'assets', 'sitemap.xml')
+    const outpath = process.env.NODE_ENV == 'production'
+      ? path.join(process.cwd(), 'dist', 'sitemap.xml')
+      : path.join(process.cwd(), 'app', 'assets', 'sitemap.xml')
     write(outpath, result)
   } else {
     console.log('\nNo sitemap config found.\n')
