@@ -7,7 +7,7 @@ const builder = require('../lib/sitemap.js')
 
 async function sitemap() {
   const app = await loader()
-  const config = _.get(app, 'config.sitemap')
+  let config = _.get(app, 'config.sitemap')
   if (typeof config == 'function') {
     config = await config(app)
   }
