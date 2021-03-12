@@ -16,8 +16,9 @@ const root = process.cwd()
 const dist = path.join(root, 'dist')
 
 async function build() {
+  const app = await loader()
   const builder = process.argv[3] || 'build.js'
-  const config = exist(builder) ? await read(builder)() : {}
+  const config = exist(builder) ? await read(builder)(app) : {}
 
   let { urls } = config
 
@@ -47,7 +48,7 @@ async function build() {
   port = port || (await fport.port())
   const host = `${protocol}//${hostname}:${port}`
 
-  const { server, app } = await serve({ port })
+  const { server } = await serve({ port }, app)
 
   // Wait for server start
   await sleep(1)
