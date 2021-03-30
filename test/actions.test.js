@@ -127,4 +127,18 @@ describe('actions', () => {
     let result = await actions($)
     expect(result.hello).toBe('project/create')
   })
+
+  it('should match actions from pathname for api/project/create', async () => {
+    const app = await loader({ path: 'test/apps/app19', locales })
+    const $ = {
+      app,
+      req: {
+        pathname: '/api/project/create'
+      },
+      params: {},
+      t: i18n.t({ locales })
+    }
+    let result = await actions($)
+    expect(result.hello).toBe('project/create')
+  })
 })
