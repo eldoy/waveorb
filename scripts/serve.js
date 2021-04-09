@@ -1,2 +1,9 @@
 #!/usr/bin/env node
-require('../lib/serve.js')()
+const path = require('path')
+const root = process.cwd()
+const pkg = require(path.join(root, 'package.json'))
+if (pkg && pkg.main) {
+  require(path.join(root, pkg.main))
+} else {
+  require('../lib/serve.js')()
+}
