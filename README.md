@@ -11,6 +11,7 @@ It boasts the following features:
 * Server setup and command line deploy
 * Create complex frontends using vanilla Javascript
 * ... or use whichever frontend you like, it's flexible
+* Perfect as a Jamstack static site generator, but can do SSR as well
 * Dead simple uploads, emails, layouts, translations, you name it
 * Built-in tooling and config environments
 * Plugin support
