@@ -1,6 +1,6 @@
 # Javascript Web App Development Framework
 
-The [Waveorb Javascript Web App Development Framework.](https://waveorb.com) is everything you need to develop advanced web applications.
+The [Waveorb Javascript Web App Development Framework](https://waveorb.com) is everything you need to develop advanced web applications.
 
 It boasts the following features:
 
