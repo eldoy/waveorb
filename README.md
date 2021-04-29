@@ -1,4 +1,4 @@
-# Jamstack web app development framework
+# Javascript Web App Development Framework
 
 This is the repository for the [Waveorb Javascript Web App Development Framework.](https://waveorb.com)
 
