@@ -4,13 +4,13 @@ The [Waveorb Javascript Web App Development Framework](https://waveorb.com) is e
 
 It boasts the following features:
 
+* Create complex frontends using vanilla Javascript
+* ... or use whichever frontend you like, it's flexible
 * Easily create JSON web services
 * Ajax REST or web sockets with optional pubsub
 * Code generator for frontend and backend
 * Backend middleware, filters and validations
 * Server setup and command line deploy
-* Create complex frontends using vanilla Javascript
-* ... or use whichever frontend you like, it's flexible
 * Perfect as a Jamstack static site generator, but can do SSR as well
 * Dead simple uploads, emails, layouts, translations, you name it
 * Built-in tooling and config environments
