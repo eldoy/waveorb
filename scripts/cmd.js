@@ -1,27 +1,22 @@
 const path = require('path')
 const repl = require('repl')
-const waveorb = require('waveorb-client')
-
+const { loader } = require(path.join(__dirname, '..', 'index.js'))
 const package = require(path.join(__dirname, '..', 'package.json'))
-
-const server = process.argv[3] || 'http://localhost:5000'
-const client = waveorb(server)
 
 const api = {}
 
-api.help = function() {
-  console.log([
-    `\nWaveorb cmd v${package.version}\n`,
-    `Usage: waveorb cmd [server]\n`,
-    `Example: await action('name')\n`,
-    `Docs: https://waveorb.com/doc/command-line.html#cmd\n`,
-    'Available functions:\n',
-    Object.keys(api).map(x => `  ${x}()`).join('\n'),
-    `\nConnected to ${server}\n`
-  ].join('\n'))
+console.log(`
+  Waveorb cmd v${package.version}
+  Usage: waveorb cmd
+  Docs: https://waveorb.com/doc/command-line.html#cmd
+
+  Built in properties:
+    app - app object
+`)
+
+async function start() {
+  const cmd = repl.start('ᚠ ')
+  api.app = await loader()
+  Object.assign(cmd.context, api)
 }
-
-api.help()
-
-const cmd = repl.start('λ ')
-Object.assign(cmd.context, api)
+start()

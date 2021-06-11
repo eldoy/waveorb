@@ -31,7 +31,6 @@
     "terminal-kit": "^2.1.5",
     "terser": "^5.7.0",
     "tomarkup": "^0.5.0",
-    "waveorb-client": "^0.6.1",
     "waveorb-generate": "^0.7.3"
   },
   "devDependencies": {
