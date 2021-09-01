@@ -5,7 +5,8 @@ let pkg
 try {
   pkg = require(path.join(root, 'package.json'))
 } catch (e) {}
-if (pkg && pkg.main) {
+
+if (/\.m?js$/.test(pkg?.main)) {
   require(path.join(root, pkg.main))
 } else {
   require('../lib/serve.js')()
