@@ -1,9 +1,6 @@
 const dns = require('dns')
-const { exist, run, read, exit, get } = require('extras')
-
-let config = {}
-if (exist('waveorb.json')) config = read('waveorb.json')
-else if (exist('waveorb.js')) config = read('waveorb.js')
+const { run, exit, get } = require('extras')
+const { config } = require('setup.js')
 
 const domain = (config.domains || config.domains?.[0]?.names || '').split(' ')[0]
 if (!domain) exit(`No valid domain name was found!`)

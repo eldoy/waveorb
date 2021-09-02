@@ -1,10 +1,6 @@
 const got = require('got')
-const { exist, read } = require('extras')
+const { config } = require('setup.js')
 let sitemap = process.argv[3]
-
-let config = {}
-if (exist('waveorb.json')) config = read('waveorb.json')
-else if (exist('waveorb.js')) config = read('waveorb.js')
 
 if (typeof config.sitemap == 'string') {
   sitemap = config.sitemap
