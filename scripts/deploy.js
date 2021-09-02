@@ -3,7 +3,7 @@ const { exist, run, read, exit, get } = require('extras')
 
 let config = {}
 if (exist('waveorb.json')) config = read('waveorb.json')
-if (exist('waveorb.js')) config = read('waveorb.js')
+else if (exist('waveorb.js')) config = read('waveorb.js')
 
 // Find git repo address
 let repo = config?.git || get(`git config --get remote.origin.url`)

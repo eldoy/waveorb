@@ -4,7 +4,7 @@ let sitemap = process.argv[3]
 
 let config = {}
 if (exist('waveorb.json')) config = read('waveorb.json')
-if (exist('waveorb.js')) config = read('waveorb.js')
+else if (exist('waveorb.js')) config = read('waveorb.js')
 
 if (typeof config.sitemap == 'string') {
   sitemap = config.sitemap

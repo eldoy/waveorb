@@ -3,7 +3,7 @@ const { exist, run, read, exit, get } = require('extras')
 
 let config = {}
 if (exist('waveorb.json')) config = read('waveorb.json')
-if (exist('waveorb.js')) config = read('waveorb.js')
+else if (exist('waveorb.js')) config = read('waveorb.js')
 
 const domain = (config.domains || config.domains?.[0]?.names || '').split(' ')[0]
 if (!domain) exit(`No valid domain name was found!`)
