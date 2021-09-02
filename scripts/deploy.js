@@ -1,13 +1,9 @@
 const dns = require('dns')
-const { run, read, exit, get } = require('extras')
+const { exist, run, read, exit, get } = require('extras')
 
-// Find domain from waveorb.json
-let config
-try {
-  config = read('waveorb.json')
-} catch(e) {
-  exit(`No waveorb.json file found!`)
-}
+let config = {}
+if (exist('waveorb.json')) config = read('waveorb.json')
+if (exist('waveorb.js')) config = read('waveorb.js')
 
 // Find git repo address
 let repo = config?.git || get(`git config --get remote.origin.url`)

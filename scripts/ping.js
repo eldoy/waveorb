@@ -1,14 +1,16 @@
 const got = require('got')
 const { exist, read } = require('extras')
 let sitemap = process.argv[3]
-if (exist('waveorb.json')) {
-  const config = read('waveorb.json')
-  if (typeof config.sitemap == 'string') {
-    sitemap = config.sitemap
-  } else if (typeof config.domains == 'string') {
-    const domain = config.domains.split(' ')[0]
-    sitemap = `https://${domain}/sitemap.xml`
-  }
+
+let config = {}
+if (exist('waveorb.json')) config = read('waveorb.json')
+if (exist('waveorb.js')) config = read('waveorb.js')
+
+if (typeof config.sitemap == 'string') {
+  sitemap = config.sitemap
+} else if (typeof config.domains == 'string') {
+  const domain = config.domains.split(' ')[0]
+  sitemap = `https://${domain}/sitemap.xml`
 }
 
 if (!sitemap) {
