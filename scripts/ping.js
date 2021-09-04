@@ -1,5 +1,5 @@
 const got = require('got')
-const { config } = require('setup.js')
+const { config } = require('../lib/setup.js')
 let sitemap = process.argv[3]
 
 if (typeof config.sitemap == 'string') {
