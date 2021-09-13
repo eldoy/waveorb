@@ -1,24 +1,9 @@
 const markup = require('../lib/markup.js')
+const loader = require('../lib/loader.js')
 
 const req = { pathname: '/', query: {} }
 const res = {
   setHeader: function() {}
-}
-
-async function layout($) {
-  return `
-    <!doctype html>
-    <html>
-      <head><title>${$.page.title}</title></head>
-      <body>
-        ${$.page.content}
-      </body>
-    </html>`
-}
-
-const index = async function($) {
-  $.page.title = 'Home'
-  return `<div>Home</div>`
 }
 
 const about = async function($) {
@@ -26,58 +11,22 @@ const about = async function($) {
   return `<div>About</div>`
 }
 
-const nolayout = async function($) {
-  $.page.layout = false
-  return `<div>NoLayout</div>`
-}
-
-const deep = async function($) {
-  $.page.title = 'Deep'
-  return `<div>Deep</div>`
-}
-
-const compile = async function($) {
-  $.page.title = 'Compile'
-  function hello() {
-    return $.t('name')
-  }
-  return `<div>${hello}</div>`
-}
-
-const compileBacktick = async function($) {
-  $.page.title = 'Compile Backtick'
-  function hello(type) {
-    return $.t(`name.${type}`)
-  }
-  return `<div>${hello}</div>`
-}
-
-const app = {
-  layouts: {
-    default: layout
-  },
-  pages: {
-    index,
-    about,
-    compile,
-    nolayout,
-    docs: {
-      deep
-    }
-  }
-}
-
 const t = function(key) {
   return key
 }
 
-let $
+let $, app
 
 function flat(result) {
   return (result || '').split('\n').map(x => x.trim()).join('')
 }
 
 describe('markup', () => {
+  beforeAll(async () => {
+    process.env.WAVEORB_APP = 'test/apps/app22'
+    app = await loader()
+  })
+
   beforeEach(() => {
     $ = { app, req, res, t }
     req.pathname = '/'
@@ -156,11 +105,10 @@ describe('markup', () => {
   })
 
   it('should compile templates with backtick', async () => {
-    req.pathname = '/compile.html'
+    req.pathname = '/backtick.html'
     $.app.config = {
       routes: { compile: true }
     }
-    $.app.pages.compile = compileBacktick
     const result = await markup($)
     expect(flat(result)).toBe(
       '<!doctype html><html><head><title>Compile Backtick</title></head><body><div>function hello(type) {return `name.${type}`;}</div></body></html>'
