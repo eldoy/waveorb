@@ -1,4 +1,5 @@
 const markup = require('../lib/markup.js')
+const pager = require('../lib/pager.js')
 const loader = require('../lib/loader.js')
 
 const req = { pathname: '/', query: {} }
@@ -28,69 +29,18 @@ describe('markup', () => {
   })
 
   beforeEach(() => {
-    $ = { app, req, res, t }
+    $ = { app, req, res, t, page: {} }
     req.pathname = '/'
   })
 
-  it('should load the home page', async () => {
-    const result = await markup($)
-    expect(flat(result)).toBe(
-      '<!doctype html><html><head><title>Home</title></head><body><div>Home</div></body></html>'
-    )
-  })
+  // BELONGS HERE
 
-  it('should load the about page', async () => {
-    req.pathname = '/about.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(
-      '<!doctype html><html><head><title>About</title></head><body><div>About</div></body></html>'
-    )
-  })
-
-  it('should not load the about page when path is wrong', async () => {
-    req.pathname = '/something/about.html'
-    const result = await markup($)
-    expect(result).toBeUndefined()
-  })
-
-  it('should load the deep page', async () => {
-    req.pathname = '/docs/deep.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(
-      '<!doctype html><html><head><title>Deep</title></head><body><div>Deep</div></body></html>'
-    )
-  })
+  // TODO: Add test for should have layout
 
   it('should not have a layout', async () => {
     req.pathname = '/nolayout.html'
     const result = await markup($)
     expect(flat(result)).toBe('<div>NoLayout</div>')
-  })
-
-  it('should load pages via routemap option as string', async () => {
-    req.pathname = '/om-oss.html'
-    $.app.config = {
-      routes: {
-        routemap: { '/om-oss.html': 'en@about' }
-      }
-    }
-    const result = await markup($)
-    expect(flat(result)).toBe(
-      '<!doctype html><html><head><title>About</title></head><body><div>About</div></body></html>'
-    )
-  })
-
-  it('should load pages via routemap option as string deeply', async () => {
-    req.pathname = '/hello/om-oss.html'
-     $.app.config = {
-      routes: {
-        routemap: { '/hello/om-oss.html': 'en@about' }
-      }
-    }
-    const result = await markup($)
-    expect(flat(result)).toBe(
-      '<!doctype html><html><head><title>About</title></head><body><div>About</div></body></html>'
-    )
   })
 
   it('should compile templates', async () => {
@@ -138,6 +88,48 @@ describe('markup', () => {
     )
   })
 
+  // MOVE TO PAGER TEST
+
+  it('should load the home page', async () => {
+    const page = await pager('index', $)
+    expect(await page($)).toBe(`<div>Home</div>`)
+  })
+
+  it('should load the about page', async () => {
+    const page = await pager('about', $)
+    expect(await page($)).toBe(`<div>About</div>`)
+  })
+
+  it('should not load the about page when path is wrong', async () => {
+    const page = await pager('something/about', $)
+    expect(page).toBeUndefined()
+  })
+
+  it('should load the deep page', async () => {
+    const page = await pager('docs/deep', $)
+    expect(await page($)).toBe(`<div>Deep</div>`)
+  })
+
+  it('should load pages via routemap option as string', async () => {
+    $.app.config = {
+      routes: {
+        routemap: { '/om-oss.html': 'en@about' }
+      }
+    }
+    const page = await pager('om-oss', $)
+    expect(await page($)).toBe(`<div>About</div>`)
+  })
+
+  it('should load pages via routemap option as string deeply', async () => {
+     $.app.config = {
+      routes: {
+        routemap: { '/hello/om-oss.html': 'en@about' }
+      }
+    }
+    const page = await pager('hello/om-oss', $)
+    expect(await page($)).toBe(`<div>About</div>`)
+  })
+
   it('should work with dynamic routes', async () => {
     const _index = async function($) {
       return `<div>HTML</div>`
@@ -147,12 +139,11 @@ describe('markup', () => {
         _index
       }
     }
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>HTML</div>`)
+    const page = await pager('dynamic', $)
+    expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
   it('should work with nested dynamic index routes', async () => {
-    req.pathname = '/doc/hello.html'
     const _index = async function($) {
       return `<div>${$.req.query.index}</div>`
     }
@@ -163,12 +154,11 @@ describe('markup', () => {
         }
       }
     }
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>hello</div>`)
+    const page = await pager('doc/hello', $)
+    expect(await page($)).toBe(`<div>hello</div>`)
   })
 
-  it('should work with nested dynamic index routes', async () => {
-    req.pathname = '/doc/hello.html'
+  it('should work with nested dynamic non index routes', async () => {
     const _actions = async function($) {
       return `<div>${$.req.query.actions}</div>`
     }
@@ -179,8 +169,8 @@ describe('markup', () => {
         }
       }
     }
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>hello</div>`)
+    const page = await pager('doc/hello', $)
+    expect(await page($)).toBe(`<div>hello</div>`)
   })
 
   it('should collect query params from URL', async () => {
@@ -196,12 +186,11 @@ describe('markup', () => {
         }
       }
     }
-    req.pathname = '/2020/12/article.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>2020/12</div>`)
+    const page = await pager('2020/12/article', $)
+    expect(await page($)).toBe(`<div>2020/12</div>`)
   })
 
-  it('should escape dynamic route if template exists', async () => {
+  it('should avoid dynamic route if template exists', async () => {
     const _index = async function($) {
       return `<div>HTML</div>`
     }
@@ -211,12 +200,11 @@ describe('markup', () => {
         _index
       }
     }
-    req.pathname = '/about.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>About</div>`)
+    const page = await pager('about', $)
+    expect(await page($)).toBe(`<div>About</div>`)
   })
 
-  it('should escape dynamic route if template exists, sorted', async () => {
+  it('should avoid dynamic route if template exists, sorted', async () => {
     const _index = async function($) {
       return `<div>HTML</div>`
     }
@@ -226,9 +214,8 @@ describe('markup', () => {
         about
       }
     }
-    req.pathname = '/about.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>About</div>`)
+    const page = await pager('about', $)
+    expect(await page($)).toBe(`<div>About</div>`)
   })
 
   it('should work with dynamic route and routemap option', async () => {
@@ -248,9 +235,8 @@ describe('markup', () => {
         }
       }
     }
-    req.pathname = '/om-oss.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>HTML</div>`)
+    const page = await pager('om-oss', $)
+    expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
   it('should collect query params from URL with routemap option', async () => {
@@ -273,8 +259,7 @@ describe('markup', () => {
         }
       }
     }
-    req.pathname = '/2020/12/artikkel.html'
-    const result = await markup($)
-    expect(flat(result)).toBe(`<div>2020/12</div>`)
+    const page = await pager('2020/12/artikkel', $)
+    expect(await page($)).toBe(`<div>2020/12</div>`)
   })
 })
