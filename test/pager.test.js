@@ -42,9 +42,10 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
-  it('should not load the about page when path is wrong', async () => {
+  it('should load 404 when path does not exist', async () => {
     const page = await pager('something/about', $)
-    expect(page).toBeUndefined()
+    expect(await page($)).toBe('')
+    expect($.res.statusCode).toBe(404)
   })
 
   it('should load the deep page', async () => {
@@ -203,5 +204,42 @@ describe('pager', () => {
     }
     const page = await pager('2020/12/artikkel', $)
     expect(await page($)).toBe(`<div>2020/12</div>`)
+  })
+
+  it('should issue a default 404 if not found', async () => {
+    $.app = {
+      pages: {}
+    }
+    const page = await pager('notfound', $)
+    expect(await page($)).toBe('')
+    expect($.res.statusCode).toBe(404)
+  })
+
+  it('should issue the 404 page if not found', async () => {
+    $.app = {
+      pages: {
+        '404': async function($) {
+          return `<div>404</div>`
+        }
+      }
+    }
+    const page = await pager('notfound', $)
+    expect(await page($)).toBe(`<div>404</div>`)
+    expect($.res.statusCode).toBe(404)
+  })
+
+  it('should not pick up 404 page for dynamic URL', async () => {
+    $.app = {
+      pages: {
+        '404': async function($) {
+          return `<div>404</div>`
+        },
+        _dynamic: async function($) {
+          return `<div>dynamic</div>`
+        }
+      }
+    }
+    const page = await pager('match', $)
+    expect(await page($)).toBe(`<div>dynamic</div>`)
   })
 })
