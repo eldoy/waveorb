@@ -182,7 +182,7 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
-  xit('should work with dynamic routes in routemaps', async () => {
+  it('should work with dynamic routes in routemaps', async () => {
     const _index = async function($) {
       return `<div>HTML</div>`
     }
@@ -202,7 +202,7 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
-  xit('should work with dynamic routes in routemaps deeply', async () => {
+  it('should work with dynamic routes in routemaps deeply', async () => {
     $.app = {
       pages: {
         article: {
