@@ -207,7 +207,7 @@ describe('pager', () => {
       pages: {
         article: {
           _article: async function($) {
-            return `<div>HTML</div>`
+            return `<div>${req.query.article}</div>`
           }
         }
       },
@@ -220,7 +220,7 @@ describe('pager', () => {
       }
     }
     const page = await pager('artikkel/om-oss', $)
-    expect(await page($)).toBe(`<div>HTML</div>`)
+    expect(await page($)).toBe(`<div>om-oss</div>`)
   })
 
   it('should collect query params from URL with routemap option', async () => {
