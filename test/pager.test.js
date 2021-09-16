@@ -182,6 +182,47 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
+  xit('should work with dynamic routes in routemaps', async () => {
+    const _index = async function($) {
+      return `<div>HTML</div>`
+    }
+    $.app = {
+      pages: {
+        _index
+      },
+      config: {
+        routes: {
+          routemap: {
+            '/artikkel/_article.html': 'no@_index'
+          }
+        }
+      }
+    }
+    const page = await pager('artikkel/om-oss', $)
+    expect(await page($)).toBe(`<div>HTML</div>`)
+  })
+
+  xit('should work with dynamic routes in routemaps deeply', async () => {
+    $.app = {
+      pages: {
+        article: {
+          _article: async function($) {
+            return `<div>HTML</div>`
+          }
+        }
+      },
+      config: {
+        routes: {
+          routemap: {
+            '/artikkel/_article.html': 'no@article/_article'
+          }
+        }
+      }
+    }
+    const page = await pager('artikkel/om-oss', $)
+    expect(await page($)).toBe(`<div>HTML</div>`)
+  })
+
   it('should collect query params from URL with routemap option', async () => {
     const article = async function($) {
       return `<div>${$.req.query.year}/${$.req.query.month}</div>`
