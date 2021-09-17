@@ -41,4 +41,14 @@ describe('loader', () => {
     expect(typeof app.pages.article).toBe('function')
     expect(typeof app.pages.data).toBe('function')
   })
+
+  it('should load routes', async () => {
+    process.env.WAVEORB_APP = 'test/apps/app23'
+    const app = await loader()
+    expect(typeof app.routes).toBe('object')
+    expect(app.routes.about).toBe('about')
+    expect(app.routes.index).toBe('index')
+    expect(app.routes['docs/main']).toBe('docs.main')
+    expect(app.routes['articles/_show']).toBe('articles._show')
+  })
 })
