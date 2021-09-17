@@ -86,6 +86,25 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
+  xit('should work with dynamic deep non index routes', async () => {
+    const _cat = async function($) {
+      return `<div>Cat</div>`
+    }
+    const _show = async function($) {
+      return `<div>Show</div>`
+    }
+    $.app = {
+      pages: {
+        _hello: {
+          _cat
+        },
+        _show
+      }
+    }
+    const page = await pager('dynamic', $)
+    expect(await page($)).toBe(`<div>Show</div>`)
+  })
+
   it('should work with nested dynamic index routes', async () => {
     const _index = async function($) {
       return `<div>${$.req.query.index}</div>`
