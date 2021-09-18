@@ -49,6 +49,6 @@ describe('loader', () => {
     expect(app.routes.about).toBe('about')
     expect(app.routes.index).toBe('index')
     expect(app.routes['docs/main']).toBe('docs.main')
-    expect(app.routes['articles/_show']).toBe('articles._show')
+    expect(app.routes['article/_show']).toBe('article._show')
   })
 })
