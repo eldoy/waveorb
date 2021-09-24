@@ -28,13 +28,13 @@ describe('markup', () => {
   })
 
   it('should not have a layout', async () => {
-    req.pathname = '/nolayout.html'
+    req.pathname = '/nolayout'
     const result = await markup($)
     expect(flat(result)).toBe('<div>NoLayout</div>')
   })
 
   it('should compile templates', async () => {
-    req.pathname = '/compile.html'
+    req.pathname = '/compile'
     $.app.config = {
       routes: { compile: true }
     }
@@ -45,7 +45,7 @@ describe('markup', () => {
   })
 
   it('should compile templates with backtick', async () => {
-    req.pathname = '/backtick.html'
+    req.pathname = '/backtick'
     $.app.config = {
       routes: { compile: true }
     }
@@ -56,7 +56,7 @@ describe('markup', () => {
   })
 
   it('should compile with escaped strings', async () => {
-    req.pathname = '/compile.html'
+    req.pathname = '/compile'
     $.app.config = {
       routes: { compile: true }
     }
