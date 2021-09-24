@@ -4,5 +4,5 @@ compile: true
 routemap:
   /: en@index
   /no/: no@index
-  /about.html: en@about
-  /no/om-oss.html: no@about
+  /about: en@about
+  /no/om-oss: no@about

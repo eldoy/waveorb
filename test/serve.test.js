@@ -15,8 +15,14 @@ describe('serve', () => {
     expect(result.statusCode).toBe(200)
   })
 
-  it('should serve HTML', async () => {
+  it('should serve plain HTML', async () => {
     const result = await got(`${base}/about`)
+    expect(result.body).toContain('html>')
+    expect(result.statusCode).toBe(200)
+  })
+
+  it('should serve HTML extension', async () => {
+    const result = await got(`${base}/contact.html`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
   })
