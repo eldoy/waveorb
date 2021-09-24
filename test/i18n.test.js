@@ -79,57 +79,57 @@ describe('link', () => {
   it('should return the correct link for page', async () => {
     const link = i18n.link()
     const result = link('about')
-    expect(result).toBe('/about.html')
+    expect(result).toBe('/about')
   })
 
   it('should return the correct link for deep page', async () => {
     const link = i18n.link()
     const result = link('docs/about')
-    expect(result).toBe('/docs/about.html')
+    expect(result).toBe('/docs/about')
   })
 
   it('should support url parameters', async () => {
     const link = i18n.link()
     const result = link('about?test=1')
-    expect(result).toBe('/about.html?test=1')
+    expect(result).toBe('/about?test=1')
   })
 
   it('should support hash link', async () => {
     const link = i18n.link()
     const result = link('about#contact')
-    expect(result).toBe('/about.html#contact')
+    expect(result).toBe('/about#contact')
   })
 
   it('should support url parameters and hash', async () => {
     const link = i18n.link()
     const result = link('about?test=1#hello')
-    expect(result).toBe('/about.html?test=1#hello')
+    expect(result).toBe('/about?test=1#hello')
   })
 
   it('should return the correct link for routemap', async () => {
     const routemap = {
-      '/om-oss.html': 'no@about'
+      '/om-oss': 'no@about'
     }
     const link = i18n.link({ routemap }, 'no')
     const result = link('about')
-    expect(result).toBe('/om-oss.html')
+    expect(result).toBe('/om-oss')
   })
 
   it('should return the correct link for routemap with language', async () => {
     const routes = {}
     routes.routemap = {
-      '/about.html': 'en@about',
-      '/om-oss.html': 'no@about'
+      '/about': 'en@about',
+      '/om-oss': 'no@about'
     }
     const link = i18n.link(routes)
     let result = link('about')
-    expect(result).toBe('/about.html')
+    expect(result).toBe('/about')
 
     result = link('en@about')
-    expect(result).toBe('/about.html')
+    expect(result).toBe('/about')
 
     result = link('no@about')
-    expect(result).toBe('/om-oss.html')
+    expect(result).toBe('/om-oss')
   })
 
   it('should return the correct link for routemap index', async () => {
@@ -149,15 +149,15 @@ describe('link', () => {
   it('should return the correct link with dynamic routes', async () => {
     const link = i18n.link()
     let result = link('about')
-    expect(result).toBe('/about.html')
+    expect(result).toBe('/about')
   })
 
   it('should return the correct link with dynamic deep routes', async () => {
     const link = i18n.link()
     let result = link('_month/_year/post')
-    expect(result).toBe('/_month/_year/post.html')
+    expect(result).toBe('/_month/_year/post')
 
     result = link('_month/_year/post', 12, 20)
-    expect(result).toBe('/12/20/post.html')
+    expect(result).toBe('/12/20/post')
   })
 })
