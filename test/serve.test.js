@@ -3,7 +3,7 @@ const base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('serve', () => {
   beforeAll(async () => {
-    await new Promise(r => setTimeout(r, 300))
+    await new Promise(r => setTimeout(r, 500))
   })
 
   it('should return success on empty app', async () => {
@@ -16,13 +16,13 @@ describe('serve', () => {
   })
 
   it('should serve HTML', async () => {
-    const result = await got(`${base}/about.html`)
+    const result = await got(`${base}/about`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
   })
 
   it('should serve markdown pages', async () => {
-    const result = await got(`${base}/markdown.html`)
+    const result = await got(`${base}/markdown`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
   })
