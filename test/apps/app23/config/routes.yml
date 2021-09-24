@@ -1,2 +1,3 @@
 routemap:
-  /article/_show.html: en@article/_show
+  /article/_show: en@article/_show
+  /project/_show.html: en@project/_show.html
