@@ -19,6 +19,7 @@ describe('serve', () => {
     const result = await got(`${base}/about`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
   })
 
   it('should serve HTML extension', async () => {
@@ -27,10 +28,25 @@ describe('serve', () => {
     expect(result.statusCode).toBe(200)
   })
 
+  it('should serve XML files', async () => {
+    const result = await got(`${base}/sitemap.xml`)
+    expect(result.body).toContain('xml>')
+    expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('application/xml; charset=utf-8')
+  })
+
   it('should serve markdown pages', async () => {
     const result = await got(`${base}/markdown`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
+  })
+
+  it('should serve markdown pages with html extension', async () => {
+    const result = await got(`${base}/some.html`)
+    expect(result.body).toContain('html>')
+    expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
   })
 
   it('should serve actions', async () => {
@@ -40,5 +56,6 @@ describe('serve', () => {
     })
     expect(result.body).toEqual({ hello: 'project/find' })
     expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
   })
 })
