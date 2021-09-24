@@ -19,22 +19,22 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "conficurse": "0.3.4",
+    "conficurse": "0.3.5",
     "extras": "^0.7.4",
     "fport": "^0.2.2",
     "got": "^11.8.2",
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
-    "sass": "^1.41.1",
+    "sass": "^1.42.1",
     "sirloin": "^0.20.1",
     "sitemap": "^7.0.0",
     "terminal-kit": "^2.1.6",
-    "terser": "^5.8.0",
+    "terser": "^5.9.0",
     "tomarkup": "^0.8.0",
     "waveorb-generate": "^0.7.3"
   },
   "devDependencies": {
-    "jest": "^27.2.0"
+    "jest": "^27.2.1"
   },
   "keywords": [
     "javascript",
