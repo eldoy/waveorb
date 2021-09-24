@@ -16,14 +16,14 @@ describe('serve', () => {
   })
 
   it('should serve plain HTML', async () => {
-    const result = await got(`${base}/about`)
+    const result = await got(`${base}/about.html`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
   })
 
   it('should serve HTML extension', async () => {
-    const result = await got(`${base}/contact.html`)
+    const result = await got(`${base}/contact`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
   })
@@ -36,14 +36,7 @@ describe('serve', () => {
   })
 
   it('should serve markdown pages', async () => {
-    const result = await got(`${base}/markdown`)
-    expect(result.body).toContain('html>')
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
-  })
-
-  it('should serve markdown pages with html extension', async () => {
-    const result = await got(`${base}/some.html`)
+    const result = await got(`${base}/markdown.html`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
