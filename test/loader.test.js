@@ -48,7 +48,7 @@ describe('loader', () => {
     const app = await loader()
     expect(typeof app.routes).toBe('object')
     expect(app.routes['/about']).toBe('about')
-    expect(app.routes['/']).toBe('index.html')
+    expect(app.routes['/']).toBe('index')
     expect(app.routes['/docs/main']).toBe('docs/main')
     expect(app.routes['/article/_show']).toBe('article/_show')
     expect(app.routes['/project/_show.html']).toBe('project/_show.html')
