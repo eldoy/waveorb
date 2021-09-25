@@ -10,6 +10,7 @@ describe('loader', () => {
   it('should load an application', async () => {
     const app = await loader()
     expect(typeof app).toBe('object')
+    expect(typeof app.assets).toBe('object')
   })
 
   it('should load an application from process env', async () => {
