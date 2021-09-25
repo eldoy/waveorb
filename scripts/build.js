@@ -37,7 +37,9 @@ async function build() {
   if (!urls || !urls.length) {
     const root = `${process.cwd()}/app/pages`
     urls = tree('app/pages').map(f => {
-      return f.replace(root, '').replace(/\.(md|js)/, '.html')
+      return f.replace(root, '')
+        .replace(/\.(md|js)$/, '')
+        .replace(/^index$|\/index$/, '/')
     })
   }
 
