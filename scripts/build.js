@@ -24,7 +24,7 @@ async function build() {
 
   // If urls not found, build from routes
   if (!urls) {
-    urls = Object.keys(app.routes)
+    urls = Object.keys(app.routes).filter(x => !x.includes('/_'))
   }
 
   // No hostname means start localhost on random port
@@ -61,7 +61,7 @@ async function build() {
         fs.createWriteStream(path.join(dist, dir, file))
       )
     } catch(e) {
-      console.log(`Can't connect to ${address}, skipping file...`)
+      console.log(`Can't build ${name}, skipping...`)
     }
   }
   console.log(`Build complete...\n`)
