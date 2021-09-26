@@ -22,30 +22,12 @@ async function build() {
 
   let { urls } = config
 
-  // If urls not found, build from routemap
+  // If urls not found, build from routes
   if (!urls) {
-    try {
-      urls = Object.keys(read('app/config/routes.yml').routemap)
-      console.log('Building from routemap config...')
-    } catch (e) {
-      console.log('Building without routemap config...')
-    }
-  }
-
-  // No build file or urls means build everything in pages
-  // If build file and empty urls, build everything
-  if (!urls || !urls.length) {
-    const root = `${process.cwd()}/app/pages`
-    urls = tree('app/pages').map(f => {
-      return f.replace(root, '')
-        .replace(/\.(md|js)$/, '')
-        .replace(/^index$|\/index$/, '/')
-    })
+    urls = Object.keys(app.routes)
   }
 
   // No hostname means start localhost on random port
-  // Hostname with localhost means check if is open or start
-  // Hostname without localhost means check if open or fail
   let { protocol, hostname, port } = new URL(config.host || 'http://localhost')
   port = port || (await fport.port())
   const host = `${protocol}//${hostname}:${port}`
@@ -79,9 +61,7 @@ async function build() {
         fs.createWriteStream(path.join(dist, dir, file))
       )
     } catch(e) {
-      console.log(e)
-      console.log(`Can't connect to ${address}!`)
-      process.exit(1)
+      console.log(`Can't connect to ${address}, skipping file...`)
     }
   }
   console.log(`Build complete...\n`)
