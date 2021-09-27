@@ -41,7 +41,6 @@ async function build() {
   if (!exist(dist)) mkdir(dist)
 
   const pipeline = promisify(stream.pipeline)
-  const options = { headers: { 'x-waveorb-build': 'true' } }
 
   for (const url of urls) {
     let name = url
@@ -56,10 +55,8 @@ async function build() {
     const address = `${host}${url}`
     console.log(`Building ${name}`)
     try {
-      await pipeline(
-        got.stream(address, options),
-        fs.createWriteStream(path.join(dist, dir, file))
-      )
+      const writer = fs.createWriteStream(path.join(dist, dir, file))
+      await pipeline(got.stream(address), writer)
     } catch(e) {
       console.log(`Can't build ${name}, skipping...`)
     }
