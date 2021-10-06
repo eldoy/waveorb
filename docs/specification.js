@@ -34,10 +34,19 @@
 
   /** Functions being run on each request */
   actions: {
-    createProjectAsAdmin: async function($) {
+    createProject: async function($) {
+      // Run filters
       await $.filters(['user', 'admin'])
-      await validate({
-        data: {
+
+      // Deny parameters
+      await $.deny({ query: ['evil'] })
+
+      // Allow parameters
+      await $.allow({ query: ['something'] })
+
+      // Validate
+      await $.validate({
+        query: {
           // Run validations on data values
           name: {
             required: true, // this means can not be undefined
@@ -73,8 +82,17 @@
         }
       })
 
-      // Return data to client
-      return await $.app.db('project').create($.params.values)
+      // Do database and other stuff
+      const result = await $.app.db('project').create($.params.values)
+
+      // Keep from result
+      $.keep(result, ['name'])
+
+      // Remove from result
+      $.remove(result, ['email'])
+
+      // Return result
+      return result
     }
   }
 }
