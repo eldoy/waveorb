@@ -34,9 +34,9 @@
 
   /** Functions being run on each request */
   actions: {
-    createProjectAsAdmin: {
-      filters: ['user', 'admin'],
-      validation: {
+    createProjectAsAdmin: async function($) {
+      await $.filters(['user', 'admin'])
+      await validate({
         data: {
           // Run validations on data values
           name: {
@@ -71,23 +71,10 @@
             is: '$url'
           }
         }
-      },
+      })
 
-      // Before is being run before validation
-      before: async function($) {
-        console.log('Before validation')
-      },
-
-      // Main is being run after validation
-      main: async function($) {
-        // Send result by return or put in '$.result'
-        $.result = await $.app.db('project/insert')($.params.values)
-      },
-
-      // Before is being run before validation
-      after: async function($) {
-        console.log('Request done')
-      }
+      // Return data to client
+      return await $.app.db('project').create($.params.values)
     }
   }
 }

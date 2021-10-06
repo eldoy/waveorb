@@ -1,5 +1,3 @@
-module.exports = {
-  main: async function($) {
-    return { hello: 'project/find' }
-  }
+module.exports = async function($) {
+  return { hello: 'project/find' }
 }
