@@ -1,5 +1,3 @@
-module.exports = {
-  main: async function($) {
-    return { hello: 'index' }
-  }
+module.exports = async function($) {
+  return { hello: 'index' }
 }

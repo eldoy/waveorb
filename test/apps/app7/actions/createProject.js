@@ -1,7 +1,7 @@
 /* createProject */
-module.exports = {
-  validate: {
-    data: {
+module.exports = async function($) {
+  await $.validate({
+    query: {
       name: {
         minlength: 5
       },
@@ -9,8 +9,6 @@ module.exports = {
         in: [7, 8]
       }
     }
-  },
-  main: async function($) {
-    return { hello: 'bye' }
-  }
+  })
+  return { hello: 'bye' }
 }

@@ -1,6 +1,4 @@
 /* deep/user/hello */
-module.exports = {
-  main: async function($) {
-    return { hello: 'hello' }
-  }
+module.exports = async function($) {
+  return { hello: 'hello' }
 }

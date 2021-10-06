@@ -1,13 +1,7 @@
 /* createProject */
-module.exports = {
-  deny: {
-    query: ['evil']
-  },
-  allow: {
-    query: ['something']
-  },
-  main: async function($) {
-    const query = $.params.query || { hello: 'bye' }
-    return { query }
-  }
+module.exports = async function($) {
+  await $.deny({ query: ['evil'] })
+  await $.allow({ query: ['something'] })
+  const query = $.params.query || { hello: 'bye' }
+  return { query }
 }

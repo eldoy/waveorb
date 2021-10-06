@@ -5,39 +5,11 @@ describe('actions', () => {
     expect(typeof actions).toBe('function')
   })
 
-  it('should match the route main function', async () => {
+  it('should match the action function', async () => {
     const app = await loader({ path: 'test/apps/app2', locales })
     const $ = { app, params: { action: 'createProject' } }
     const result = await actions($)
     expect(result.hello).toBe('bye')
-  })
-
-  it('should match the route before function', async () => {
-    const app = await loader({ path: 'test/apps/app3', locales })
-    const $ = { app, params: { action: 'createProject' } }
-    const result = await actions($)
-    expect(result.hello).toBe('bye')
-  })
-
-  it('should match the route after function', async () => {
-    const app = await loader({ path: 'test/apps/app4', locales })
-    const $ = { app, params: { action: 'createProject' } }
-    const result = await actions($)
-    expect(result.hello).toBe('bye')
-  })
-
-  it('should curry function result1', async () => {
-    const app = await loader({ path: 'test/apps/app5', locales })
-    const $ = { app, params: { action: 'createProject' } }
-    const result = await actions($)
-    expect(result.hello).toBe('before')
-  })
-
-  it('should curry function result2', async () => {
-    const app = await loader({ path: 'test/apps/app5', locales })
-    const $ = { app, params: { action: 'updateProject' } }
-    const result = await actions($)
-    expect(result.hello).toBe('main')
   })
 
   it('should validate data', async () => {
@@ -46,7 +18,7 @@ describe('actions', () => {
       app,
       params: {
         action: 'createProject',
-        data: {
+        query: {
           name: 'hey',
           key: 5
         }
@@ -54,14 +26,18 @@ describe('actions', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await actions($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.data.name).toEqual([ 'minimum length is 5' ])
-    expect(result.data.key).toEqual([ 'must be one of 7, 8' ])
+    try {
+      await actions($)
+    } catch (e) {
+      expect(e.data.error.message).toBe('validation error')
+      expect(e.data.query.name).toEqual([ 'minimum length is 5' ])
+      expect(e.data.query.key).toEqual([ 'must be one of 7, 8' ])
+    }
 
-    $.params.data.name = 'hello'
-    $.params.data.key = 7
-    result = await actions($)
+    $.params.query.name = 'hello'
+    $.params.query.key = 7
+
+    let result = await actions($)
     expect(result.hello).toBe('bye')
   })
 
