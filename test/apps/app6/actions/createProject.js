@@ -1,9 +1,5 @@
 /* createProject */
-module.exports = {
-  filters: async function($) {
-    return ['authenticate', 'nested/logger']
-  },
-  main: async function($) {
-    return { hello: $.hello, logger: $.logger }
-  }
+module.exports = async function($) {
+  await $.filters(['authenticate', 'nested/logger'])
+  return { hello: $.hello, logger: $.logger }
 }
