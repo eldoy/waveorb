@@ -24,16 +24,14 @@ describe('loader', () => {
     process.env.WAVEORB_APP = 'test/apps/app20'
     const app = await loader()
     const api = app.actions.project
-    expect(typeof api.create.main).toBe('function')
-    expect(typeof api.update.main).toBe('function')
-    expect(typeof api.get.main).toBe('function')
-    expect(typeof api.find.main).toBe('function')
-    expect(typeof api.count.main).toBe('function')
-    expect(typeof api.update.main).toBe('function')
-    expect(typeof api.delete.main).toBe('function')
-    expect(typeof api.custom.main).toBe('function')
-    expect(typeof api.something.main).toBe('undefined')
-    expect(api.not.main).toEqual(false)
+    expect(typeof api.create).toBe('function')
+    expect(typeof api.update).toBe('function')
+    expect(typeof api.get).toBe('function')
+    expect(typeof api.find).toBe('function')
+    expect(typeof api.count).toBe('function')
+    expect(typeof api.update).toBe('function')
+    expect(typeof api.delete).toBe('function')
+    expect(typeof api.something).toBe('undefined')
   })
 
   it('should load markdown files', async () => {
