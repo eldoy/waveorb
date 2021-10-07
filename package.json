@@ -31,10 +31,10 @@
     "terminal-kit": "^2.1.6",
     "terser": "^5.9.0",
     "tomarkup": "^0.8.0",
-    "waveorb-generate": "^0.7.3"
+    "waveorb-generate": "^0.8.1"
   },
   "devDependencies": {
-    "jest": "^27.2.2"
+    "jest": "^27.2.4"
   },
   "keywords": [
     "javascript",
