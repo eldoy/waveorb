@@ -18,7 +18,7 @@ It boasts the following features:
 
 There's a lot more to discover, just try it out.
 
-[Documentation is found here.](https://waveorb.com/docs.html)
+[Documentation is found here.](https://waveorb.com/docs)
 
 ### Install
 ```bash
