@@ -51,4 +51,23 @@ describe('serve', () => {
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
   })
+
+  it('should return from middleware', async () => {
+    const result = await got(`${base}/middleware`, {
+      responseType: 'json'
+    })
+    expect(result.body).toEqual({ hello: 'middle' })
+    expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
+  })
+
+  it('should return from filter', async () => {
+    const result = await got(`${base}/project/get`, {
+      method: 'POST',
+      responseType: 'json'
+    })
+    expect(result.body).toEqual({ hello: 'filter' })
+    expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
+  })
 })
