@@ -114,7 +114,7 @@ describe('pager', () => {
         }
       }
     }
-    $.app.routes = { '/doc/_index': 'doc._index'}
+    $.app.routes = { '/doc/_index': 'doc/_index'}
     const page = await pager('/doc/hello', $)
     expect(await page($)).toBe(`<div>hello</div>`)
   })
@@ -130,7 +130,7 @@ describe('pager', () => {
         }
       }
     }
-    $.app.routes = { '/doc/_actions': 'doc._actions'}
+    $.app.routes = { '/doc/_actions': 'doc/_actions'}
     const page = await pager('/doc/hello', $)
     expect(await page($)).toBe(`<div>hello</div>`)
   })
@@ -148,7 +148,7 @@ describe('pager', () => {
         }
       }
     }
-    $.app.routes = { '/_year/_month/article': '_year._month.article' }
+    $.app.routes = { '/_year/_month/article': '_year/_month/article' }
     const page = await pager('/2020/12/article', $)
     expect(await page($)).toBe(`<div>2020/12</div>`)
   })
@@ -244,8 +244,8 @@ describe('pager', () => {
       }
     }
     $.app.routes = {
-      '/article/_article': 'article._article',
-      '/artikkel/_article': 'article._article'
+      '/article/_article': 'article/_article',
+      '/artikkel/_article': 'article/_article'
     }
     const page = await pager('/artikkel/om-oss', $)
     expect(await page($)).toBe(`<div>om-oss</div>`)
@@ -272,9 +272,29 @@ describe('pager', () => {
       }
     }
     $.app.routes = {
-      '/_year/_month/artikkel': '_year._month.article'
+      '/_year/_month/artikkel': '_year/_month/article'
     }
     const page = await pager('/2020/12/artikkel', $)
     expect(await page($)).toBe(`<div>2020/12</div>`)
+  })
+
+  it('should show root markdown', async () => {
+    const page = await pager('/root', $)
+    expect(flat(await page($))).toBe(`<p>root</p>`)
+  })
+
+  it('should show deep markdown', async () => {
+    const page = await pager('/docs/hello', $)
+    expect(flat(await page($))).toBe(`<p>hello</p>`)
+  })
+
+  it('should show root markdown html', async () => {
+    const page = await pager('/down.html', $)
+    expect(flat(await page($))).toBe(`<p>down</p>`)
+  })
+
+  it('should show deep markdown html', async () => {
+    const page = await pager('/docs/inner.html', $)
+    expect(flat(await page($))).toBe(`<p>inner</p>`)
   })
 })
