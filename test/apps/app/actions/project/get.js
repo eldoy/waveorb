@@ -1,4 +1,4 @@
 module.exports = async function($) {
-  await $.filters('setup')
+  await $.filters(['setup'])
   return { hello: 'project/get' }
 }
