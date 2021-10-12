@@ -28,13 +28,13 @@
     "sass": "^1.42.1",
     "sirloin": "^0.20.1",
     "sitemap": "^7.0.0",
-    "terminal-kit": "^2.1.6",
+    "terminal-kit": "^2.1.8",
     "terser": "^5.9.0",
     "tomarkup": "^0.8.0",
-    "waveorb-generate": "^0.8.1"
+    "waveorb-generate": "^0.8.2"
   },
   "devDependencies": {
-    "jest": "^27.2.4"
+    "jest": "^27.2.5"
   },
   "keywords": [
     "javascript",
