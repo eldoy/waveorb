@@ -929,7 +929,7 @@ describe('validate', () => {
       }
     }
     let error = await validate(schema, data, $)
-    expect(error['street.name']).toEqual(['maximum length is 5'])
+    expect(error.street.name).toEqual(['maximum length is 5'])
   })
 
   // Test required with other
