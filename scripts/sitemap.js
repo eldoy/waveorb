@@ -25,7 +25,7 @@ async function sitemap() {
   } else {
     console.log('\nNo sitemap config found.\n')
     console.log('Read about it here:')
-    console.log('https://waveorb.com/doc/seo-and-marketing.html#sitemap')
+    console.log('https://waveorb.com/doc/seo-and-marketing#sitemap')
   }
   process.exit(0)
 }

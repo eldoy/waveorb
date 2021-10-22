@@ -8,7 +8,7 @@ const api = {}
 console.log(`
   Waveorb cmd v${package.version}
   Usage: waveorb cmd
-  Docs: https://waveorb.com/doc/command-line.html#cmd
+  Docs: https://waveorb.com/doc/command-line#cmd
 
   Built in properties:
     app - app object

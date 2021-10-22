@@ -44,7 +44,7 @@ t.green('    Run migrations\n')
 t.green.bold('  help')
 t.green('       Display this help text\n\n')
 
-t('Docs: https://waveorb.com/docs.html\n')
+t('Docs: https://waveorb.com/docs\n')
 t('Issues: https://github.com/eldoy/waveorb/issues\n\n')
 
 t.dim('Created by Eldøy Projects, https://eldoy.com').processExit()
