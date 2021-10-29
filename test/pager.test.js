@@ -135,6 +135,11 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>hello</div>`)
   })
 
+  it('should match dynamic routes non greedy', async () => {
+    const page = await pager('/site/hello/form/new', $)
+    expect(flat(await page($))).toBe(`<div>New form</div>`)
+  })
+
   it('should collect query params from URL', async () => {
     const article = async function($) {
       return `<div>${$.req.query.year}/${$.req.query.month}</div>`
