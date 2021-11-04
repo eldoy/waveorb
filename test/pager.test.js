@@ -37,6 +37,11 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>Home</div>`)
   })
 
+  it('should include the page name', async () => {
+    const page = pager('/', $)
+    expect(page.pageName).toBe('index')
+  })
+
   it('should load the about page', async () => {
     const page = pager('/about', $)
     expect(await page($)).toBe(`<div>About</div>`)
