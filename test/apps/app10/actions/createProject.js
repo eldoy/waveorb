@@ -1,4 +1,3 @@
-/* createProject */
 module.exports = async function($) {
   await $.deny({ query: ['evil'] })
   await $.allow({ query: ['something'] })

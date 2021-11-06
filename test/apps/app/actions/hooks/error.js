@@ -1,3 +1,3 @@
 module.exports = async function($) {
-  return { hello: 'bye' }
+  throw Error('bad action')
 }
