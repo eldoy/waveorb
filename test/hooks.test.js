@@ -1,5 +1,5 @@
 const got = require('got')
-const { loader, locales, serve } = require('../index.js')
+const { loader, locales } = require('../index.js')
 const base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('hooks', () => {
