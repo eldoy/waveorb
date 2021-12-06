@@ -45,4 +45,10 @@ describe('hooks', () => {
     expect(result.body.something).toBe('something')
     expect(result.statusCode).toBe(200)
   })
+
+  it('should run asset hook', async () => {
+    const result = await got(`${base}/asset.txt`)
+    expect(result.body).toBe('hello')
+    expect(result.statusCode).toBe(200)
+  })
 })
