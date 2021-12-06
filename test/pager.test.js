@@ -39,7 +39,7 @@ describe('pager', () => {
 
   it('should include the page name', async () => {
     const page = pager('/', $)
-    expect(page.pageName).toBe('index')
+    expect(page.pagename).toBe('index')
   })
 
   it('should load the about page', async () => {
