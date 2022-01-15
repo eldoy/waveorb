@@ -14,7 +14,7 @@ describe('allow', () => {
     try {
       await actions($)
     } catch (e) {
-      expect(e.data.error.message).toBe('field error')
+      expect(e.data.error.message).toBe('field is not allowed')
       expect(e.data.query.length).toBe(1)
       expect(e.data.query[0]).toBe('excess')
     }
@@ -44,7 +44,7 @@ describe('allow', () => {
     try {
       await actions($)
     } catch (e) {
-      expect(e.data.error.message).toBe('field error')
+      expect(e.data.error.message).toBe('field is not allowed')
       expect(e.data.query.length).toBe(1)
       expect(e.data.query[0]).toBe('excess')
     }
