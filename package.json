@@ -20,21 +20,21 @@
   "license": "MIT",
   "dependencies": {
     "conficurse": "0.3.5",
-    "extras": "^0.7.4",
+    "extras": "^0.8.0",
     "fport": "^0.2.2",
     "got": "^11.8.3",
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
-    "sass": "^1.44.0",
+    "sass": "^1.48.0",
     "sirloin": "^0.20.1",
-    "sitemap": "^7.0.0",
-    "terminal-kit": "^2.2.4",
+    "sitemap": "^7.1.0",
+    "terminal-kit": "^2.3.0",
     "terser": "^5.10.0",
-    "tomarkup": "^0.8.0",
+    "tomarkup": "^0.9.0",
     "waveorb-generate": "^0.8.2"
   },
   "devDependencies": {
-    "jest": "^27.4.3"
+    "jest": "^27.4.7"
   },
   "keywords": [
     "javascript",
