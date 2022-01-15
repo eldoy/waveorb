@@ -457,7 +457,7 @@ describe('validate', () => {
   it('should be boolean', async () => {
     let schema = {
       val: {
-        is: '$boolean'
+        is: 'boolean'
       }
     }
     let data = {
@@ -495,7 +495,7 @@ describe('validate', () => {
   it('should be string', async () => {
     let schema = {
       val: {
-        is: '$string'
+        is: 'string'
       }
     }
     let data = {
@@ -533,7 +533,7 @@ describe('validate', () => {
   it('should be number', async () => {
     let schema = {
       val: {
-        is: '$number'
+        is: 'number'
       }
     }
     let data = {
@@ -577,7 +577,7 @@ describe('validate', () => {
   it('should be an integer', async () => {
     let schema = {
       val: {
-        is: '$integer'
+        is: 'integer'
       }
     }
     let data = {
@@ -621,7 +621,7 @@ describe('validate', () => {
   it('should be decimal', async () => {
     let schema = {
       val: {
-        is: '$decimal'
+        is: 'decimal'
       }
     }
     let data = {
@@ -665,7 +665,7 @@ describe('validate', () => {
   it('should be date', async () => {
     let schema = {
       val: {
-        is: '$date'
+        is: 'date'
       }
     }
     let data = {
@@ -709,7 +709,7 @@ describe('validate', () => {
   it('should be id', async () => {
     let schema = {
       val: {
-        is: '$id'
+        is: 'id'
       }
     }
     let data = {
@@ -753,7 +753,7 @@ describe('validate', () => {
   it('should be object', async () => {
     let schema = {
       val: {
-        is: '$object'
+        is: 'object'
       }
     }
     let data = {
@@ -791,7 +791,7 @@ describe('validate', () => {
   it('should be array', async () => {
     let schema = {
       val: {
-        is: '$array'
+        is: 'array'
       }
     }
     let data = {
@@ -834,7 +834,7 @@ describe('validate', () => {
   it('should be email', async () => {
     let schema = {
       val: {
-        is: '$email'
+        is: 'email'
       }
     }
     let data = {
@@ -877,7 +877,7 @@ describe('validate', () => {
   it('should be url', async () => {
     let schema = {
       val: {
-        is: '$url'
+        is: 'url'
       }
     }
     let data = {
@@ -986,7 +986,7 @@ describe('validate', () => {
   it('should multiple error', async () => {
     let spec = {
       val: {
-        is: '$integer',
+        is: 'integer',
         eq: 5
       }
     }
