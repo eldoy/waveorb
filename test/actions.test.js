@@ -12,35 +12,6 @@ describe('actions', () => {
     expect(result.hello).toBe('bye')
   })
 
-  it('should validate data', async () => {
-    const app = await loader({ path: 'test/apps/app7', locales })
-    const $ = {
-      app,
-      params: {
-        action: 'createProject',
-        query: {
-          name: 'hey',
-          key: 5
-        }
-      },
-      t: i18n.t({ locales })
-    }
-
-    try {
-      await actions($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.query.name).toEqual([ 'minimum length is 5' ])
-      expect(e.data.query.key).toEqual([ 'must be one of 7, 8' ])
-    }
-
-    $.params.query.name = 'hello'
-    $.params.query.key = 7
-
-    let result = await actions($)
-    expect(result.hello).toBe('bye')
-  })
-
   it('should match request pathname', async () => {
     const app = await loader({ path: 'test/apps/app8', locales })
     const $ = { app, params: { action: 'createProject' } }
