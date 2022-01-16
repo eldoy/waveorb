@@ -10,6 +10,20 @@ const orb = require('./lib/orb.js')
 const pager = require('./lib/pager.js')
 const serve = require('./lib/serve.js')
 const sitemap = require('./lib/sitemap.js')
-const validate = require('./lib/validate.js')
+const { validate } = require('d8a')
 
-module.exports = { tools, actions, bundler, env, i18n, loader, locales, markup, orb, pager, serve, sitemap, validate }
+module.exports = {
+  tools,
+  actions,
+  bundler,
+  env,
+  i18n,
+  loader,
+  locales,
+  markup,
+  orb,
+  pager,
+  serve,
+  sitemap,
+  validate
+}
