@@ -1,4 +1,5 @@
 const tools = require('extras')
+const { validate } = require('d8a')
 const actions = require('./lib/actions.js')
 const bundler = require('./lib/bundler.js')
 const env = require('./lib/env.js')
@@ -10,10 +11,10 @@ const orb = require('./lib/orb.js')
 const pager = require('./lib/pager.js')
 const serve = require('./lib/serve.js')
 const sitemap = require('./lib/sitemap.js')
-const { validate } = require('d8a')
 
 module.exports = {
   tools,
+  validate,
   actions,
   bundler,
   env,
@@ -24,6 +25,5 @@ module.exports = {
   orb,
   pager,
   serve,
-  sitemap,
-  validate
+  sitemap
 }
