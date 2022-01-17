@@ -109,4 +109,35 @@ describe('validate', () => {
     }
     expect(result).toBeNull()
   })
+
+  // Test exist
+  it('should fail if not exist', async () => {
+    const app = await loader({ path: 'test/apps/app29', locales })
+    const $ = {
+      app,
+      db,
+      params: {
+        action: 'getProject',
+        query: {
+          id: '12341234'
+        }
+      },
+      t: i18n.t({ locales })
+    }
+
+    let result = null
+    try {
+      result = await actions($)
+    } catch (e) {
+      expect(e.data.error.message).toBe('validation error')
+      expect(e.data.query.id).toEqual([ 'does not exist' ])
+    }
+    expect(result).toBeNull()
+
+    const project = db('project').create({})
+    $.params.query.id = project.id
+
+    result = await actions($)
+    expect(result.hello).toBe('bye')
+  })
 })
