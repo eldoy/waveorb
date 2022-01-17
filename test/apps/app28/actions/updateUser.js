@@ -9,9 +9,7 @@ module.exports = async function($) {
     values: {
       email: {
         is: 'email',
-        unique: {
-          model: 'user'
-        }
+        unique: 'user'
       }
     }
   })
