@@ -6,7 +6,7 @@ try {
   pkg = require(path.join(root, 'package.json'))
 } catch (e) {}
 
-if (/\.m?js$/.test(pkg?.main)) {
+if (!process.env.WAVEORB_SKIPMAIN && /\.m?js$/.test(pkg?.main)) {
   require(path.join(root, pkg.main))
 } else {
   require('../lib/serve.js')()
