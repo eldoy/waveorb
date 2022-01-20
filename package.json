@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "conficurse": "0.3.5",
-    "d8a": "^0.2.5",
+    "d8a": "^0.3.4",
     "extras": "^0.8.1",
     "fport": "^0.2.2",
     "got": "^11.8.3",
@@ -29,7 +29,7 @@
     "sass": "^1.49.0",
     "sirloin": "^0.20.1",
     "sitemap": "^7.1.0",
-    "terminal-kit": "^2.3.0",
+    "terminal-kit": "^2.4.0",
     "terser": "^5.10.0",
     "tomarkup": "^0.9.0",
     "waveorb-generate": "^0.8.2"
