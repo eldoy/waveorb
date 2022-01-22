@@ -59,8 +59,8 @@
             in: [1, 2, 3],
             nin: [1, 2, 3],
             length: 5,
-            minlength: 5,
-            maxlength: 5,
+            min: 5,
+            max: 5,
             match: /regex/,
             matcher: async function(val, $) {
               if (!val) {

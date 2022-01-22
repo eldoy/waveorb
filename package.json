@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "conficurse": "0.3.5",
-    "d8a": "^0.4.2",
+    "d8a": "^0.5.1",
     "extras": "^0.8.3",
     "fport": "^0.2.2",
     "got": "^11.8.3",
