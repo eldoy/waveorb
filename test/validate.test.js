@@ -140,4 +140,27 @@ describe('validate', () => {
     result = await actions($)
     expect(result.hello).toBe('bye')
   })
+
+  // Test multiple required
+  it('should work with multiple required fields', async () => {
+    const app = await loader({ path: 'test/apps/app30', locales })
+    const $ = {
+      app,
+      db,
+      params: {
+        action: 'createProject'
+      },
+      t: i18n.t({ locales })
+    }
+
+    let result = null
+    try {
+      result = await actions($)
+    } catch (e) {
+      expect(e.data.error.message).toBe('validation error')
+      expect(e.data.values.name).toEqual([ 'is required' ])
+      expect(e.data.values.email).toEqual([ 'is required' ])
+    }
+    expect(result).toBeNull()
+  })
 })
