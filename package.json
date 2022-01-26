@@ -6,7 +6,7 @@
     "waveorb": "bin/waveorb.js"
   },
   "scripts": {
-    "test": "WAVEORB_PORT=5060 jest --watch",
+    "test": "WAVEORB_PORT=5060 jest --verbose=false --watch",
     "serve:test": "WAVEORB_APP=test/apps/app WAVEORB_PORT=5060 nodemon ./bin/waveorb.js serve",
     "serve": "nodemon ./bin/waveorb.js serve",
     "build": "rm -rf ./dist && node ./bin/waveorb.js build",
