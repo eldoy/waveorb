@@ -5,6 +5,11 @@ const db = require('configdb')
 
 describe('validate', () => {
 
+  beforeEach(() => {
+    db('user').clear()
+  })
+
+  // Test validate data
   it('should validate data', async () => {
     const app = await loader({ path: 'test/apps/app7', locales })
     const $ = {
@@ -108,6 +113,97 @@ describe('validate', () => {
       expect(e.data.values.email).toEqual([ 'must be unique' ])
     }
     expect(result).toBeNull()
+  })
+
+  // Test unique on create, narrowed with ids
+  it('should validate unique user on create, narrowed', async () => {
+    const app = await loader({ path: 'test/apps/app31', locales })
+    const $ = {
+      app,
+      db,
+      params: {
+        action: 'createUser',
+        values: {
+          email: 'test@example.com'
+        }
+      },
+      t: i18n.t({ locales })
+    }
+
+    let result = await actions($)
+    expect(result.hello).toBe('bye')
+
+    // Create
+    db('user').create({ email: 'test@example.com', site_id: '1234' })
+
+    result = null
+    try {
+      result = await actions($)
+    } catch (e) {
+      expect(e.data.error.message).toBe('validation error')
+      expect(e.data.values.email).toEqual([ 'must be unique' ])
+    }
+    expect(result).toBeNull()
+
+    $.params.values.site_id = '1234'
+
+    result = null
+    try {
+      result = await actions($)
+    } catch (e) {
+      expect(e.data.error.message).toBe('validation error')
+      expect(e.data.values.email).toEqual([ 'must be unique' ])
+    }
+    expect(result).toBeNull()
+
+    $.params.values.site_id = '4321'
+    result = await actions($)
+
+    expect(result.hello).toBe('bye')
+  })
+
+  // Test unique on update, narrowed with ids
+  it('should validate unique user on update, narrowed', async () => {
+    const app = await loader({ path: 'test/apps/app32', locales })
+    const user1 = db('user').create({
+      email: 'test1@example.com',
+      site_id: '1234'
+    })
+    const user2 = db('user').create({
+      email: 'test2@example.com',
+      site_id: '4321'
+    })
+
+    const $ = {
+      app,
+      db,
+      params: {
+        action: 'updateUser',
+        query: {
+          id: user1.id
+        },
+        values: {
+          email: 'test1@example.com'
+        }
+      },
+      t: i18n.t({ locales })
+    }
+
+    let result = await actions($)
+    expect(result.hello).toBe('bye')
+
+    // Update
+    result = null
+    $.params.values.email = 'new@example.com'
+
+    result = await actions($)
+    expect(result.hello).toBe('bye')
+
+    result = null
+    $.params.values.email = 'test2@example.com'
+
+    result = await actions($)
+    expect(result.hello).toBe('bye')
   })
 
   // Test exist
