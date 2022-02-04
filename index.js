@@ -1,5 +1,6 @@
 const tools = require('extras')
 const { validate } = require('d8a')
+const version = require('./lib/version.js')
 const actions = require('./lib/actions.js')
 const bundler = require('./lib/bundler.js')
 const env = require('./lib/env.js')
@@ -15,6 +16,7 @@ const sitemap = require('./lib/sitemap.js')
 module.exports = {
   tools,
   validate,
+  version,
   actions,
   bundler,
   env,
