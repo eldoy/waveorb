@@ -1,5 +1,6 @@
 bundle:
   js:
+    - /js/haka.js
     - /js/app.js
   css:
     - /css/app.css
