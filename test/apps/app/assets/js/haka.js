@@ -44,10 +44,14 @@ window.css = function(selector, atts) {
   if (typeof atts == 'string') {
     if (atts.indexOf(':') > -1) {
       el.style.cssText = atts
-    } else {
+    }
+
+    else {
       return el.style[atts]
     }
-  } else {
+  }
+
+  else {
     for (var key in atts) {
       el.style[key] = atts[key]
     }
@@ -60,11 +64,17 @@ window.html = function(selector, h, x) {
   if (!el) return null
   if (typeof h == 'undefined') {
     return el.innerHTML
-  } else if (!x) {
+  }
+
+  else if (!x) {
     el.innerHTML = h
-  } else if (x[0] == 'r') {
+  }
+
+  else if (x[0] == 'r') {
     el.outerHTML = h
-  } else {
+  }
+
+  else {
     el.insertAdjacentHTML(
       x[0] == 'b' && 'beforebegin' ||
       x[0] == 'a' && 'afterend' ||
@@ -87,13 +97,18 @@ window.text = function(selector, t) {
 window.attr = function(selector, atts, value) {
   var el = q(selector)
   if (!el) return null
+
   if (typeof atts == 'string') {
     if (typeof value == 'undefined') {
       return el.getAttribute(atts)
-    } else {
+    }
+
+    else {
       el.setAttribute(atts, value)
     }
-  } else {
+  }
+
+  else {
     for (var key in atts) {
       atts[key] == null ? el.removeAttribute(key) : el.setAttribute(key, atts[key])
     }
@@ -106,12 +121,14 @@ window.time = function(date, opt) {
   if (typeof date == 'string') date = new Date(date)
   if (!opt) opt = {}
   var formatter = new Intl.DateTimeFormat(opt.lang || 'en', opt)
+
   var format = opt.format
   if (format) {
     var parts = {}
     formatter.formatToParts(date).forEach(function(part) {
       parts[part.type] = part.value
     })
+
     var matches = format.match(/%[A-z]+/gi) || []
     matches.forEach(function(match) {
       var key = match.slice(1).toLowerCase()
@@ -137,7 +154,9 @@ window.params = function(id) {
   id = id.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
   var matcher = new RegExp('[\\?&]' + id + '=([^&#]*)')
   var result = matcher.exec(location.search)
-  return result == null ? '' : decodeURIComponent(result[1].replace(/\+/g, ' '))
+  return result != null
+    ? decodeURIComponent(result[1].replace(/\+/g, ' '))
+    : ''
 }
 
 window.cookie = function(key, val, opt) {
@@ -151,13 +170,17 @@ window.cookie = function(key, val, opt) {
     opt.days = -1
   }
   var days = opt.days || 30,
+    path = opt.path || '/',
+    domain = opt.domain ? ';domain=' + opt.domain : '',
     sameSite = opt.sameSite || 'Lax',
     httpOnly = opt.httpOnly ? ';HttpOnly' : '',
     secure = opt.secure ? ';Secure' : ''
+
   var date = new Date
   date.setTime(date.getTime() + 864e5 * days)
   document.cookie = key + '=' + encodeURIComponent(val)
-    + ';path=/;expires=' + date.toUTCString()
+    + ';path=' + path + domain
+    + ';expires=' + date.toUTCString()
     + ';SameSite=' + sameSite + httpOnly + secure
 }
 
@@ -168,51 +191,82 @@ window.store = function(key, val) {
       return JSON.parse(item)
     }
   }
-  if (!key) return sessionStorage.clear()
+
+  if (!key) {
+    return sessionStorage.clear()
+  }
+
   if (val === null) {
     var item = get()
     sessionStorage.removeItem(key)
     return item
-  } else if (val != null) {
+  }
+
+  else if (val != null) {
     sessionStorage.setItem(key, JSON.stringify(val))
     return val
-  } else {
-    return get()
   }
+
+  return get()
 }
 
 window.serialize = function(form) {
-  if (typeof form == 'string') form = q(form)
+  form = q(form)
   if (!form) return {}
-  var data = {}, option, key
-  function getValue(el) {
-    if(el.value.length && (el.getAttribute('data-type') == 'number' || el.type == 'number')) {
-      return parseFloat(el.value)
-    } else {
-      return el.value
+
+  var data = {}
+
+  function get(el) {
+    var val = el.value || el.getAttribute('data-default')
+    if (val == null) return
+    var type = el.getAttribute('data-type') || el.type
+    if (type == 'number') return +val
+    if (type == 'date') {
+      var timestamp = Date.parse(val) || new Date().getTime()
+      return new Date(timestamp)
     }
+    if (type == 'bool') {
+      if (['false', '0', 'off'].indexOf(val) > -1) {
+        return false
+      }
+      return !!val
+    }
+    return val
   }
+
   for (var i = 0; i < form.elements.length; i++) {
     var field = form.elements[i]
+
     if (field.name && !field.disabled && ['file', 'reset', 'submit', 'button'].indexOf(field.type) < 0) {
+
       if (field.type == 'select-multiple') {
         for (var j = 0, values = []; j < field.options.length; j++) {
-          if ((option = field.options[j]).selected) {
-            values.push(getValue(option))
+          var option = field.options[j]
+          if (option.selected) {
+            values.push(get(option))
           }
         }
-        if (values.length) data[field.name] = values
-      } else if (field.type == 'checkbox') {
-        if (field.checked) {
-          if (!data[key = field.name]) data[key] = []
-          data[key].push(getValue(field))
-        }
 
-      } else if (
-        (field.type != 'radio' || field.checked) &&
-        (field.value != '' || field.getAttribute('data-blank') != '')
-      ) {
-        data[field.name] = getValue(field)
+        if (values.length) {
+          data[field.name] = values
+        }
+      }
+
+      else if (field.type == 'checkbox') {
+        if (field.checked) {
+          var key = field.name
+          if (!data[key]) {
+            data[key] = []
+          }
+          data[key].push(get(field))
+        }
+      }
+
+      else if (field.type != 'radio' || field.checked) {
+        var val = get(field)
+        if (typeof val != 'undefined') {
+          data[field.name] = val
+        }
       }
     }
   }
@@ -228,13 +282,21 @@ window.flash = function(message, opt) {
   }
   message = (message || cookie(name) || '').trim()
   cookie(name, null)
-  if (opt.scroll != false) scroll(0, 0)
-  if (opt.class) el.classList.add(opt.class)
+  if (opt.scroll != false) {
+    scroll(0, 0)
+  }
+  if (opt.class) {
+    el.classList.add(opt.class)
+  }
   el.textContent = message
   el.style.opacity = 1
-  if (time) window.__$flash = setTimeout(function() {
-    el.style.opacity = 0
-    if (opt.class) el.classList.remove(opt.class)
-  }, time)
+  if (time) {
+    window.__$flash = setTimeout(function() {
+      el.style.opacity = 0
+      if (opt.class) {
+        el.classList.remove(opt.class)
+      }
+    }, time)
+  }
   return el
 }

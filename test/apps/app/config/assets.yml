@@ -1,7 +1,5 @@
 bundle:
   js:
-    - /js/haka.js
     - /js/app.js
   css:
-    - /css/prism.css
     - /css/app.css

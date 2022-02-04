@@ -12,11 +12,12 @@ const sass = require('sass')
 const fport = require('fport')
 const loader = require('../lib/loader.js')
 const serve = require('../lib/serve.js')
-const root = process.cwd()
-const dist = path.join(root, 'dist')
+const ROOT = process.cwd()
+const APP_ROOT = process.env.WAVEORB_APP || 'app'
+const DIST = path.join(ROOT, 'dist')
 
 async function build() {
-  const app = await loader()
+  const app = await loader(APP_ROOT)
   const builder = process.argv[3] || 'build.js'
   const config = exist(builder) ? await read(builder)(app) : {}
 
@@ -37,8 +38,8 @@ async function build() {
   // Wait for server start
   await sleep(1)
 
-  rmdir(dist)
-  if (!exist(dist)) mkdir(dist)
+  rmdir(DIST)
+  if (!exist(DIST)) mkdir(DIST)
 
   const pipeline = promisify(stream.pipeline)
 
@@ -50,12 +51,12 @@ async function build() {
 
     const dir = path.dirname(name)
     const file = path.basename(name)
-    mkdir(path.join(dist, dir))
+    mkdir(path.join(DIST, dir))
 
     const address = `${host}${url}`
     console.log(`Building ${name}`)
     try {
-      const writer = fs.createWriteStream(path.join(dist, dir, file))
+      const writer = fs.createWriteStream(path.join(DIST, dir, file))
       await pipeline(got.stream(address), writer)
     } catch(e) {
       console.log(`Can't build ${name}, skipping...`)
@@ -66,7 +67,7 @@ async function build() {
   await sleep(1)
 
   // Copy assets
-  copy(path.join('app', 'assets', '*'), 'dist')
+  copy(path.join(APP_ROOT, 'assets', '*'), 'dist')
 
   // Build assets
   const assets = _.get(app, 'config.assets.bundle')
@@ -76,12 +77,12 @@ async function build() {
       console.log(`Bundling ${type} files...`)
       const files = assets[type] || []
       const bundle = files.map(function(file) {
-        const inpath = path.join(root, 'app', 'assets', file)
+        const inpath = path.join(APP_ROOT, 'assets', file)
         return read(inpath, 'utf8')
       }).join(type == 'js' ? ';' : '\n')
 
       // Write bundle uncompressed to bundle path
-      const bundlePath = path.join(dist, `bundle.${type}`)
+      const bundlePath = path.join(DIST, `bundle.${type}`)
       write(bundlePath, bundle)
 
       // Source map path
@@ -91,7 +92,7 @@ async function build() {
       if (type == 'js') {
         const code = {}
         files.forEach(file => {
-          code[file] = read(path.join(dist, file), 'utf8')
+          code[file] = read(path.join(DIST, file), 'utf8')
         })
         const result = await terser.minify(code, {
           sourceMap: {
@@ -117,7 +118,7 @@ async function build() {
     }
   }
 
-  console.log(`\nFiles written to '${dist}'`)
+  console.log(`\nFiles written to '${DIST}'`)
   process.exit(0)
 }
 
