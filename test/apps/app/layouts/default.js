@@ -20,7 +20,10 @@ module.exports = async function($) {
           </nav>
           <div class="main">${$.page.content}</div>
         </div>
-        <script>${current}; current()</script>
+        <script>
+          ${current}
+          current()
+        </script>
       </body>
     </html>`
 }
