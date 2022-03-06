@@ -27,10 +27,10 @@
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
     "sass": "^1.49.9",
-    "sirloin": "^0.22.3",
+    "sirloin": "^0.22.4",
     "sitemap": "^7.1.1",
     "terminal-kit": "^2.4.0",
-    "terser": "^5.11.0",
+    "terser": "^5.12.0",
     "tomarkup": "^0.9.1",
     "waveorb-generate": "^0.8.2",
     "waveorb-validations": "^0.1.0"
