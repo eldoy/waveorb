@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "conficurse": "0.3.5",
-    "d8a": "^0.9.3",
+    "d8a": "^0.9.5",
     "extras": "^0.10.5",
     "fport": "^0.2.2",
     "got": "^11.8.3",
@@ -33,7 +33,7 @@
     "terser": "^5.12.0",
     "tomarkup": "^0.9.1",
     "waveorb-generate": "^0.8.2",
-    "waveorb-validations": "^0.1.0"
+    "waveorb-validations": "^0.1.1"
   },
   "devDependencies": {
     "configdb": "^0.2.4",
