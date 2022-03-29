@@ -110,7 +110,7 @@ describe('pager', () => {
 
   it('should work with nested dynamic index routes', async () => {
     const _index = async function($) {
-      return `<div>${$.req.query.index}</div>`
+      return `<div>${$.params.index}</div>`
     }
     $.app = {
       pages: {
@@ -126,7 +126,7 @@ describe('pager', () => {
 
   it('should work with nested dynamic non index routes', async () => {
     const _actions = async function($) {
-      return `<div>${$.req.query.actions}</div>`
+      return `<div>${$.params.actions}</div>`
     }
     $.app = {
       pages: {
@@ -147,7 +147,7 @@ describe('pager', () => {
 
   it('should collect query params from URL', async () => {
     const article = async function($) {
-      return `<div>${$.req.query.year}/${$.req.query.month}</div>`
+      return `<div>${$.params.year}/${$.params.month}</div>`
     }
     $.app = {
       pages: {
@@ -241,7 +241,7 @@ describe('pager', () => {
       pages: {
         article: {
           _article: async function($) {
-            return `<div>${req.query.article}</div>`
+            return `<div>${$.params.article}</div>`
           }
         }
       },
@@ -263,7 +263,7 @@ describe('pager', () => {
 
   it('should collect query params from URL with routemap option', async () => {
     const article = async function($) {
-      return `<div>${$.req.query.year}/${$.req.query.month}</div>`
+      return `<div>${$.params.year}/${$.params.month}</div>`
     }
     $.app = {
       pages: {

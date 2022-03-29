@@ -1,5 +1,5 @@
-module.exports = async (req, res) => {
-  if (req.pathname == '/middleware') {
+module.exports = async $ => {
+  if ($.req.pathname == '/middleware') {
     return { hello: 'middle' }
   }
 }
