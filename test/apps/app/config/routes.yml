@@ -1,6 +1,5 @@
 lang: en
 pretty: true
-compile: true
 routemap:
   /: en@index
   /no/: no@index
