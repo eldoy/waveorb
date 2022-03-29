@@ -58,7 +58,7 @@ describe('serve', () => {
     })
     expect(result.body).toEqual({ hello: 'middle' })
     expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
+    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
   })
 
   it('should return from filter', async () => {

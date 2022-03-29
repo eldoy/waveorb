@@ -27,7 +27,7 @@
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
     "sass": "^1.49.9",
-    "sirloin": "^0.22.4",
+    "sirloin": "^0.23.1",
     "sitemap": "^7.1.1",
     "terminal-kit": "^2.4.0",
     "terser": "^5.12.1",
