@@ -40,3 +40,5 @@
 * Actions
   - Support functions
   - Support weblang
+* Waveorb-scripts
+  - Add automatic form script based on app.js
