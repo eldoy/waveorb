@@ -20,20 +20,6 @@ describe('loader', () => {
     expect(app.config.env.hello).toBe('bye')
   })
 
-  it('should use default main in actions', async () => {
-    process.env.WAVEORB_APP = 'test/apps/app20'
-    const app = await loader()
-    const api = app.actions.project
-    expect(typeof api.create).toBe('function')
-    expect(typeof api.update).toBe('function')
-    expect(typeof api.get).toBe('function')
-    expect(typeof api.find).toBe('function')
-    expect(typeof api.count).toBe('function')
-    expect(typeof api.update).toBe('function')
-    expect(typeof api.delete).toBe('function')
-    expect(typeof api.something).toBe('undefined')
-  })
-
   it('should load markdown files', async () => {
     process.env.WAVEORB_APP = 'test/apps/app21'
     const app = await loader()
