@@ -40,17 +40,4 @@ describe('hooks', () => {
     expect(result.body.something).toBe('something')
     expect(result.statusCode).toBe(200)
   })
-
-  it('should run asset hook', async () => {
-    const result = await got(`${base}/asset.txt`)
-    expect(result.body).toBe('hello')
-    expect(result.statusCode).toBe(200)
-  })
-
-  it('should run the validate hook', async () => {
-    const app = await loader({ path: 'test/apps/app33', locales })
-    const $ = { app, params: { action: 'createProject' } }
-    const result = await actions($)
-    expect(result.hello).toBe('valid')
-  })
 })
