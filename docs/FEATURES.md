@@ -35,8 +35,6 @@
 * Filters
   - Should work for pages and actions
   - Or define Setups for pages?
-* Middleware
-  - throw, use before instead
 * Pages
   - Support functions
   - Support markdown with front matter
