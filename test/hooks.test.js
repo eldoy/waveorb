@@ -22,8 +22,8 @@ describe('hooks', () => {
     expect(result.statusCode).toBe(200)
   })
 
-  it('should run result hook', async () => {
-    const result = await got(`${base}/hooks/result`, {
+  it('should run after hook', async () => {
+    const result = await got(`${base}/hooks/after`, {
       method: 'POST',
       responseType: 'json'
     })
