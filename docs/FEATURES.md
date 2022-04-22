@@ -1,4 +1,7 @@
 * Get rid of SKIP_MAIN? Other env variables can be scrapped?
+  - Get rid of load from package main?
+    - can just include waveorb as lib if we need it?
+      - Look at 5ono-smtp...
 * Use Furu instead of sirloin
 * No more support for web sockets
   - Re-add it when we need it
@@ -13,14 +16,6 @@
   - fetch (Upgrade to NodeJS 18.0 to get it), or use node-fetch as global
   - app (config, pages, views, components, layouts, actions, filters, mail)
   - Make Haka isomorphic to support this?
-  - Still use $ as umbrella? $.t, $.esc, $.link
-    - Less pollution
-      - but maybe pollution is ok?
-* Plugins
-  - Throw?
-    - Not needed if we set global variables in init
-  - Or keep?
-    - Could be
 * Hooks
   - init
   - before request
