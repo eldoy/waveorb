@@ -7,7 +7,6 @@ It boasts the following features:
 * Create complex frontends using vanilla Javascript
 * ... or use whichever frontend you like, it's flexible
 * Easily create JSON web services
-* Ajax REST or web sockets with optional pubsub
 * Code generator for frontend and backend
 * Backend filters and validations
 * Server setup and command line deploy
