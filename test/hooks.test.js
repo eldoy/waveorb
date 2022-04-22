@@ -13,12 +13,12 @@ describe('hooks', () => {
     expect(app.init).toBe(true)
   })
 
-  it('should run dispatch hook', async () => {
-    const result = await got(`${base}/hooks/dispatch`, {
+  it('should run before hook', async () => {
+    const result = await got(`${base}/hooks/before`, {
       method: 'POST',
       responseType: 'json'
     })
-    expect(result.body.dispatch).toBe('dispatch')
+    expect(result.body.before).toBe('before')
     expect(result.statusCode).toBe(200)
   })
 
