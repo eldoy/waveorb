@@ -1,5 +1,3 @@
-* Replace sirloin with Furu
-* Remove $
 * Remove middleware
 * Remove plugins
 * Use app, link, t, esc as global variables
@@ -8,3 +6,6 @@
   - before request
   - after request
   - error
+* Replace sirloin with Furu
+* Remove $
+* Remove redirect
