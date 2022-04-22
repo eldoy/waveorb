@@ -1,7 +1,7 @@
 * [x] Remove middleware
-* [ ] Remove plugins
+* [x] Remove plugins
 * [ ] Use app, link, t, esc as global variables
-* [ ] Hooks
+* [x] Hooks
   - init
   - before request
   - after request
