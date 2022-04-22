@@ -1,13 +1,2 @@
 #!/usr/bin/env node
-const path = require('path')
-const root = process.cwd()
-let pkg
-try {
-  pkg = require(path.join(root, 'package.json'))
-} catch (e) {}
-
-if (!process.env.WAVEORB_SKIPMAIN && /\.m?js$/.test(pkg?.main)) {
-  require(path.join(root, pkg.main))
-} else {
-  require('../lib/serve.js')()
-}
+require('../lib/serve.js')()
