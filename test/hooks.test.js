@@ -13,11 +13,6 @@ describe('hooks', () => {
     expect(app.init).toBe(true)
   })
 
-  it('should run load hook', async () => {
-    const app = await loader({ path: 'test/apps/app25', locales })
-    expect(app.loaded).toBe(true)
-  })
-
   it('should run dispatch hook', async () => {
     const result = await got(`${base}/hooks/dispatch`, {
       method: 'POST',
