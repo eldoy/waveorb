@@ -52,22 +52,18 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>Deep</div>`)
   })
 
-  it('should load pages via routemap option as string', async () => {
+  it('should load pages via routes as string', async () => {
     $.app.config = {
-      routes: {
-        routemap: { 'get#/om-oss.html': 'en@about' }
-      }
+      routes: { 'get#/om-oss.html': 'en@about' }
     }
     $.app.routes['get#/om-oss'] = 'about'
     const page = pager('get#/om-oss', $)
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
-  it('should load pages via routemap option as string deeply', async () => {
+  it('should load pages via routes as string deeply', async () => {
      $.app.config = {
-      routes: {
-        routemap: { 'get#/hello/om-oss.html': 'en@about' }
-      }
+      routes: { 'get#/hello/om-oss.html': 'en@about' }
     }
     $.app.routes['get#/hello/om-oss'] = 'about'
     const page = pager('get#/hello/om-oss', $)
@@ -193,7 +189,7 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
-  it('should work with dynamic route and routemap option', async () => {
+  it('should work with dynamic route and routes', async () => {
     const _index = async function($) {
       return `<div>HTML</div>`
     }
@@ -204,9 +200,7 @@ describe('pager', () => {
       },
       config: {
         routes: {
-          routemap: {
-            'get#/something.html': 'en@something'
-          }
+          'get#/something.html': 'en@something'
         }
       }
     }
@@ -215,7 +209,7 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
-  it('should work with dynamic routes in routemaps', async () => {
+  it('should work with dynamic routes in route config', async () => {
     const _index = async function($) {
       return `<div>HTML</div>`
     }
@@ -225,9 +219,7 @@ describe('pager', () => {
       },
       config: {
         routes: {
-          routemap: {
-            'get#/artikkel/_article.html': 'no@_index'
-          }
+          'get#/artikkel/_article.html': 'no@_index'
         }
       }
     }
@@ -236,7 +228,7 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
-  it('should work with dynamic routes in routemaps deeply', async () => {
+  it('should work with dynamic routes in route config deeply', async () => {
     $.app = {
       pages: {
         article: {
@@ -247,9 +239,7 @@ describe('pager', () => {
       },
       config: {
         routes: {
-          routemap: {
-            'get#/artikkel/_article.html': 'no@article/_article'
-          }
+          'get#/artikkel/_article.html': 'no@article/_article'
         }
       }
     }
@@ -261,7 +251,7 @@ describe('pager', () => {
     expect(await page($)).toBe(`<div>om-oss</div>`)
   })
 
-  it('should collect query params from URL with routemap option', async () => {
+  it('should collect query params from URL in route config', async () => {
     const article = async function($) {
       return `<div>${$.params.year}/${$.params.month}</div>`
     }
@@ -275,9 +265,7 @@ describe('pager', () => {
       },
       config: {
         routes: {
-          routemap: {
-            'get#/_year/_month/artikkel.html': 'en@_year/_month/article'
-          }
+          'get#/_year/_month/artikkel.html': 'en@_year/_month/article'
         }
       }
     }

@@ -1,7 +1,4 @@
-lang: en
-pretty: true
-routemap:
-  get#/: en@index
-  get#/no/: no@index
-  get#/about.html: en@about
-  get#/no/om-oss.html: no@about
+get#/: en@index
+get#/no/: no@index
+get#/about.html: en@about
+get#/no/om-oss.html: no@about
