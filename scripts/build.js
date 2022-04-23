@@ -63,7 +63,7 @@ async function build() {
     }
   }
   console.log(`Build complete...\n`)
-  server.http.close()
+  server.close()
   await sleep(1)
 
   // Copy assets

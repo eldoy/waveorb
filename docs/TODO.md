@@ -13,6 +13,6 @@
 * [x] Generate routes from pages
 * [ ] Set validations, allow and deny before actions
 * [ ] Replace sirloin with Furu
-  - Load routes, run pages and actions
-  - Lang ($.lang)
-  - Remove markup, actions, pager
+  - [x] Lang ($.lang)
+  - [ ] Load routes, run pages and actions
+  - [ ] Remove markup, actions, pager
