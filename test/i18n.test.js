@@ -106,20 +106,19 @@ describe('link', () => {
     expect(result).toBe('/about?test=1#hello')
   })
 
-  it('should return the correct link for routemap', async () => {
-    const routemap = {
-      '/om-oss': 'no@about'
+  it('should return the correct link for routes', async () => {
+    const routes = {
+      'get#/om-oss': 'no@about'
     }
-    const link = i18n.link({ routemap }, 'no')
+    const link = i18n.link(routes, 'no')
     const result = link('about')
     expect(result).toBe('/om-oss')
   })
 
-  it('should return the correct link for routemap with language', async () => {
-    const routes = {}
-    routes.routemap = {
-      '/about': 'en@about',
-      '/om-oss': 'no@about'
+  it('should return the correct link for routes config with language', async () => {
+    const routes = {
+      'get#/about': 'en@about',
+      'get#/om-oss': 'no@about'
     }
     const link = i18n.link(routes)
     let result = link('about')
@@ -132,11 +131,10 @@ describe('link', () => {
     expect(result).toBe('/om-oss')
   })
 
-  it('should return the correct link for routemap index', async () => {
-    const routes = {}
-    routes.routemap = {
-      '/': 'no@index',
-      '/en/': 'en@index'
+  it('should return the correct link for routes config index', async () => {
+    const routes = {
+      'get#/': 'no@index',
+      'get#/en/': 'en@index'
     }
     const link = i18n.link(routes, 'no')
     let result = link('index')
