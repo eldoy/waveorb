@@ -10,7 +10,7 @@
 * [x] Remove default functions
 * [x] Re-add middleware
 * [x] Re-add plugins
-* [ ] Generate routes from actions and pages
+* [x] Generate routes from pages
 * [ ] Set validations, allow and deny before actions
 * [ ] Replace sirloin with Furu
   - Load routes, run pages and actions
