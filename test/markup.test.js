@@ -1,7 +1,7 @@
 const markup = require('../lib/markup.js')
 const loader = require('../lib/loader.js')
 
-const req = { pathname: '/', query: {} }
+const req = { pathname: '/', query: {}, method: 'GET' }
 const res = {
   setHeader: function() {}
 }

@@ -33,44 +33,44 @@ describe('pager', () => {
   })
 
   it('should load the home page', async () => {
-    const page = pager('/', $)
+    const page = pager('get#/', $)
     expect(await page($)).toBe(`<div>Home</div>`)
   })
 
   it('should include the page name', async () => {
-    const page = pager('/', $)
+    const page = pager('get#/', $)
     expect(page.pagename).toBe('index')
   })
 
   it('should load the about page', async () => {
-    const page = pager('/about', $)
+    const page = pager('get#/about', $)
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
   it('should load the deep page', async () => {
-    const page = pager('/docs/deep', $)
+    const page = pager('get#/docs/deep', $)
     expect(await page($)).toBe(`<div>Deep</div>`)
   })
 
   it('should load pages via routemap option as string', async () => {
     $.app.config = {
       routes: {
-        routemap: { '/om-oss.html': 'en@about' }
+        routemap: { 'get#/om-oss.html': 'en@about' }
       }
     }
-    $.app.routes['/om-oss'] = 'about'
-    const page = pager('/om-oss', $)
+    $.app.routes['get#/om-oss'] = 'about'
+    const page = pager('get#/om-oss', $)
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
   it('should load pages via routemap option as string deeply', async () => {
      $.app.config = {
       routes: {
-        routemap: { '/hello/om-oss.html': 'en@about' }
+        routemap: { 'get#/hello/om-oss.html': 'en@about' }
       }
     }
-    $.app.routes['/hello/om-oss'] = 'about'
-    const page = pager('/hello/om-oss', $)
+    $.app.routes['get#/hello/om-oss'] = 'about'
+    const page = pager('get#/hello/om-oss', $)
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
@@ -83,8 +83,8 @@ describe('pager', () => {
         _index
       }
     }
-    $.app.routes = { _index: '_index' }
-    const page = pager('/dynamic', $)
+    $.app.routes = { 'get#/_index': '_index' }
+    const page = pager('get#/dynamic', $)
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
@@ -103,8 +103,8 @@ describe('pager', () => {
         _show
       }
     }
-    $.app.routes = { '/_hello/_cat': '_hello._cat', '/_show': '_show' }
-    const page = pager('/dynamic', $)
+    $.app.routes = { 'get#/_hello/_cat': 'get#_hello._cat', 'get#/_show': '_show' }
+    const page = pager('get#/dynamic', $)
     expect(await page($)).toBe(`<div>Show</div>`)
   })
 
@@ -119,8 +119,8 @@ describe('pager', () => {
         }
       }
     }
-    $.app.routes = { '/doc/_index': 'doc/_index'}
-    const page = pager('/doc/hello', $)
+    $.app.routes = { 'get#/doc/_index': 'doc/_index'}
+    const page = pager('get#/doc/hello', $)
     expect(await page($)).toBe(`<div>hello</div>`)
   })
 
@@ -135,13 +135,13 @@ describe('pager', () => {
         }
       }
     }
-    $.app.routes = { '/doc/_actions': 'doc/_actions'}
-    const page = pager('/doc/hello', $)
+    $.app.routes = { 'get#/doc/_actions': 'doc/_actions'}
+    const page = pager('get#/doc/hello', $)
     expect(await page($)).toBe(`<div>hello</div>`)
   })
 
   it('should match dynamic routes non greedy', async () => {
-    const page = pager('/site/hello/form/new', $)
+    const page = pager('get#/site/hello/form/new', $)
     expect(flat(await page($))).toBe(`<div>New form</div>`)
   })
 
@@ -158,8 +158,8 @@ describe('pager', () => {
         }
       }
     }
-    $.app.routes = { '/_year/_month/article': '_year/_month/article' }
-    const page = pager('/2020/12/article', $)
+    $.app.routes = { 'get#/_year/_month/article': '_year/_month/article' }
+    const page = pager('get#/2020/12/article', $)
     expect(await page($)).toBe(`<div>2020/12</div>`)
   })
 
@@ -173,8 +173,8 @@ describe('pager', () => {
         _index
       }
     }
-    $.app.routes = { '/about': 'about', '/_index': '_index' }
-    const page = pager('/about', $)
+    $.app.routes = { 'get#/about': 'about', '/_index': '_index' }
+    const page = pager('get#/about', $)
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
@@ -188,8 +188,8 @@ describe('pager', () => {
         about
       }
     }
-    $.app.routes = { '/about': 'about', '/_index': '_index' }
-    const page = pager('/about', $)
+    $.app.routes = { 'get#/about': 'about', 'get#/_index': '_index' }
+    const page = pager('get#/about', $)
     expect(await page($)).toBe(`<div>About</div>`)
   })
 
@@ -205,13 +205,13 @@ describe('pager', () => {
       config: {
         routes: {
           routemap: {
-            '/something.html': 'en@something'
+            'get#/something.html': 'en@something'
           }
         }
       }
     }
-    $.app.routes = { '/about': 'about', '/_index': '_index', '/something': 'something' }
-    const page = pager('/om-oss', $)
+    $.app.routes = { 'get#/about': 'about', 'get#/_index': '_index', 'get#/something': 'something' }
+    const page = pager('get#/om-oss', $)
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
@@ -226,13 +226,13 @@ describe('pager', () => {
       config: {
         routes: {
           routemap: {
-            '/artikkel/_article.html': 'no@_index'
+            'get#/artikkel/_article.html': 'no@_index'
           }
         }
       }
     }
-    $.app.routes = { '/_index': '_index', '/artikkel/_article': '_index' }
-    const page = pager('/artikkel/om-oss', $)
+    $.app.routes = { 'get#/_index': '_index', 'get#/artikkel/_article': '_index' }
+    const page = pager('get#/artikkel/om-oss', $)
     expect(await page($)).toBe(`<div>HTML</div>`)
   })
 
@@ -248,16 +248,16 @@ describe('pager', () => {
       config: {
         routes: {
           routemap: {
-            '/artikkel/_article.html': 'no@article/_article'
+            'get#/artikkel/_article.html': 'no@article/_article'
           }
         }
       }
     }
     $.app.routes = {
-      '/article/_article': 'article/_article',
-      '/artikkel/_article': 'article/_article'
+      'get#/article/_article': 'article/_article',
+      'get#/artikkel/_article': 'article/_article'
     }
-    const page = pager('/artikkel/om-oss', $)
+    const page = pager('get#/artikkel/om-oss', $)
     expect(await page($)).toBe(`<div>om-oss</div>`)
   })
 
@@ -276,35 +276,35 @@ describe('pager', () => {
       config: {
         routes: {
           routemap: {
-            '/_year/_month/artikkel.html': 'en@_year/_month/article'
+            'get#/_year/_month/artikkel.html': 'en@_year/_month/article'
           }
         }
       }
     }
     $.app.routes = {
-      '/_year/_month/artikkel': '_year/_month/article'
+      'get#/_year/_month/artikkel': '_year/_month/article'
     }
-    const page = pager('/2020/12/artikkel', $)
+    const page = pager('get#/2020/12/artikkel', $)
     expect(await page($)).toBe(`<div>2020/12</div>`)
   })
 
   it('should show root markdown', async () => {
-    const page = pager('/root', $)
+    const page = pager('get#/root', $)
     expect(flat(await page($))).toBe(`<p>root</p>`)
   })
 
   it('should show deep markdown', async () => {
-    const page = pager('/docs/hello', $)
+    const page = pager('get#/docs/hello', $)
     expect(flat(await page($))).toBe(`<p>hello</p>`)
   })
 
   it('should show root markdown html', async () => {
-    const page = pager('/down.html', $)
+    const page = pager('get#/down.html', $)
     expect(flat(await page($))).toBe(`<p>down</p>`)
   })
 
   it('should show deep markdown html', async () => {
-    const page = pager('/docs/inner.html', $)
+    const page = pager('get#/docs/inner.html', $)
     expect(flat(await page($))).toBe(`<p>inner</p>`)
   })
 })
