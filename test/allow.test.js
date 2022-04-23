@@ -5,8 +5,10 @@ describe('allow', () => {
     const app = await loader({ path: 'test/apps/app10', locales })
     const $ = {
       app,
+      req: {
+        pathname: '/createProject'
+      },
       params: {
-        action: 'createProject',
         query: { something: 'hello', excess: false }
       },
       t: i18n.t({ locales })
@@ -24,7 +26,10 @@ describe('allow', () => {
     const app = await loader({ path: 'test/apps/app10', locales })
     const $ = {
       app,
-      params: { action: 'createProject' }
+      req: {
+        pathname: '/createProject'
+      },
+      params: {}
     }
     const result = await actions($)
     expect(result.error).toBeUndefined()
@@ -35,8 +40,10 @@ describe('allow', () => {
     const app = await loader({ path: 'test/apps/app11', locales })
     const $ = {
       app,
+      req: {
+        pathname: '/createProject'
+      },
       params: {
-        action: 'createProject',
         query: { something: 'hello', excess: false }
       },
       t: i18n.t({ locales })

@@ -7,28 +7,44 @@ describe('actions', () => {
 
   it('should match the action function', async () => {
     const app = await loader({ path: 'test/apps/app2', locales })
-    const $ = { app, params: { action: 'createProject' } }
+    const $ = {
+      app,
+      req: { pathname: '/createProject' },
+      params: {}
+    }
     const result = await actions($)
     expect(result.hello).toBe('bye')
   })
 
   it('should match request pathname', async () => {
     const app = await loader({ path: 'test/apps/app8', locales })
-    const $ = { app, params: { action: 'createProject' } }
+    const $ = {
+      app,
+      req: { pathname: '/createProject' },
+      params: {}
+    }
     let result = await actions($)
     expect(result.hello).toBe('bye')
   })
 
   it('should match nested actions', async () => {
     const app = await loader({ path: 'test/apps/app9', locales })
-    const $ = { app, params: { action: 'project/create' } }
+    const $ = {
+      app,
+      req: { pathname: '/project/create' },
+      params: {}
+    }
     let result = await actions($)
     expect(result.hello).toBe('bye')
   })
 
   it('should match deeply nested actions', async () => {
     const app = await loader({ path: 'test/apps/app9', locales })
-    const $ = { app, params: { action: 'deep/user/hello' } }
+    const $ = {
+      app,
+      req: { pathname: '/deep/user/hello' },
+      params: {}
+    }
     let result = await actions($)
     expect(result.hello).toBe('hello')
   })

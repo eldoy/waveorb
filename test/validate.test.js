@@ -14,8 +14,10 @@ describe('validate', () => {
     const app = await loader({ path: 'test/apps/app7', locales })
     const $ = {
       app,
+      req: {
+        pathname: '/createProject'
+      },
       params: {
-        action: 'createProject',
         query: {
           name: 'hey',
           key: 5
@@ -46,9 +48,11 @@ describe('validate', () => {
     const app = await loader({ path: 'test/apps/app27', locales })
     const $ = {
       app,
+      req: {
+        pathname: '/createUser'
+      },
       db,
       params: {
-        action: 'createUser',
         values: {
           email: 'test@example.com'
         }
@@ -80,9 +84,11 @@ describe('validate', () => {
 
     const $ = {
       app,
+      req: {
+        pathname: '/updateUser',
+      },
       db,
       params: {
-        action: 'updateUser',
         query: {
           id: user1.id
         },
@@ -120,9 +126,11 @@ describe('validate', () => {
     const app = await loader({ path: 'test/apps/app31', locales })
     const $ = {
       app,
+      req: {
+        pathname: '/createUser'
+      },
       db,
       params: {
-        action: 'createUser',
         values: {
           email: 'test@example.com'
         }
@@ -176,9 +184,11 @@ describe('validate', () => {
 
     const $ = {
       app,
+      req: {
+        pathname: '/updateUser'
+      },
       db,
       params: {
-        action: 'updateUser',
         query: {
           id: user1.id
         },
@@ -211,9 +221,11 @@ describe('validate', () => {
     const app = await loader({ path: 'test/apps/app29', locales })
     const $ = {
       app,
+      req: {
+        pathname: '/getProject'
+      },
       db,
       params: {
-        action: 'getProject',
         query: {
           id: '12341234'
         }
@@ -242,10 +254,11 @@ describe('validate', () => {
     const app = await loader({ path: 'test/apps/app30', locales })
     const $ = {
       app,
-      db,
-      params: {
-        action: 'createProject'
+      req: {
+        pathname: '/createProject'
       },
+      db,
+      params: {},
       t: i18n.t({ locales })
     }
 
