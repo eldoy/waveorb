@@ -3,7 +3,6 @@ const { validate } = require('d8a')
 const version = require('./lib/version.js')
 const actions = require('./lib/actions.js')
 const bundler = require('./lib/bundler.js')
-const env = require('./lib/env.js')
 const i18n = require('./lib/i18n.js')
 const loader = require('./lib/loader.js')
 const locales = require('./lib/locales.js')
@@ -19,7 +18,6 @@ module.exports = {
   version,
   actions,
   bundler,
-  env,
   i18n,
   loader,
   locales,
