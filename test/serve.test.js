@@ -52,7 +52,7 @@ describe('serve', () => {
     expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
   })
 
-  xit('should return from middleware', async () => {
+  it('should return from middleware', async () => {
     const result = await got(`${base}/middleware`, {
       responseType: 'json'
     })
