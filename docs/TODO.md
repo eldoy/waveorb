@@ -9,3 +9,9 @@
 * [x] Remove web socket support
 * [x] Remove default functions
 * [ ] Replace sirloin with Furu
+  - Set validations, allow and deny earlier
+  - Routes
+  - Lang
+  - Remove markup
+  - Remove actions
+  - Actually install Furu in serve
