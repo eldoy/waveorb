@@ -8,7 +8,7 @@ It boasts the following features:
 * ... or use whichever frontend you like, it's flexible
 * Easily create JSON web services
 * Code generator for frontend and backend
-* Backend filters and validations
+* Backend middleware, filters and validations
 * Server setup and command line deploy
 * Perfect as a Jamstack static site generator, but can do SSR as well
 * Dead simple uploads, emails, layouts, translations, you name it
