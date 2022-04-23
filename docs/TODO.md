@@ -8,10 +8,11 @@
 * [x] Remove redirect
 * [x] Remove web socket support
 * [x] Remove default functions
+* [ ] Re-add middleware
+* [ ] Re-add plugins
+* [ ] Generate routes from actions and pages
+* [ ] Set validations, allow and deny before actions
 * [ ] Replace sirloin with Furu
-  - Set validations, allow and deny earlier
-  - Routes
-  - Lang
-  - Remove markup
-  - Remove actions
-  - Actually install Furu in serve
+  - Load routes, run pages and actions
+  - Lang ($.lang)
+  - Remove markup, actions, pager
