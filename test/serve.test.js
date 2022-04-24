@@ -32,7 +32,7 @@ describe('serve', () => {
     const result = await got(`${base}/sitemap.xml`)
     expect(result.body).toContain('xml>')
     expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('application/xml; charset=utf-8')
+    expect(result.headers['content-type']).toBe('application/xml')
   })
 
   it('should serve markdown pages', async () => {

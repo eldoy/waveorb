@@ -29,6 +29,7 @@ describe('markup', () => {
 
   it('should not have a layout', async () => {
     req.pathname = '/nolayout'
+    req.route = 'nolayout'
     const result = await markup($)
     expect(flat(result)).toBe('<div>NoLayout</div>')
   })

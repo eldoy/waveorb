@@ -8,7 +8,6 @@ const loader = require('./lib/loader.js')
 const locales = require('./lib/locales.js')
 const markup = require('./lib/markup.js')
 const orb = require('./lib/orb.js')
-const pager = require('./lib/pager.js')
 const serve = require('./lib/serve.js')
 const sitemap = require('./lib/sitemap.js')
 
@@ -23,7 +22,6 @@ module.exports = {
   locales,
   markup,
   orb,
-  pager,
   serve,
   sitemap
 }
