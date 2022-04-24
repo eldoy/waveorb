@@ -1,4 +1,4 @@
-const markup = require('../lib/markup.js')
+const pages = require('../lib/pages.js')
 const loader = require('../lib/loader.js')
 
 const req = { pathname: '/', query: {}, method: 'GET' }
@@ -16,7 +16,7 @@ function flat(result) {
   return (result || '').split('\n').map(x => x.trim()).join('')
 }
 
-describe('markup', () => {
+describe('pages', () => {
   beforeAll(async () => {
     process.env.WAVEORB_APP = 'test/apps/app22'
     app = await loader()
@@ -30,7 +30,7 @@ describe('markup', () => {
   it('should not have a layout', async () => {
     req.pathname = '/nolayout'
     req.route = 'nolayout'
-    const result = await markup($)
+    const result = await pages($)
     expect(flat(result)).toBe('<div>NoLayout</div>')
   })
 })
