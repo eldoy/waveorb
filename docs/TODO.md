@@ -22,3 +22,6 @@
     - Use the same for action lookup
 
   - [ ] Remove markup, actions, pager
+* Fix page redirect
+  - should also work for actions?
+  - should probably throw and abort
