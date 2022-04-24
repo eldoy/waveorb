@@ -70,4 +70,11 @@ describe('serve', () => {
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
   })
+
+  it('should not have a layout', async () => {
+    const result = await got(`${base}/nolayout`)
+    expect(result.body).toEqual('<div>NoLayout</div>')
+    expect(result.statusCode).toBe(200)
+    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
+  })
 })
