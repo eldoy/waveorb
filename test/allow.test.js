@@ -6,7 +6,7 @@ describe('allow', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {
         query: { something: 'hello', excess: false }
@@ -27,7 +27,7 @@ describe('allow', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {}
     }
@@ -41,7 +41,7 @@ describe('allow', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {
         query: { something: 'hello', excess: false }

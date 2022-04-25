@@ -9,7 +9,7 @@ describe('action', () => {
     const app = await loader({ path: 'test/apps/app2', locales })
     const $ = {
       app,
-      req: { pathname: '/createProject' },
+      req: { route: 'createProject' },
       params: {}
     }
     const result = await action($)
@@ -20,7 +20,7 @@ describe('action', () => {
     const app = await loader({ path: 'test/apps/app8', locales })
     const $ = {
       app,
-      req: { pathname: '/createProject' },
+      req: { route: 'createProject' },
       params: {}
     }
     let result = await action($)
@@ -31,7 +31,7 @@ describe('action', () => {
     const app = await loader({ path: 'test/apps/app9', locales })
     const $ = {
       app,
-      req: { pathname: '/project/create' },
+      req: { route: 'project/create' },
       params: {}
     }
     let result = await action($)
@@ -42,7 +42,7 @@ describe('action', () => {
     const app = await loader({ path: 'test/apps/app9', locales })
     const $ = {
       app,
-      req: { pathname: '/deep/user/hello' },
+      req: { route: 'deep/user/hello' },
       params: {}
     }
     let result = await action($)
@@ -54,7 +54,7 @@ describe('action', () => {
     const $ = {
       app,
       req: {
-        pathname: '/'
+        route: 'index'
       },
       params: {},
       t: i18n.t({ locales })
@@ -68,7 +68,7 @@ describe('action', () => {
     const $ = {
       app,
       req: {
-        pathname: '/about'
+        route: 'about'
       },
       params: {},
       t: i18n.t({ locales })
@@ -82,21 +82,7 @@ describe('action', () => {
     const $ = {
       app,
       req: {
-        pathname: '/project/create'
-      },
-      params: {},
-      t: i18n.t({ locales })
-    }
-    let result = await action($)
-    expect(result.hello).toBe('project/create')
-  })
-
-  it('should match action from pathname for api/project/create', async () => {
-    const app = await loader({ path: 'test/apps/app19', locales })
-    const $ = {
-      app,
-      req: {
-        pathname: '/api/project/create'
+        route: 'project/create'
       },
       params: {},
       t: i18n.t({ locales })

@@ -6,7 +6,7 @@ describe('deny', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {
         query: { evil: true }
@@ -27,7 +27,7 @@ describe('deny', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {}
     }
@@ -41,7 +41,7 @@ describe('deny', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {
         query: { evil: true }

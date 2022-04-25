@@ -15,7 +15,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {
         query: {
@@ -44,7 +44,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createUser'
+        route: 'createUser'
       },
       db,
       params: {
@@ -75,7 +75,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/updateUser',
+        route: 'updateUser',
       },
       db,
       params: {
@@ -113,7 +113,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createUser'
+        route: 'createUser'
       },
       db,
       params: {
@@ -161,7 +161,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/updateUser'
+        route: 'updateUser'
       },
       db,
       params: {
@@ -198,7 +198,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/getProject'
+        route: 'getProject'
       },
       db,
       params: {
@@ -226,7 +226,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       db,
       params: {},

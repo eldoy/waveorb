@@ -6,7 +6,7 @@ describe('filters', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {}
     }
@@ -19,7 +19,7 @@ describe('filters', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {}
     }
@@ -32,7 +32,7 @@ describe('filters', () => {
     const $ = {
       app,
       req: {
-        pathname: '/createProject'
+        route: 'createProject'
       },
       params: {}
     }
