@@ -1,4 +1,4 @@
-const { i18n, loader, action, locales } = require('../index.js')
+const { i18n, loader, dispatch, locales } = require('../index.js')
 const db = require('configdb')
 
 /** Testing validate functions */
@@ -26,20 +26,15 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.query.name).toEqual([ 'minimum length is 5' ])
-      expect(e.data.query.key).toEqual([ 'must be one of 7, 8' ])
-    }
-    expect(result).toBeUndefined()
+    let result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.query.name).toEqual([ 'minimum length is 5' ])
+    expect(result.query.key).toEqual([ 'must be one of 7, 8' ])
 
     $.params.query.name = 'hello'
     $.params.query.key = 7
 
-    result = await action($)
+    result = await dispatch($)
     expect(result.hello).toBe('bye')
   })
 
@@ -60,20 +55,15 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Create
     db('user').create({ email: 'test@example.com' })
 
-    result = null
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.values.email).toEqual([ 'must be unique' ])
-    }
-    expect(result).toBeNull()
+    result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.email).toEqual([ 'must be unique' ])
   })
 
   // Test unique on update
@@ -99,26 +89,22 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Update
     result = null
     $.params.values.email = 'new@example.com'
 
-    result = await action($)
+    result = await dispatch($)
     expect(result.hello).toBe('bye')
 
-    result = null
     $.params.values.email = 'test2@example.com'
 
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.values.email).toEqual([ 'must be unique' ])
-    }
-    expect(result).toBeNull()
+    result = await dispatch($)
+
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.email).toEqual([ 'must be unique' ])
   })
 
   // Test unique on create, narrowed with ids
@@ -138,34 +124,24 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Create
     db('user').create({ email: 'test@example.com', site_id: '1234' })
 
-    result = null
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.values.email).toEqual([ 'must be unique' ])
-    }
-    expect(result).toBeNull()
+    result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.email).toEqual([ 'must be unique' ])
 
     $.params.values.site_id = '1234'
 
-    result = null
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.values.email).toEqual([ 'must be unique' ])
-    }
-    expect(result).toBeNull()
+    result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.email).toEqual([ 'must be unique' ])
 
     $.params.values.site_id = '4321'
-    result = await action($)
+    result = await dispatch($)
 
     expect(result.hello).toBe('bye')
   })
@@ -199,20 +175,20 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Update
     result = null
     $.params.values.email = 'new@example.com'
 
-    result = await action($)
+    result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     result = null
     $.params.values.email = 'test2@example.com'
 
-    result = await action($)
+    result = await dispatch($)
     expect(result.hello).toBe('bye')
   })
 
@@ -233,19 +209,14 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = null
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.query.id).toEqual([ 'does not exist' ])
-    }
-    expect(result).toBeNull()
+    let result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.query.id).toEqual([ 'does not exist' ])
 
     const project = db('project').create({})
     $.params.query.id = project.id
 
-    result = await action($)
+    result = await dispatch($)
     expect(result.hello).toBe('bye')
   })
 
@@ -262,14 +233,9 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = null
-    try {
-      result = await action($)
-    } catch (e) {
-      expect(e.data.error.message).toBe('validation error')
-      expect(e.data.values.name).toEqual([ 'is required' ])
-      expect(e.data.values.email).toEqual([ 'is required' ])
-    }
-    expect(result).toBeNull()
+    let result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.name).toEqual([ 'is required' ])
+    expect(result.values.email).toEqual([ 'is required' ])
   })
 })
