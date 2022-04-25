@@ -1,4 +1,4 @@
-const { i18n, loader, actions, locales } = require('../index.js')
+const { i18n, loader, action, locales } = require('../index.js')
 const db = require('configdb')
 
 /** Testing validate functions */
@@ -28,7 +28,7 @@ describe('validate', () => {
 
     let result
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.query.name).toEqual([ 'minimum length is 5' ])
@@ -39,7 +39,7 @@ describe('validate', () => {
     $.params.query.name = 'hello'
     $.params.query.key = 7
 
-    result = await actions($)
+    result = await action($)
     expect(result.hello).toBe('bye')
   })
 
@@ -60,7 +60,7 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('bye')
 
     // Create
@@ -68,7 +68,7 @@ describe('validate', () => {
 
     result = null
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.values.email).toEqual([ 'must be unique' ])
@@ -99,21 +99,21 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('bye')
 
     // Update
     result = null
     $.params.values.email = 'new@example.com'
 
-    result = await actions($)
+    result = await action($)
     expect(result.hello).toBe('bye')
 
     result = null
     $.params.values.email = 'test2@example.com'
 
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.values.email).toEqual([ 'must be unique' ])
@@ -138,7 +138,7 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('bye')
 
     // Create
@@ -146,7 +146,7 @@ describe('validate', () => {
 
     result = null
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.values.email).toEqual([ 'must be unique' ])
@@ -157,7 +157,7 @@ describe('validate', () => {
 
     result = null
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.values.email).toEqual([ 'must be unique' ])
@@ -165,7 +165,7 @@ describe('validate', () => {
     expect(result).toBeNull()
 
     $.params.values.site_id = '4321'
-    result = await actions($)
+    result = await action($)
 
     expect(result.hello).toBe('bye')
   })
@@ -199,20 +199,20 @@ describe('validate', () => {
       t: i18n.t({ locales })
     }
 
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('bye')
 
     // Update
     result = null
     $.params.values.email = 'new@example.com'
 
-    result = await actions($)
+    result = await action($)
     expect(result.hello).toBe('bye')
 
     result = null
     $.params.values.email = 'test2@example.com'
 
-    result = await actions($)
+    result = await action($)
     expect(result.hello).toBe('bye')
   })
 
@@ -235,7 +235,7 @@ describe('validate', () => {
 
     let result = null
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.query.id).toEqual([ 'does not exist' ])
@@ -245,7 +245,7 @@ describe('validate', () => {
     const project = db('project').create({})
     $.params.query.id = project.id
 
-    result = await actions($)
+    result = await action($)
     expect(result.hello).toBe('bye')
   })
 
@@ -264,7 +264,7 @@ describe('validate', () => {
 
     let result = null
     try {
-      result = await actions($)
+      result = await action($)
     } catch (e) {
       expect(e.data.error.message).toBe('validation error')
       expect(e.data.values.name).toEqual([ 'is required' ])

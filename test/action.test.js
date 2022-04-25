@@ -1,8 +1,8 @@
-const { i18n, loader, actions, locales } = require('../index.js')
+const { i18n, loader, action, locales } = require('../index.js')
 
-describe('actions', () => {
+describe('action', () => {
   it('should be a function', async () => {
-    expect(typeof actions).toBe('function')
+    expect(typeof action).toBe('function')
   })
 
   it('should match the action function', async () => {
@@ -12,7 +12,7 @@ describe('actions', () => {
       req: { pathname: '/createProject' },
       params: {}
     }
-    const result = await actions($)
+    const result = await action($)
     expect(result.hello).toBe('bye')
   })
 
@@ -23,33 +23,33 @@ describe('actions', () => {
       req: { pathname: '/createProject' },
       params: {}
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('bye')
   })
 
-  it('should match nested actions', async () => {
+  it('should match nested action', async () => {
     const app = await loader({ path: 'test/apps/app9', locales })
     const $ = {
       app,
       req: { pathname: '/project/create' },
       params: {}
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('bye')
   })
 
-  it('should match deeply nested actions', async () => {
+  it('should match deeply nested action', async () => {
     const app = await loader({ path: 'test/apps/app9', locales })
     const $ = {
       app,
       req: { pathname: '/deep/user/hello' },
       params: {}
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('hello')
   })
 
-  it('should match actions from pathname for index', async () => {
+  it('should match action from pathname for index', async () => {
     const app = await loader({ path: 'test/apps/app19', locales })
     const $ = {
       app,
@@ -59,11 +59,11 @@ describe('actions', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('index')
   })
 
-  it('should match actions from pathname for about', async () => {
+  it('should match action from pathname for about', async () => {
     const app = await loader({ path: 'test/apps/app19', locales })
     const $ = {
       app,
@@ -73,11 +73,11 @@ describe('actions', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('about')
   })
 
-  it('should match actions from pathname for project/create', async () => {
+  it('should match action from pathname for project/create', async () => {
     const app = await loader({ path: 'test/apps/app19', locales })
     const $ = {
       app,
@@ -87,11 +87,11 @@ describe('actions', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('project/create')
   })
 
-  it('should match actions from pathname for api/project/create', async () => {
+  it('should match action from pathname for api/project/create', async () => {
     const app = await loader({ path: 'test/apps/app19', locales })
     const $ = {
       app,
@@ -101,7 +101,7 @@ describe('actions', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await actions($)
+    let result = await action($)
     expect(result.hello).toBe('project/create')
   })
 })

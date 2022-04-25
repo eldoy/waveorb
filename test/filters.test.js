@@ -1,4 +1,4 @@
-const { i18n, loader, actions, locales } = require('../index.js')
+const { i18n, loader, action, locales } = require('../index.js')
 
 describe('filters', () => {
   it('should run filters', async () => {
@@ -10,7 +10,7 @@ describe('filters', () => {
       },
       params: {}
     }
-    const result = await actions($)
+    const result = await action($)
     expect(result.hello).toBe('bye')
   })
 
@@ -23,7 +23,7 @@ describe('filters', () => {
       },
       params: {}
     }
-    const result = await actions($)
+    const result = await action($)
     expect(result.logger).toBe('log')
   })
 
@@ -36,7 +36,7 @@ describe('filters', () => {
       },
       params: {}
     }
-    const result = await actions($)
+    const result = await action($)
     expect(result.hello).toBe('bye')
   })
 })

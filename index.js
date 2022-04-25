@@ -1,7 +1,7 @@
 const tools = require('extras')
 const { validate } = require('d8a')
 const version = require('./lib/version.js')
-const actions = require('./lib/actions.js')
+const action = require('./lib/action.js')
 const bundler = require('./lib/bundler.js')
 const i18n = require('./lib/i18n.js')
 const loader = require('./lib/loader.js')
@@ -14,7 +14,7 @@ module.exports = {
   tools,
   validate,
   version,
-  actions,
+  action,
   bundler,
   i18n,
   loader,
