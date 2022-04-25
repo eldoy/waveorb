@@ -1,10 +1,6 @@
-const { i18n, loader, action, locales } = require('../index.js')
+const { i18n, loader, dispatch, locales } = require('../index.js')
 
 describe('action', () => {
-  it('should be a function', async () => {
-    expect(typeof action).toBe('function')
-  })
-
   it('should match the action function', async () => {
     const app = await loader({ path: 'test/apps/app2', locales })
     const $ = {
@@ -12,7 +8,7 @@ describe('action', () => {
       req: { route: 'createProject' },
       params: {}
     }
-    const result = await action($)
+    const result = await dispatch($)
     expect(result.hello).toBe('bye')
   })
 
@@ -23,7 +19,7 @@ describe('action', () => {
       req: { route: 'createProject' },
       params: {}
     }
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('bye')
   })
 
@@ -34,7 +30,7 @@ describe('action', () => {
       req: { route: 'project/create' },
       params: {}
     }
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('bye')
   })
 
@@ -45,7 +41,7 @@ describe('action', () => {
       req: { route: 'deep/user/hello' },
       params: {}
     }
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('hello')
   })
 
@@ -59,7 +55,7 @@ describe('action', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('index')
   })
 
@@ -73,7 +69,7 @@ describe('action', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('about')
   })
 
@@ -87,7 +83,7 @@ describe('action', () => {
       params: {},
       t: i18n.t({ locales })
     }
-    let result = await action($)
+    let result = await dispatch($)
     expect(result.hello).toBe('project/create')
   })
 })
