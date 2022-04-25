@@ -1,4 +1,4 @@
-const { i18n, loader, action, locales } = require('../index.js')
+const { i18n, loader, dispatch, locales } = require('../index.js')
 
 describe('deny', () => {
   it('should deny parameter keys', async () => {
@@ -14,7 +14,7 @@ describe('deny', () => {
       t: i18n.t({ locales })
     }
     try {
-      await action($)
+      await dispatch($)
     } catch (e) {
       expect(e.data.error.message).toBe('field error')
       expect(e.data.query.length).toBe(1)
@@ -31,7 +31,7 @@ describe('deny', () => {
       },
       params: {}
     }
-    const result = await action($)
+    const result = await dispatch($)
     expect(result.error).toBeUndefined()
     expect(result.query.evil).toBeUndefined()
   })
@@ -49,7 +49,7 @@ describe('deny', () => {
       t: i18n.t({ locales })
     }
     try {
-      await action($)
+      await dispatch($)
     } catch (e) {
       expect(e.data.error.message).toBe('field error')
       expect(e.data.query.length).toBe(1)
