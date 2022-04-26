@@ -63,7 +63,7 @@ describe('validate', () => {
 
     result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'must be unique' ])
+    expect(result.values.email).toEqual([ 'has been taken' ])
   })
 
   // Test unique on update
@@ -104,7 +104,7 @@ describe('validate', () => {
     result = await dispatch($)
 
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'must be unique' ])
+    expect(result.values.email).toEqual([ 'has been taken' ])
   })
 
   // Test unique on create, narrowed with ids
@@ -132,13 +132,13 @@ describe('validate', () => {
 
     result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'must be unique' ])
+    expect(result.values.email).toEqual([ 'has been taken' ])
 
     $.params.values.site_id = '1234'
 
     result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'must be unique' ])
+    expect(result.values.email).toEqual([ 'has been taken' ])
 
     $.params.values.site_id = '4321'
     result = await dispatch($)
