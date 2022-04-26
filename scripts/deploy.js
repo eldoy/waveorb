@@ -1,6 +1,6 @@
 const dns = require('dns')
 const { run, exit, get } = require('extras')
-const { config } = require('../lib/setup.js')
+const config = require('../lib/config.js')
 
 // Find git repo address
 let repo = config?.git || get(`git config --get remote.origin.url`)

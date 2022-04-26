@@ -11,6 +11,8 @@ const locales = require('./lib/locales.js')
 const orb = require('./lib/orb.js')
 const serve = require('./lib/serve.js')
 const sitemap = require('./lib/sitemap.js')
+const settings = require('./lib/settings.js')
+const config = require('./lib/config.js')
 
 module.exports = {
   tools,
@@ -25,5 +27,7 @@ module.exports = {
   locales,
   orb,
   serve,
-  sitemap
+  sitemap,
+  settings,
+  config
 }
