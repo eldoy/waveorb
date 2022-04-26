@@ -36,7 +36,7 @@ describe('script', () => {
         }
       }
     }
-    assets = bundler(app.config.assets, { bundle: true })
+    assets = bundler(app.config.assets, { compress: true })
     const tag = assets.script('bundle.js')
     expect(tag).toBe('<script src="/bundle.js"></script>')
   })
@@ -74,7 +74,7 @@ describe('style', () => {
         }
       }
     }
-    assets = bundler(app.config.assets, { bundle: true })
+    assets = bundler(app.config.assets, { compress: true })
     const tag = assets.style('bundle.css')
     expect(tag).toBe('<link href="/bundle.css" rel="stylesheet" type="text/css">')
   })
