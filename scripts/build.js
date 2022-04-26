@@ -25,7 +25,9 @@ async function build() {
 
   // If urls not found, build from routes
   if (!urls) {
-    urls = Object.keys(app.routes).filter(x => !x.includes('/_'))
+    urls = Object.keys(app.routes)
+      .filter(x => x.startsWith('get#') && !x.includes('/_'))
+      .map(x => x.replace(/^get#/, ''))
   }
 
   // No hostname means start localhost on random port
