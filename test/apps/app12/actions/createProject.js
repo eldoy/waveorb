@@ -1,4 +1,4 @@
 module.exports = async function($) {
-  await $.filters(['authenticate', 'nested/logger'])
+  await $.setups(['authenticate', 'nested/logger'])
   return { hello: $.hello, logger: $.logger }
 }

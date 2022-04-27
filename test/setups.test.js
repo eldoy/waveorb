@@ -1,8 +1,8 @@
 const { i18n, loader, dispatch, locales } = require('../index.js')
 
-describe('filters', () => {
-  it('should run filters', async () => {
-    const app = await loader({ path: 'test/apps/app6', locales })
+describe('setups', () => {
+  it('should run setups', async () => {
+    const app = await loader({ path: 'test/apps/app12', locales })
     const $ = {
       app,
       req: {
@@ -14,8 +14,8 @@ describe('filters', () => {
     expect(result.hello).toBe('bye')
   })
 
-  it('should run nested filters', async () => {
-    const app = await loader({ path: 'test/apps/app6', locales })
+  it('should run nested setups', async () => {
+    const app = await loader({ path: 'test/apps/app12', locales })
     const $ = {
       app,
       req: {
