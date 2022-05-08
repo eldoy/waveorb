@@ -1,8 +1,8 @@
 const { loader, dispatch, locales } = require('../index.js')
 
-describe('setups', () => {
-  it('should run setups', async () => {
-    const app = await loader({ path: 'test/apps/app12', locales })
+describe('page', () => {
+  it('should serve 404 page on not found', async () => {
+    const app = await loader({ path: 'test/apps/app3', locales })
     const $ = {
       app,
       req: {
@@ -12,6 +12,6 @@ describe('setups', () => {
       params: {}
     }
     const result = await dispatch($)
-    expect(result).toBe('bye#log')
+    expect(result).toBe('404 not found')
   })
 })
