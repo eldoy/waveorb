@@ -23,7 +23,7 @@
     "d8a": "^0.9.5",
     "extras": "^0.10.6",
     "fport": "^0.2.2",
-    "furu": "^0.1.14",
+    "furu": "^0.1.15",
     "got": "^11.8.3",
     "lodash": "^4.17.21",
     "sass": "^1.51.0",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "configdb": "^0.2.4",
-    "jest": "^28.0.3"
+    "jest": "^28.1.0"
   },
   "keywords": [
     "javascript",

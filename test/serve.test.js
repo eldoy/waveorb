@@ -6,13 +6,18 @@ describe('serve', () => {
     await new Promise(r => setTimeout(r, 500))
   })
 
-  it('should return success on empty app', async () => {
-    const result = await got(`${base}/project/create`, {
-      method: 'POST',
-      responseType: 'json'
-    })
-    expect(result.body).toBe('')
-    expect(result.statusCode).toBe(200)
+  it('should return 404 with post to empty app', async () => {
+    let result
+    try {
+      result = await got(`${base}/project/create`, {
+        method: 'POST',
+        responseType: 'json'
+      })
+    } catch(e) {
+      result = e.response
+    }
+    expect(result.body).toEqual({})
+    expect(result.statusCode).toBe(404)
   })
 
   it('should serve plain HTML', async () => {
