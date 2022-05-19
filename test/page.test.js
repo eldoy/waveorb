@@ -9,6 +9,9 @@ describe('page', () => {
         method: 'GET',
         route: 'hello'
       },
+      res: {
+        getHeader: () => 'text/html'
+      },
       params: {}
     }
     const result = await dispatch($)
