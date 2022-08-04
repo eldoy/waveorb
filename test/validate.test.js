@@ -4,7 +4,6 @@ const db = require('configdb')
 /** Testing validate functions */
 
 describe('validate', () => {
-
   beforeEach(() => {
     db('user').clear()
   })
@@ -28,8 +27,8 @@ describe('validate', () => {
 
     let result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.query.name).toEqual([ 'minimum length is 5' ])
-    expect(result.query.key).toEqual([ 'must be one of 7, 8' ])
+    expect(result.query.name).toEqual(['minimum length is 5'])
+    expect(result.query.key).toEqual(['must be one of 7, 8'])
 
     $.params.query.name = 'hello'
     $.params.query.key = 7
@@ -63,7 +62,7 @@ describe('validate', () => {
 
     result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'has been taken' ])
+    expect(result.values.email).toEqual(['has been taken'])
   })
 
   // Test unique on update
@@ -75,7 +74,7 @@ describe('validate', () => {
     const $ = {
       app,
       req: {
-        route: 'updateUser',
+        route: 'updateUser'
       },
       db,
       params: {
@@ -104,7 +103,7 @@ describe('validate', () => {
     result = await dispatch($)
 
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'has been taken' ])
+    expect(result.values.email).toEqual(['has been taken'])
   })
 
   // Test unique on create, narrowed with ids
@@ -132,13 +131,13 @@ describe('validate', () => {
 
     result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'has been taken' ])
+    expect(result.values.email).toEqual(['has been taken'])
 
     $.params.values.site_id = '1234'
 
     result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual([ 'has been taken' ])
+    expect(result.values.email).toEqual(['has been taken'])
 
     $.params.values.site_id = '4321'
     result = await dispatch($)
@@ -211,7 +210,7 @@ describe('validate', () => {
 
     let result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.query.id).toEqual([ 'does not exist' ])
+    expect(result.query.id).toEqual(['does not exist'])
 
     const project = db('project').create({})
     $.params.query.id = project.id
@@ -235,7 +234,7 @@ describe('validate', () => {
 
     let result = await dispatch($)
     expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual([ 'is required' ])
-    expect(result.values.email).toEqual([ 'is required' ])
+    expect(result.values.name).toEqual(['is required'])
+    expect(result.values.email).toEqual(['is required'])
   })
 })

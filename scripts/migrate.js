@@ -6,7 +6,7 @@ const t = require('terminal-kit').terminal
 let files = []
 try {
   files = dir(base)
-} catch(e) {
+} catch (e) {
   console.log('No migrations found.')
   process.exit(0)
 }

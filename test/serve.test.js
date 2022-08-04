@@ -3,7 +3,7 @@ const base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('serve', () => {
   beforeAll(async () => {
-    await new Promise(r => setTimeout(r, 500))
+    await new Promise((r) => setTimeout(r, 500))
   })
 
   it('should return 404 with post to empty app', async () => {
@@ -13,7 +13,7 @@ describe('serve', () => {
         method: 'POST',
         responseType: 'json'
       })
-    } catch(e) {
+    } catch (e) {
       result = e.response
     }
     expect(result.body).toEqual({})
@@ -54,7 +54,9 @@ describe('serve', () => {
     })
     expect(result.body).toEqual({ hello: 'project/find' })
     expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
+    expect(result.headers['content-type']).toBe(
+      'application/json; charset=utf-8'
+    )
   })
 
   it('should return from middleware', async () => {
@@ -73,7 +75,9 @@ describe('serve', () => {
     })
     expect(result.body).toEqual({ hello: 'filter' })
     expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('application/json; charset=utf-8')
+    expect(result.headers['content-type']).toBe(
+      'application/json; charset=utf-8'
+    )
   })
 
   it('should not have a layout', async () => {

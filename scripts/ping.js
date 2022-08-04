@@ -20,7 +20,7 @@ sitemap = encodeURIComponent(sitemap)
 const bing = `http://bing.com/ping?sitemap=${sitemap}`
 const google = `http://www.google.com/ping?sitemap=${sitemap}`
 
-;(async function() {
+;(async function () {
   got.get(bing)
   got.post(google)
 })()

@@ -5,7 +5,18 @@ const URL = require('url').URL
 const stream = require('stream')
 const { promisify } = require('util')
 const _ = require('lodash')
-const { dir, exist, mkdir, rmdir, read, write, copy, tree, run, sleep } = require('extras')
+const {
+  dir,
+  exist,
+  mkdir,
+  rmdir,
+  read,
+  write,
+  copy,
+  tree,
+  run,
+  sleep
+} = require('extras')
 const got = require('got')
 const terser = require('terser')
 const sass = require('sass')
@@ -26,8 +37,8 @@ async function build() {
   // If urls not found, build from routes
   if (!urls) {
     urls = Object.keys(app.routes)
-      .filter(x => x.startsWith('get#') && !x.includes('/_'))
-      .map(x => x.replace(/^get#/, ''))
+      .filter((x) => x.startsWith('get#') && !x.includes('/_'))
+      .map((x) => x.replace(/^get#/, ''))
   }
 
   // No hostname means start localhost on random port
@@ -60,7 +71,7 @@ async function build() {
     try {
       const writer = fs.createWriteStream(path.join(DIST, dir, file))
       await pipeline(got.stream(address), writer)
-    } catch(e) {
+    } catch (e) {
       console.log(`Can't build ${name}, skipping...`)
     }
   }
@@ -78,10 +89,12 @@ async function build() {
     for (const type of Object.keys(assets)) {
       console.log(`Bundling ${type} files...`)
       const files = assets[type] || []
-      const bundle = files.map(function(file) {
-        const inpath = path.join(APP_ROOT, 'assets', file)
-        return read(inpath, 'utf8')
-      }).join(type == 'js' ? ';' : '\n')
+      const bundle = files
+        .map(function (file) {
+          const inpath = path.join(APP_ROOT, 'assets', file)
+          return read(inpath, 'utf8')
+        })
+        .join(type == 'js' ? ';' : '\n')
 
       // Write bundle uncompressed to bundle path
       const bundlePath = path.join(DIST, `bundle.${type}`)
@@ -93,7 +106,7 @@ async function build() {
       // Compress Javascript bundle
       if (type == 'js') {
         const code = {}
-        files.forEach(file => {
+        files.forEach((file) => {
           code[file] = read(path.join(DIST, file), 'utf8')
         })
         const result = await terser.minify(code, {

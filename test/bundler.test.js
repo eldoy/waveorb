@@ -12,7 +12,9 @@ describe('script', () => {
 
   it('should create multiple js tags', async () => {
     const tag = assets.script('app.js', 'hello.js')
-    expect(tag).toBe('<script src="/app.js"></script><script src="/hello.js"></script>')
+    expect(tag).toBe(
+      '<script src="/app.js"></script><script src="/hello.js"></script>'
+    )
   })
 
   it('should expand bundle files', async () => {
@@ -50,7 +52,9 @@ describe('style', () => {
 
   it('should create multiple css tags', async () => {
     const tag = assets.style('app.css', 'hello.css')
-    expect(tag).toBe('<link href="/app.css" rel="stylesheet" type="text/css"><link href="/hello.css" rel="stylesheet" type="text/css">')
+    expect(tag).toBe(
+      '<link href="/app.css" rel="stylesheet" type="text/css"><link href="/hello.css" rel="stylesheet" type="text/css">'
+    )
   })
 
   it('should expand bundle files', async () => {
@@ -76,6 +80,8 @@ describe('style', () => {
     }
     assets = bundler(app.config.assets, { compress: true })
     const tag = assets.style('bundle.css')
-    expect(tag).toBe('<link href="/bundle.css" rel="stylesheet" type="text/css">')
+    expect(tag).toBe(
+      '<link href="/bundle.css" rel="stylesheet" type="text/css">'
+    )
   })
 })

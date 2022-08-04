@@ -3,9 +3,8 @@ const { loader, locales, actions } = require('../index.js')
 const base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('hooks', () => {
-
   beforeAll(async () => {
-    await new Promise(r => setTimeout(r, 500))
+    await new Promise((r) => setTimeout(r, 500))
   })
 
   it('should run init hook', async () => {

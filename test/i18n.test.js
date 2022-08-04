@@ -17,7 +17,7 @@ describe('t', () => {
   it('should support merging of locales', async () => {
     const locales = {
       en: {
-        'merged': 'merged'
+        merged: 'merged'
       }
     }
     const $t = i18n.t({ lang: 'en', locales })
@@ -28,7 +28,7 @@ describe('t', () => {
   it('should support interpolation', async () => {
     const locales = {
       en: {
-        'interpolation': 'interpolation %s %s'
+        interpolation: 'interpolation %s %s'
       }
     }
     const $t = i18n.t({ lang: 'en', locales })
@@ -51,10 +51,10 @@ describe('t', () => {
   it('should not fail and return correct locale', async () => {
     const locales = {
       en: {
-        'greeting': 'hello'
+        greeting: 'hello'
       },
       es: {
-        'greeting': 'hola'
+        greeting: 'hola'
       }
     }
     const $t = i18n.t({ lang: 'es', locales })
