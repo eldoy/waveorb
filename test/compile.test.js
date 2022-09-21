@@ -20,4 +20,11 @@ describe('compile', () => {
     compile($)
     expect($.page.content).toBe("hello ${'word'}")
   })
+
+  it('should compile links with line breaks', async () => {
+    const $ = { page: { content: "hello ${$.link(\n'bye'\n)}" } }
+    $.link = () => 'word'
+    compile($)
+    expect($.page.content).toBe("hello ${'word'}")
+  })
 })
