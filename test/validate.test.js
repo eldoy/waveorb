@@ -262,4 +262,34 @@ describe('validate', () => {
     expect(result.values.name).toEqual(['custom required'])
     expect(result.values.email).toEqual(['custom required'])
   })
+
+  // Test custom validations, other language
+  it('should use custom validations', async () => {
+    const customLocales = Object.assign({}, locales)
+    customLocales.no = {
+      validation: {
+        required: 'er påkrevet'
+      }
+    }
+
+    const app = await loader({
+      path: 'test/apps/app30',
+      locales: customLocales
+    })
+    const $ = {
+      app,
+      lang: 'no',
+      req: {
+        route: 'createProject'
+      },
+      db,
+      params: {},
+      t: i18n.t()
+    }
+
+    let result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.name).toEqual(['er påkrevet'])
+    expect(result.values.email).toEqual(['er påkrevet'])
+  })
 })
