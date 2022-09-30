@@ -22,7 +22,7 @@ describe('validate', () => {
           key: 5
         }
       },
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
@@ -51,7 +51,7 @@ describe('validate', () => {
           email: 'test@example.com'
         }
       },
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
@@ -85,7 +85,7 @@ describe('validate', () => {
           email: 'test1@example.com'
         }
       },
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
@@ -120,7 +120,7 @@ describe('validate', () => {
           email: 'test@example.com'
         }
       },
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
@@ -171,7 +171,7 @@ describe('validate', () => {
           email: 'test1@example.com'
         }
       },
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
@@ -205,7 +205,7 @@ describe('validate', () => {
           id: '12341234'
         }
       },
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
@@ -229,12 +229,37 @@ describe('validate', () => {
       },
       db,
       params: {},
-      t: i18n.t({ locales })
+      t: i18n.t()
     }
 
     let result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['is required'])
     expect(result.values.email).toEqual(['is required'])
+  })
+
+  // Test custom validations
+  it('should use custom validations', async () => {
+    const customLocales = Object.assign({}, locales)
+    customLocales.en.validation.required = 'custom required'
+
+    const app = await loader({
+      path: 'test/apps/app30',
+      locales: customLocales
+    })
+    const $ = {
+      app,
+      req: {
+        route: 'createProject'
+      },
+      db,
+      params: {},
+      t: i18n.t()
+    }
+
+    let result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.name).toEqual(['custom required'])
+    expect(result.values.email).toEqual(['custom required'])
   })
 })
