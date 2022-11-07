@@ -13,6 +13,7 @@ const serve = require('./lib/serve.js')
 const sitemap = require('./lib/sitemap.js')
 const settings = require('./lib/settings.js')
 const config = require('./lib/config.js')
+const host = require('./lib/host.js')
 
 module.exports = {
   tools,
@@ -29,5 +30,6 @@ module.exports = {
   serve,
   sitemap,
   settings,
-  config
+  config,
+  host
 }
