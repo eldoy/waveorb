@@ -10,7 +10,7 @@ async function sitemap() {
     config = await config(app)
   }
   if (config) {
-    console.log('Building sitemap.xml...')
+    console.log('Building sitemap...')
     await builder(config)
   } else {
     console.log('\nNo sitemap config found.\n')
