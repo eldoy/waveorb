@@ -1,15 +1,7 @@
 #!/usr/bin/env node
-const path = require('path')
 const _ = require('lodash')
-const { write } = require('extras')
 const loader = require('../lib/loader.js')
 const builder = require('../lib/sitemap.js')
-
-function outPath() {
-  return process.env.NODE_ENV == 'production'
-    ? path.join(process.cwd(), 'dist', 'sitemap.xml')
-    : path.join(process.cwd(), 'app', 'assets', 'sitemap.xml')
-}
 
 async function sitemap() {
   const app = await loader()
@@ -19,9 +11,7 @@ async function sitemap() {
   }
   if (config) {
     console.log('Building sitemap.xml...')
-    const result = await builder(config)
-    const outpath = config.outpath || outPath()
-    write(outpath, result)
+    await builder(config)
   } else {
     console.log('\nNo sitemap config found.\n')
     console.log('Read about it here:')
