@@ -13,7 +13,8 @@ const commands = {
     'migrate',
     'serve',
     'build',
-    'sitemap'
+    'sitemap',
+    'locales'
   ]
 }
 const command = (process.argv[2] || 'help').trim()
