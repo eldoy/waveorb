@@ -41,6 +41,9 @@ t.green('        Run command line console\n')
 t.green.bold('  migrate')
 t.green('    Run migrations\n')
 
+t.green.bold('  locales')
+t.green('    Show missing locales\n')
+
 t.green.bold('  help')
 t.green('       Display this help text\n\n')
 
