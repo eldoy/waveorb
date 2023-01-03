@@ -14,6 +14,7 @@ const sitemap = require('./lib/sitemap.js')
 const settings = require('./lib/settings.js')
 const config = require('./lib/config.js')
 const host = require('./lib/host.js')
+const util = require('./lib/util.js')
 
 module.exports = {
   tools,
@@ -31,5 +32,6 @@ module.exports = {
   sitemap,
   settings,
   config,
-  host
+  host,
+  util
 }

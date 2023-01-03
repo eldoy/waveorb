@@ -21,6 +21,7 @@ const got = require('got')
 const terser = require('terser')
 const sass = require('sass')
 const fport = require('fport')
+const util = require('../lib/util.js')
 const loader = require('../lib/loader.js')
 const serve = require('../lib/serve.js')
 const ROOT = process.cwd()
@@ -92,7 +93,11 @@ async function build() {
       const bundle = files
         .map(function (file) {
           const inpath = path.join(APP_ROOT, 'assets', file)
-          return read(inpath, 'utf8')
+          const content = read(inpath, 'utf8')
+          if (type == 'css') {
+            return util.rewriteCSSUrl(file, content)
+          }
+          return content
         })
         .join(type == 'js' ? ';' : '\n')
 
