@@ -26,10 +26,10 @@
     "furu": "^0.1.20",
     "got": "^11.8.6",
     "lodash": "^4.17.21",
-    "sass": "^1.57.1",
+    "sass": "^1.58.0",
     "sitemap": "^7.1.1",
     "terminal-kit": "^3.0.0",
-    "terser": "^5.16.2",
+    "terser": "^5.16.3",
     "tomarkup": "^0.9.1",
     "waveorb-generate": "^0.9.3",
     "waveorb-validations": "^0.1.1"
