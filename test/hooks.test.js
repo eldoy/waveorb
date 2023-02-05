@@ -12,6 +12,11 @@ describe('hooks', () => {
     expect(app.init).toBe(true)
   })
 
+  it('should run load hook', async () => {
+    const app = await loader({ path: 'test/apps/app25', locales })
+    expect(app.load).toBe(true)
+  })
+
   it('should run before hook', async () => {
     const result = await got(`${base}/hooks/before`, {
       method: 'POST',
