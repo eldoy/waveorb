@@ -6,8 +6,7 @@ describe('plugins', () => {
     expect(typeof app.plugins).toBe('object')
     expect(typeof app.plugins.db).toBe('object')
     expect(app.hello).toBe('hello')
-    // DEPRECATED, remove when app.objects is removed from loader
-    expect(app.objects.db.bye).toBe('bye')
+    expect(app.orb.db.bye).toBe('bye')
   })
 
   it('should unpack plugin objects into orb', async () => {
