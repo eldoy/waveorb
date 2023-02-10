@@ -27,7 +27,7 @@ async function start() {
   }
 
   // Load db if it exists
-  const db = app.plugins?.db
+  const db = app.objects.db
 
   // Load these objects into the cmd context
   const api = {
