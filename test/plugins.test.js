@@ -6,7 +6,7 @@ describe('plugins', () => {
     expect(typeof app.plugins).toBe('object')
     expect(typeof app.plugins.db).toBe('object')
     expect(app.hello).toBe('hello')
-    expect(app.orb.db.bye).toBe('bye')
+    expect(app.objects.db.bye).toBe('bye')
   })
 
   it('should unpack plugin objects into orb', async () => {
