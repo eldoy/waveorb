@@ -5,18 +5,7 @@ const URL = require('url').URL
 const stream = require('stream')
 const { promisify } = require('util')
 const _ = require('lodash')
-const {
-  dir,
-  exist,
-  mkdir,
-  rmdir,
-  read,
-  write,
-  copy,
-  tree,
-  run,
-  sleep
-} = require('extras')
+const { exist, mkdir, rmdir, read, write, copy, sleep } = require('extras')
 const got = require('got')
 const terser = require('terser')
 const sass = require('sass')

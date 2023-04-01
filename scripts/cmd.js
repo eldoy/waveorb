@@ -3,8 +3,6 @@ const repl = require('repl')
 const { loader } = require(path.join(__dirname, '..', 'index.js'))
 const package = require(path.join(__dirname, '..', 'package.json'))
 
-const api = {}
-
 console.log(`
   Waveorb cmd v${package.version}
   Usage: waveorb cmd

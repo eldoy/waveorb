@@ -1,6 +1,4 @@
 const path = require('path')
-const fs = require('fs')
-const crypto = require('crypto')
 const os = require('os')
 const extras = require('extras')
 const t = require('terminal-kit').terminal
