@@ -23,12 +23,18 @@ if (name != '.') {
 }
 
 // Clone the template repo
-const repo = 'https://github.com/eldoy/waveorb-templates.git'
 const tmp = path.join(os.tmpdir(), extras.hex())
-extras.run(`git clone --quiet --depth 1 ${repo} ${tmp}`)
-
 const template = process.argv[4] || 'default'
-const dir = path.join(tmp, template)
+let repo = 'https://github.com/eldoy/waveorb-templates.git'
+let dir = path.join(tmp, template)
+
+// Support http and git templates
+if (/^(https?:|\w+@)/.test(template)) {
+  repo = template
+  dir = tmp
+}
+
+extras.run(`git clone --quiet --depth 1 ${repo} ${tmp}`)
 
 if (!extras.exist(dir)) {
   console.log(`\nTemplate ${template} does not exist.`)
@@ -38,7 +44,7 @@ if (!extras.exist(dir)) {
 extras.copy(path.join(dir, '*'), '.')
 extras.copy(path.join(dir, '.*'), '.')
 
-t('\nInstalling, please wait...\n\n')
+t('\nInstalling packages, please wait...\n\n')
 extras.run('npm install', { silent: true })
 
 t.bold(`\nWaveorb app created, now do:\n\n`)
