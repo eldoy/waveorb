@@ -18,10 +18,13 @@ domain = domain.split(' ')[0]
 
 if (!domain) exit(`No valid domain name was found!`)
 
+const env = process.argv[3]
+
 dns.lookup(domain, (err, ip) => {
   if (err) {
     exit(`The domain ${domain} does not have an ip address!`)
   }
   // ssh into domain and run deploy.js
-  run(`ssh root@${ip} 'cd waveorb-server && node deploy.js ${repo}'`)
+  const mode = env ? `WAVEORB_DEPLOY_ENV=${env} ` : ''
+  run(`ssh root@${ip} 'cd waveorb-server && ${mode}node deploy.js ${repo}'`)
 })
