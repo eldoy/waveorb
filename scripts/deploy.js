@@ -4,7 +4,8 @@ const { run, exit, get } = require('extras')
 const env = (process.env.WAVEORB_DEPLOY_ENV = process.argv[3])
 const config = require('../lib/config.js')
 
-console.info(`Using config:\n${config}`)
+console.info(`Using config:`)
+console.info(config)
 
 // Find git repo address
 const repo = config?.git || get(`git config --get remote.origin.url`)
