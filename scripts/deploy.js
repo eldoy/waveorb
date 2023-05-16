@@ -24,7 +24,7 @@ if (config.address) {
 }
 
 // Find main domain name
-let domain = config.domains
+let domain = config.domains || ''
 if (typeof domain == 'object') {
   domain = domain[0] || ''
   if (typeof domain != 'string') {
