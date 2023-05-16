@@ -1,8 +1,10 @@
 const dns = require('dns')
 const { run, exit, get } = require('extras')
+
+const env = (process.env.WAVEORB_DEPLOY_ENV = process.argv[3])
 const config = require('../lib/config.js')
 
-const env = process.argv[3]
+console.info(`Using config:\n${config}`)
 
 // Find git repo address
 const repo = config?.git || get(`git config --get remote.origin.url`)
