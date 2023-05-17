@@ -11,7 +11,7 @@ async function sitemap() {
     config = await config(app)
   }
   if (
-    process.env.NODE_ENV == 'production' &&
+    process.env.NODE_ENV != 'development' &&
     typeof CONFIG.sitemapdir == 'string'
   ) {
     config.outpath = CONFIG.sitemapdir
