@@ -2,7 +2,7 @@
 const _ = require('lodash')
 const loader = require('../lib/loader.js')
 const builder = require('../lib/sitemap.js')
-const CONFIG = require('../lib/config.js')
+const CONFIG = require('../lib/config.js')()
 
 async function sitemap() {
   const app = await loader()

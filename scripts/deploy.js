@@ -1,8 +1,8 @@
 const dns = require('dns')
 const { run, exit, get } = require('extras')
 
-const env = (process.env.WAVEORB_DEPLOY_ENV = process.argv[3])
-const config = require('../lib/config.js')
+const mode = process.argv[3]
+const config = require('../lib/config.js')(mode)
 
 console.info(`Using config:`)
 console.info(config)
@@ -13,10 +13,8 @@ if (!repo) exit('Git repository URL not found!')
 
 // ssh into domain and run deploy.js
 function deploy(address) {
-  const mode = env ? `WAVEORB_DEPLOY_ENV=${env} ` : ''
-  run(
-    `ssh root@${address} 'cd waveorb-server && ${mode}node deploy.js ${repo}'`
-  )
+  const dep = mode ? `WAVEORB_DEPLOY_ENV=${mode} ` : ''
+  run(`ssh root@${address} 'cd waveorb-server && ${dep}node deploy.js ${repo}'`)
 }
 
 // Use specified address if defined

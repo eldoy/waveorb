@@ -1,6 +1,6 @@
 const dns = require('dns')
 const { run, exit } = require('extras')
-const config = require('../lib/config.js')
+const config = require('../lib/config.js')()
 
 const domain = (config.domains || config.domains?.[0]?.names || '').split(
   ' '

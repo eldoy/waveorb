@@ -1,5 +1,5 @@
 const got = require('got')
-const config = require('../lib/config.js')
+const config = require('../lib/config.js')()
 let sitemap = process.argv[3]
 
 if (typeof config.sitemap == 'string') {

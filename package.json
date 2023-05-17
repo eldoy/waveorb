@@ -19,9 +19,9 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "conficurse": "0.3.6",
+    "conficurse": "0.3.7",
     "d8a": "^0.9.6",
-    "extras": "^0.11.0",
+    "extras": "^0.11.1",
     "fport": "^0.4.0",
     "furu": "^0.1.23",
     "got": "^11.8.6",
