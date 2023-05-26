@@ -1,6 +1,35 @@
 const { loader, dispatch, locales } = require('../index.js')
+const keep = require('../lib/keep.js')
 
 describe('keep', () => {
+  it('should keep keys', async () => {
+    const data = { a: 1, b: 2 }
+    const result = await keep({})(data, ['a'])
+    expect(result.a).toEqual(1)
+    expect(result.b).toBeUndefined()
+  })
+
+  it('should keep keys nested', async () => {
+    const data = { a: { b: 2, c: 3 } }
+    const result = await keep({})(data, ['a.c'])
+    expect(result.a.c).toEqual(3)
+    expect(result.a.b).toBeUndefined()
+  })
+
+  it('should keep when data is list', async () => {
+    const data = [{ a: { b: 2, c: 3 } }]
+    const result = await keep({})(data, ['a.c'])
+    expect(result[0].a.c).toEqual(3)
+    expect(result[0].a.b).toBeUndefined()
+  })
+
+  it('should keep when data is nested', async () => {
+    const data = { status: [{ a: { b: 2, c: { d: 4 } } }] }
+    const result = await keep({})(data.status, ['a.c'])
+    expect(result[0].a.c.d).toEqual(4)
+    expect(result[0].a.b).toBeUndefined()
+  })
+
   it('should keep keys', async () => {
     const app = await loader({ path: 'test/apps/app13', locales })
     const $ = {
@@ -10,6 +39,7 @@ describe('keep', () => {
       },
       params: {
         query: {
+          evil: 1,
           something: {
             a: 1,
             b: 2
@@ -34,6 +64,7 @@ describe('keep', () => {
       },
       params: {
         query: {
+          evil: 1,
           something: 2,
           other: 3
         }

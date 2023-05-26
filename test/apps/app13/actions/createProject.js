@@ -1,4 +1,3 @@
 module.exports = async function ($) {
-  await $.keep($.params.query, ['something.a', 'other'])
-  return $.params.query
+  return await $.keep($.params.query, ['something.a', 'other'])
 }
