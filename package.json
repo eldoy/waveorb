@@ -21,7 +21,7 @@
   "dependencies": {
     "conficurse": "0.3.8",
     "d8a": "^0.9.10",
-    "extras": "^0.11.3",
+    "extras": "^0.12.0",
     "fport": "^0.4.0",
     "furu": "^0.1.23",
     "got": "^11.8.6",
@@ -29,7 +29,7 @@
     "sass": "^1.62.1",
     "sitemap": "^7.1.1",
     "terminal-kit": "^3.0.0",
-    "terser": "^5.17.4",
+    "terser": "^5.17.7",
     "tomarkup": "^0.9.1",
     "waveorb-generate": "^0.9.3",
     "waveorb-validations": "^0.1.1"
