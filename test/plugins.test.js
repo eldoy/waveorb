@@ -4,7 +4,7 @@ describe('plugins', () => {
   it('should load plugins', async () => {
     const app = await loader({ path: 'test/apps/app5' })
     expect(typeof app.plugins).toBe('object')
-    expect(typeof app.plugins.db).toBe('function')
+    expect(typeof app.plugins.db).toBe('object')
     expect(app.hello).toBe('hello')
     expect(typeof app.objects.db).toBe('object')
     expect(app.objects.db.bye).toBe('bye')
