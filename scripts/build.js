@@ -4,7 +4,7 @@ const path = require('path')
 const URL = require('url').URL
 const stream = require('stream')
 const { promisify } = require('util')
-const _ = require('lodash')
+const lodash = require('lodash')
 const { exist, mkdir, rmdir, read, write, copy, sleep } = require('extras')
 const got = require('got')
 const terser = require('terser')
@@ -73,7 +73,7 @@ async function build() {
   copy(path.join(APP_ROOT, 'assets', '*'), 'dist')
 
   // Build assets
-  const assets = _.get(app, 'config.assets.bundle')
+  const assets = lodash.get(app, 'config.assets.bundle')
 
   if (assets) {
     for (const type of Object.keys(assets)) {
