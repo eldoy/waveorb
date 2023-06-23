@@ -10,6 +10,7 @@
     "serve:test": "WAVEORB_APP=test/apps/app WAVEORB_PORT=5060 nodemon ./bin/waveorb.js serve",
     "serve": "nodemon ./bin/waveorb.js serve",
     "build": "rm -rf ./dist && node ./bin/waveorb.js build",
+    "update": "ncu -u -x got && npm i",
     "help": "node ./bin/waveorb.js help"
   },
   "repository": {
@@ -19,18 +20,18 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "conficurse": "0.3.8",
+    "conficurse": "0.3.9",
     "d8a": "^0.9.10",
     "extras": "^0.12.0",
     "fport": "^0.4.0",
     "furu": "^0.1.23",
     "got": "^11.8.6",
     "lodash": "^4.17.21",
-    "sass": "^1.62.1",
+    "sass": "^1.63.6",
     "sitemap": "^7.1.1",
     "terminal-kit": "^3.0.0",
-    "terser": "^5.17.7",
-    "tomarkup": "^0.9.1",
+    "terser": "^5.18.1",
+    "tomarkup": "^0.10.0",
     "waveorb-generate": "^0.9.3",
     "waveorb-validations": "^0.1.1"
   },
