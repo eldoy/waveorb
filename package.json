@@ -30,10 +30,11 @@
     "lodash": "^4.17.21",
     "sass": "^1.63.6",
     "sitemap": "^7.1.1",
+    "skjema": "^0.2.6",
     "terminal-kit": "^3.0.0",
     "terser": "^5.18.1",
     "tomarkup": "^0.10.1",
-    "waveorb-generate": "^0.9.3",
+    "waveorb-generate": "^0.10.1",
     "waveorb-validations": "^0.1.1"
   },
   "devDependencies": {
