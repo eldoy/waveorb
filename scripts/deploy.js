@@ -13,17 +13,15 @@ if (!repo) exit('Git repository URL not found!')
 
 // ssh into domain and run deploy.js
 function deploy(address) {
-  const args = []
+  let args = ''
   if (mode) {
-    args.push(`WAVEORB_DEPLOY_ENV=${mode}`)
+    args += ` WAVEORB_DEPLOY_ENV=${mode}`
   }
   if (config.branch) {
-    args.push(`WAVEORB_DEPLOY_BRANCH=${config.branch}`)
+    args += ` WAVEORB_DEPLOY_BRANCH=${config.branch}`
   }
   run(
-    `ssh root@${address} 'cd waveorb-server && ${args.join(
-      ' '
-    )} node deploy.js ${repo}'`
+    `ssh root@${address} 'cd waveorb-server &&${args} node deploy.js ${repo}'`
   )
 }
 
