@@ -30,7 +30,7 @@
     "lodash": "^4.17.21",
     "sass": "^1.63.6",
     "sitemap": "^7.1.1",
-    "skjema": "^0.5.3",
+    "skjema": "^0.5.4",
     "terminal-kit": "^3.0.0",
     "terser": "^5.18.2",
     "tomarkup": "^0.10.1",
