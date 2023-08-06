@@ -1,6 +1,6 @@
 {
   "name": "waveorb",
-  "version": "0.37.18",
+  "version": "0.37.19",
   "description": "Waveorb Javascript web app development framework",
   "bin": {
     "waveorb": "bin/waveorb.js"
