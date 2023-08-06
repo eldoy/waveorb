@@ -28,18 +28,18 @@
     "furu": "^0.1.23",
     "got": "^11.8.6",
     "lodash": "^4.17.21",
-    "sass": "^1.64.0",
+    "sass": "^1.64.2",
     "sitemap": "^7.1.1",
-    "skjema": "^0.6.0",
+    "skjema": "^0.8.0",
     "terminal-kit": "^3.0.0",
-    "terser": "^5.19.1",
+    "terser": "^5.19.2",
     "tomarkup": "^0.10.1",
     "waveorb-generate": "^0.10.1",
     "waveorb-validations": "^0.2.0"
   },
   "devDependencies": {
     "configdb": "^0.2.5",
-    "jest": "^29.6.1"
+    "jest": "^29.6.2"
   },
   "keywords": [
     "javascript",
