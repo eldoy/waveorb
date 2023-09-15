@@ -22,6 +22,11 @@ describe('loader', () => {
     const app = await loader()
     expect(typeof app.pages.article).toBe('function')
     expect(typeof app.pages.data).toBe('function')
+    const $ = { page: { title: 'hello' } }
+    const page1 = await app.pages.article($)
+    expect(page1.includes('Hello!')).toEqual(true)
+    const page2 = await app.pages.data($)
+    expect(page2.includes('Nice!')).toEqual(true)
   })
 
   it('should load routes', async () => {
