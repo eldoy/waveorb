@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const loader = require('../lib/loader.js')
 
 describe('loader', () => {

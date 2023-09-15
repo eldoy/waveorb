@@ -152,10 +152,6 @@ describe('validate', () => {
       email: 'test1@example.com',
       site_id: '1234'
     })
-    const user2 = db('user').create({
-      email: 'test2@example.com',
-      site_id: '4321'
-    })
 
     const $ = {
       app,
