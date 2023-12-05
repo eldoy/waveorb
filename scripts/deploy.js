@@ -20,6 +20,9 @@ function deploy(address) {
   if (config.branch) {
     args += ` WAVEORB_DEPLOY_BRANCH=${config.branch}`
   }
+  if (config.appdir) {
+    args += ` WAVEORB_APP_DIR=${config.appdir}`
+  }
   run(
     `ssh root@${address} 'cd waveorb-server &&${args} node deploy.js ${repo}'`
   )
