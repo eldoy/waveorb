@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "brainmatter": "^0.1.0",
-    "conficurse": "0.5.1",
+    "conficurse": "0.5.2",
     "d8a": "^0.9.10",
     "extras": "^0.12.1",
     "fport": "^0.4.0",
@@ -30,7 +30,6 @@
     "html6": "^0.0.3",
     "lavkode": "^0.2.1",
     "lodash": "^4.17.21",
-    "pirates": "^4.0.6",
     "sass": "^1.71.0",
     "sitemap": "^7.1.1",
     "skjema": "^0.8.7",
