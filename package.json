@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "brainmatter": "^0.1.0",
-    "conficurse": "0.5.2",
+    "conficurse": "0.5.7",
     "d8a": "^0.9.10",
     "extras": "^0.12.1",
     "fport": "^0.4.0",
@@ -30,11 +30,11 @@
     "html6": "^0.1.0",
     "lavkode": "^0.2.1",
     "lodash": "^4.17.21",
-    "sass": "^1.71.0",
+    "sass": "^1.71.1",
     "sitemap": "^7.1.1",
     "skjema": "^0.8.7",
-    "terminal-kit": "^3.0.1",
-    "terser": "^5.27.1",
+    "terminal-kit": "^3.0.2",
+    "terser": "^5.29.1",
     "tomarkup": "^0.10.1",
     "waveorb-generate": "^0.10.1",
     "waveorb-validations": "^0.2.0"

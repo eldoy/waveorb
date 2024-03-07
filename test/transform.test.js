@@ -2,7 +2,13 @@ const { loader, locales } = require('../index.js')
 
 describe('transform', () => {
   it('should transform HTML6', async () => {
-    const app = await loader({ path: 'test/apps/app33', locales })
+    const app = await loader({
+      path: 'test/apps/app33',
+      locales,
+      config: {
+        transform: true
+      }
+    })
     const $ = { app, params: {} }
     var result = (await app.pages.home($))
       .split('\n')
