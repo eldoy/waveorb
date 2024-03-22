@@ -29,6 +29,19 @@ npm i -g waveorb
 waveorb help
 ```
 
+### Related repositories
+
+The following repositories are made for use with Waveorb, to make building web applications easier:
+
+* [Waveorb Util](https://github.com/eldoy/waveorb-util) - Utility JS functions for server and browser
+* [Waveorb Components](https://github.com/eldoy/waveorb-components) - Collection of web components for rapid development
+* [Waveorb Client](https://github.com/eldoy/waveorb-client) - Specialized HTTP client for server and browser
+* [HAKA](https://github.com/eldoy/haka) - Functional JS HTML and DOM manipulation toolkit
+* [Waveorb Templates](https://github.com/eldoy/waveorb-templates) - Boilerplate templates used by `waveorb create` to start new apps quickly
+* [Waveorb Snippets](https://github.com/eldoy/waveorb-snippets) - Snippets for your editor to move fast
+
+### License
+
 MIT licensed. Enjoy!
 
 Created by [Eldøy Projects](https://eldoy.com)
