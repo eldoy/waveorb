@@ -34,6 +34,7 @@ waveorb help
 The following repositories are made for use with Waveorb, to make building web applications easier:
 
 * [Waveorb Util](https://github.com/eldoy/waveorb-util) - Utility JS functions for server and browser
+* [Waveorb Form](https://github.com/eldoy/waveorb-form) - Form functions for posting forms and uploads
 * [Waveorb Components](https://github.com/eldoy/waveorb-components) - Collection of web components for rapid development
 * [Waveorb Client](https://github.com/eldoy/waveorb-client) - Specialized HTTP client for server and browser
 * [HAKA](https://github.com/eldoy/haka) - Functional JS HTML and DOM manipulation toolkit
