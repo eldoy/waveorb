@@ -1,3 +1,4 @@
+const lodash = require('lodash')
 const { i18n, loader, dispatch, locales } = require('../index.js')
 const db = require('configdb')
 
@@ -236,7 +237,7 @@ describe('validate', () => {
 
   // Test custom validations
   it('should use custom validations', async () => {
-    const customLocales = Object.assign({}, locales)
+    const customLocales = lodash.cloneDeep(locales)
     customLocales.en.validation.required = 'custom required'
 
     const app = await loader({
@@ -287,5 +288,44 @@ describe('validate', () => {
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['er påkrevet'])
     expect(result.values.email).toEqual(['er påkrevet'])
+  })
+
+  // Test string validations
+  it('should support string validations', async () => {
+    const app = await loader({ path: 'test/apps/app34', locales })
+    const $ = {
+      app,
+      req: {
+        route: 'createProject'
+      },
+      db,
+      params: {},
+      t: i18n.t()
+    }
+
+    let result = await dispatch($)
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.name).toEqual(['is required'])
+    expect(result.values.email).toEqual(['is required'])
+  })
+
+  // Test array validations
+  it('should support array validations', async () => {
+    const app = await loader({ path: 'test/apps/app35', locales })
+    const $ = {
+      app,
+      req: {
+        route: 'createProject'
+      },
+      db,
+      params: {},
+      t: i18n.t()
+    }
+
+    let result = await dispatch($)
+
+    expect(result.error.message).toBe('validation error')
+    expect(result.values.name).toEqual(['is required'])
+    expect(result.values.email).toEqual(['is required'])
   })
 })
