@@ -34,7 +34,7 @@
     "sitemap": "^7.1.1",
     "skjema": "^0.8.7",
     "terminal-kit": "^3.1.1",
-    "terser": "^5.29.2",
+    "terser": "^5.30.0",
     "tomarkup": "^0.10.1",
     "waveorb-generate": "^0.10.1",
     "waveorb-validations": "^0.2.0"
