@@ -1,5 +1,6 @@
 const tools = require('extras')
 const { validate } = require('d8a')
+const validator = require('./lib/validator.js')
 const env = require('./lib/env.js')
 const version = require('./lib/version.js')
 const action = require('./lib/action.js')
@@ -20,6 +21,7 @@ const util = require('./lib/util.js')
 module.exports = {
   tools,
   validate,
+  validator,
   env,
   version,
   action,
