@@ -34,4 +34,13 @@ describe('compile', () => {
     compile($)
     expect($.page.content).toBe("hello ${'wordbye'}")
   })
+
+  it('should compile multiple links', async () => {
+    const $ = {
+      page: { content: "hello ${$.link('bye')} bye ${$.link('bye')}" }
+    }
+    $.link = (a) => 'word' + a
+    compile($)
+    expect($.page.content).toBe("hello ${'wordbye'} bye ${'wordbye'}")
+  })
 })
