@@ -16,22 +16,22 @@ describe('compile', () => {
 
   it('should compile links', async () => {
     const $ = { page: { content: "hello ${$.link('bye')}" } }
-    $.link = () => 'word'
+    $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'word'}")
+    expect($.page.content).toBe("hello ${'wordbye'}")
   })
 
   it('should compile links with line breaks', async () => {
     const $ = { page: { content: "hello ${$.link(\n'bye'\n)}" } }
-    $.link = () => 'word'
+    $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'word'}")
+    expect($.page.content).toBe("hello ${'wordbye'}")
   })
 
   it('should compile links with line breaks and spaces', async () => {
     const $ = { page: { content: "hello ${$.link(     \n'bye'\n)}" } }
-    $.link = () => 'word'
+    $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'word'}")
+    expect($.page.content).toBe("hello ${'wordbye'}")
   })
 })
