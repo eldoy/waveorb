@@ -40,7 +40,7 @@ if (Object.keys(missing).length) {
 // Find missing translations in actions, pages, filters, setups
 
 const files = tree('app').filter((f) => f.endsWith('.js'))
-const matcher = /\$\.t\('([a-zA-Z0-9.]{1,})'\)/g
+const matcher = /\$\.t\(\s*['"](.+?)['"]\s*\)/gs
 
 const translations = {}
 for (const file of files) {
