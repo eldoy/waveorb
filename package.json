@@ -22,7 +22,7 @@
   "dependencies": {
     "brainmatter": "^0.1.0",
     "conficurse": "0.5.7",
-    "d8a": "^0.9.10",
+    "d8a": "^0.9.11",
     "extras": "^0.12.1",
     "fport": "^0.4.0",
     "furu": "^0.3.1",
@@ -30,11 +30,11 @@
     "html6": "^0.2.0",
     "lavkode": "^0.2.1",
     "lodash": "^4.17.21",
-    "sass": "^1.72.0",
+    "sass": "^1.75.0",
     "sitemap": "^7.1.1",
     "skjema": "^0.8.7",
     "terminal-kit": "^3.1.1",
-    "terser": "^5.30.0",
+    "terser": "^5.31.0",
     "tomarkup": "^0.10.1",
     "waveorb-generate": "^0.10.1",
     "waveorb-validations": "^0.2.0"
