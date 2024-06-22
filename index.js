@@ -17,6 +17,9 @@ const settings = require('./lib/settings.js')
 const config = require('./lib/config.js')
 const host = require('./lib/host.js')
 const util = require('./lib/util.js')
+const filters = require('./lib/filters.js')
+const allow = require('./lib/allow.js')
+const deny = require('./lib/deny.js')
 
 module.exports = {
   tools,
@@ -37,5 +40,8 @@ module.exports = {
   settings,
   config,
   host,
-  util
+  util,
+  filters,
+  allow,
+  deny
 }
