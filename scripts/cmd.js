@@ -16,7 +16,6 @@ async function start() {
   // Indicate that we are running a cmd session
   process.env.WAVEORB_CMD = 1
 
-  const cmd = repl.start('ᚠ ')
   const app = await loader()
 
   let objects
@@ -33,6 +32,8 @@ async function start() {
     db,
     ...objects
   }
+
+  const cmd = repl.start('ᚠ ')
   Object.assign(cmd.context, api)
 }
 start()
