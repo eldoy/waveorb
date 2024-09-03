@@ -41,7 +41,7 @@ async function build() {
   // Wait for server start
   await extras.sleep(1)
 
-  exec.exec(`rm -rf ${DIST}`)
+  extras.exec(`rm -rf ${DIST}`)
   if (!extras.exist(DIST)) {
     extras.exec(`mkdir -p ${DIST}`)
   }
