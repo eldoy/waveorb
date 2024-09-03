@@ -23,9 +23,9 @@
     "brainmatter": "^0.1.0",
     "conficurse": "0.5.9",
     "d8a": "^0.10.0",
-    "extras": "^0.14.0",
+    "extras": "^0.14.2",
     "fport": "^0.4.0",
-    "furu": "^0.4.2",
+    "furu": "^0.4.3",
     "got": "^11.8.6",
     "html6": "^0.2.0",
     "lavkode": "^0.2.1",
@@ -36,7 +36,7 @@
     "terminal-kit": "^3.1.1",
     "terser": "^5.31.6",
     "tomarkup": "^0.10.1",
-    "waveorb-generate": "^0.10.1",
+    "waveorb-generate": "^0.11.0",
     "waveorb-validations": "^0.2.0"
   },
   "devDependencies": {
