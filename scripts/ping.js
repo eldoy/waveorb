@@ -12,7 +12,7 @@ if (typeof config.sitemap == 'string') {
 if (!sitemap) {
   console.log(`\nUsage: waveorb ping [sitemap url]`)
   console.log(`\nExample: waveorb ping https://example.com/sitemap.xml`)
-  process.exit(1)
+  process.exit()
 }
 console.log(`Submitting sitemap ${sitemap}...`)
 sitemap = encodeURIComponent(sitemap)

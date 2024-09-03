@@ -24,7 +24,7 @@ async function sitemap() {
     console.log('Read about it here:')
     console.log('https://waveorb.com/doc/seo-and-marketing#sitemap')
   }
-  process.exit(0)
+  process.exit()
 }
 
 sitemap()

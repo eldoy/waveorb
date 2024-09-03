@@ -8,16 +8,16 @@ const name = process.argv[3]
 if (!name) {
   console.log(`\nUsage: waveorb create [name]`)
   console.log(`\nPlease specify a directory name.`)
-  process.exit(1)
+  process.exit()
 }
 
 if (name != '.') {
   if (extras.exist(name)) {
     console.log(`\nThe ${name} directory already exists.`)
     console.log(`\nPlease remove it or use another name.`)
-    process.exit(1)
+    process.exit()
   } else {
-    extras.mkdir(name)
+    extras.exec(`mkdir -p ${name}`)
     process.chdir(name)
   }
 }
@@ -34,18 +34,18 @@ if (/^(https?:|\w+@)/.test(template)) {
   dir = tmp
 }
 
-extras.run(`git clone --quiet --depth 1 ${repo} ${tmp}`)
+extras.exec(`git clone --quiet --depth 1 ${repo} ${tmp}`)
 
 if (!extras.exist(dir)) {
   console.log(`\nTemplate ${template} does not exist.`)
-  process.exit(1)
+  process.exit()
 }
 
-extras.copy(path.join(dir, '*'), '.')
-extras.copy(path.join(dir, '.*'), '.')
+extras.exec(`cp -R ${path.join(dir, '*')} .`)
+extras.exec(`cp -R ${path.join(dir, '.*')} .`)
 
 t('\nInstalling packages, please wait...\n\n')
-extras.run('npm install', { silent: true })
+extras.exec('npm install')
 
 t.bold(`\nWaveorb app created, now do:\n\n`)
 if (name != '.') t.green(`cd ${name}\n`)

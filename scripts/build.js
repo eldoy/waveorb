@@ -5,7 +5,7 @@ const URL = require('url').URL
 const stream = require('stream')
 const { promisify } = require('util')
 const lodash = require('lodash')
-const { exist, mkdir, rmdir, read, write, copy, sleep } = require('extras')
+const extras = require('extras')
 const got = require('got')
 const terser = require('terser')
 const sass = require('sass')
@@ -20,7 +20,7 @@ const DIST = path.join(ROOT, 'dist')
 async function build() {
   const app = await loader(APP_ROOT)
   const builder = process.argv[3] || 'build.js'
-  const config = exist(builder) ? await read(builder)(app) : {}
+  const config = extras.exist(builder) ? await extras.read(builder)(app) : {}
 
   let { urls } = config
 
@@ -39,10 +39,12 @@ async function build() {
   const { server } = await serve({ port }, app)
 
   // Wait for server start
-  await sleep(1)
+  await extras.sleep(1)
 
-  rmdir(DIST)
-  if (!exist(DIST)) mkdir(DIST)
+  exec.exec(`rm -rf ${DIST}`)
+  if (!extras.exist(DIST)) {
+    extras.exec(`mkdir -p ${DIST}`)
+  }
 
   const pipeline = promisify(stream.pipeline)
 
@@ -54,7 +56,7 @@ async function build() {
 
     const dir = path.dirname(name)
     const file = path.basename(name)
-    mkdir(path.join(DIST, dir))
+    extras.exec(`mkdir -p ${path.join(DIST, dir)}`)
 
     const address = `${host}${url}`
     console.log(`Building ${name}`)
@@ -67,10 +69,10 @@ async function build() {
   }
   console.log(`Build complete...\n`)
   server.close()
-  await sleep(1)
+  await extras.sleep(1)
 
   // Copy assets
-  copy(path.join(APP_ROOT, 'assets', '*'), 'dist')
+  extras.exec(`cp -R ${path.join(APP_ROOT, 'assets', '*')} dist`)
 
   // Build assets
   const assets = lodash.get(app, 'config.assets.bundle')
@@ -82,7 +84,7 @@ async function build() {
       const bundle = files
         .map(function (file) {
           const inpath = path.join(APP_ROOT, 'assets', file)
-          const content = read(inpath, 'utf8')
+          const content = extras.read(inpath, 'utf8')
           if (type == 'css') {
             return util.rewriteCSSUrl(file, content)
           }
@@ -92,7 +94,7 @@ async function build() {
 
       // Write bundle uncompressed to bundle path
       const bundlePath = path.join(DIST, `bundle.${type}`)
-      write(bundlePath, bundle)
+      extras.write(bundlePath, bundle)
 
       // Source map path
       const mapPath = bundlePath + '.map'
@@ -101,7 +103,7 @@ async function build() {
       if (type == 'js') {
         const code = {}
         files.forEach((file) => {
-          code[file] = read(path.join(DIST, file), 'utf8')
+          code[file] = extras.read(path.join(DIST, file), 'utf8')
         })
         const result = await terser.minify(code, {
           sourceMap: {
@@ -109,8 +111,8 @@ async function build() {
             url: 'bundle.js.map'
           }
         })
-        write(bundlePath, result.code)
-        write(mapPath, result.map)
+        extras.write(bundlePath, result.code)
+        extras.write(mapPath, result.map)
       }
 
       // Compress CSS bundle
@@ -121,14 +123,14 @@ async function build() {
           outputStyle: 'compressed',
           sourceMap: true
         })
-        write(bundlePath, result.css)
-        write(mapPath, result.map)
+        extras.write(bundlePath, result.css)
+        extras.write(mapPath, result.map)
       }
     }
   }
 
   console.log(`\nFiles written to '${DIST}'`)
-  process.exit(0)
+  process.exit()
 }
 
 build()

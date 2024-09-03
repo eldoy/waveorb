@@ -1,14 +1,14 @@
 const path = require('path')
-const { dir } = require('extras')
+const extras = require('extras')
 const base = path.join(process.cwd(), 'migrations')
 const t = require('terminal-kit').terminal
 
 let files = []
 try {
-  files = dir(base)
+  files = extras.dir(base)
 } catch (e) {
   console.log('No migrations found.')
-  process.exit(0)
+  process.exit()
 }
 
 const loader = require('../lib/loader.js')
@@ -23,7 +23,7 @@ async function migrate() {
     }
   }
   console.log('Done.')
-  process.exit(0)
+  process.exit()
 }
 
 migrate()
