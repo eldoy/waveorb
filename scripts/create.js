@@ -16,9 +16,6 @@ if (name != '.') {
     console.log(`\nThe ${name} directory already exists.`)
     console.log(`\nPlease remove it or use another name.`)
     process.exit()
-  } else {
-    extras.exec(`mkdir -p ${name}`)
-    process.chdir(name)
   }
 }
 
@@ -41,10 +38,10 @@ if (!extras.exist(dir)) {
   process.exit()
 }
 
-extras.exec(`cp -R ${path.join(dir, '*')} .`)
-extras.exec(`cp -R ${path.join(dir, '.*')} .`)
+extras.exec(`mv ${dir} ${name}`)
+process.chdir(name)
 
-t('\nInstalling packages, please wait...\n\n')
+t('\nInstalling packages, please wait...\n')
 extras.exec('npm install')
 
 t.bold(`\nWaveorb app created, now do:\n\n`)
