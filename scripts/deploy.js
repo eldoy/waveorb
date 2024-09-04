@@ -4,13 +4,11 @@ const extras = require('extras')
 const mode = process.argv[3]
 const config = require('../lib/config.js')(mode)
 
-console.info(`Using config:`)
-console.info(config)
+console.log(`Using config:`)
+console.log(config)
 
 // Find git repo address
-const repo =
-  config?.git ||
-  extras.exec(`git config --get remote.origin.url`, { silent: true })
+const repo = config?.git || extras.capture(`git config --get remote.origin.url`)
 
 if (!repo) {
   extras.exit('Git repository URL not found!')
