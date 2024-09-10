@@ -13,6 +13,8 @@ BREAKING CHANGES
 
 - [ ] Rename functions in extras that crash with lodash
   - release across chain
+  - isDate can be hybrid? Or does it work with string in lodash?
+  - rename transform to convert
 
 - [ ] Remove all of the imports in index.js
   - neew to use var loader = require('waveorb/lib/loader.js')
