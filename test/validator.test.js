@@ -1,4 +1,5 @@
-var { validator, locales } = require('../index.js')
+var validator = require('../lib/validator.js')
+var locales = require('../lib/locales.js')
 
 /** Testing validator functions */
 

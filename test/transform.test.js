@@ -1,4 +1,5 @@
-var { loader, locales } = require('../index.js')
+var loader = require('../lib/loader.js')
+var locales = require('../lib/locales.js')
 
 describe('transform', () => {
   it('should transform HTML6', async () => {

@@ -1,4 +1,4 @@
-var { util } = require('../index.js')
+var util = require('../lib/util.js')
 
 describe('util', () => {
   it('should rewrite CSS URLs', async () => {

@@ -1,4 +1,7 @@
-var { loader, dispatch, locales } = require('../index.js')
+var loader = require('../lib/loader.js')
+var dispatch = require('../lib/dispatch.js')
+var locales = require('../lib/locales.js')
+
 var remove = require('../lib/remove.js')
 
 describe('remove', () => {

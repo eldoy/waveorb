@@ -1,6 +1,6 @@
 var path = require('path')
 var repl = require('repl')
-var { loader } = require(path.join(__dirname, '..', 'index.js'))
+var loader = require(path.join(__dirname, '..', 'lib', 'loader.js'))
 var package = require(path.join(__dirname, '..', 'package.json'))
 
 console.log(`

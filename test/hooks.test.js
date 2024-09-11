@@ -1,5 +1,6 @@
 var got = require('got')
-var { loader, locales } = require('../index.js')
+var loader = require('../lib/loader.js')
+var locales = require('../lib/locales.js')
 var base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('hooks', () => {

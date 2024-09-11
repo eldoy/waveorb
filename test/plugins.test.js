@@ -1,4 +1,5 @@
-var { loader, orb } = require('../index.js')
+var loader = require('../lib/loader.js')
+var orb = require('../lib/orb.js')
 
 describe('plugins', () => {
   it('should load plugins', async () => {

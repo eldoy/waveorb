@@ -1,4 +1,7 @@
-var { i18n, loader, dispatch, locales } = require('../index.js')
+var i18n = require('../lib/i18n.js')
+var loader = require('../lib/loader.js')
+var dispatch = require('../lib/dispatch.js')
+var locales = require('../lib/locales.js')
 
 describe('action', () => {
   it('should match the action function', async () => {
