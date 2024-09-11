@@ -39,6 +39,10 @@ BREAKING CHANGES
   - move validator from loader
   - add tools to global._ and global.Waveorb
 
+- [ ] Move validator.js into d8a? Or into mongowave?
+  - we need some way of doing data validations from scripts
+  - coupling is too tight with globa, app and $ right now
+
 TOOLS
 
 - [ ] MongoDB-lib called metaldb
