@@ -1,4 +1,4 @@
-var dns = require('dns')
+var dns = require('node:dns')
 var extras = require('extras')
 
 var mode = process.argv[3]

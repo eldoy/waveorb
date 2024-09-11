@@ -1,4 +1,4 @@
-var path = require('path')
+var path = require('node:path')
 var extras = require('extras')
 var base = path.join(process.cwd(), 'migrations')
 var t = require('terminal-kit').terminal

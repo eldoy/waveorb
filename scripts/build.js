@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-var fs = require('fs')
-var path = require('path')
-var URL = require('url').URL
-var stream = require('stream')
-var { promisify } = require('util')
+var fs = require('node:fs')
+var path = require('node:path')
+var URL = require('node:url').URL
+var stream = require('node:stream')
+var { promisify } = require('node:util')
 var lodash = require('lodash')
 var extras = require('extras')
 var got = require('got')

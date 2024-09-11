@@ -1,5 +1,5 @@
 #!/usr/bin/env -S node --experimental-repl-await
-var path = require('path')
+var path = require('node:path')
 var commands = {
   generate: ['generate'],
   waveorb: [

@@ -1,5 +1,5 @@
-var path = require('path')
-var os = require('os')
+var path = require('node:path')
+var os = require('node:os')
 var extras = require('extras')
 var t = require('terminal-kit').terminal
 
