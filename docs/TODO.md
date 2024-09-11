@@ -7,7 +7,7 @@ https://github.com/eldoy/waveorb/issues
 REFACTOR
 
 - [x] Use var instead of var and let
-- [ ] Remove use of arrow functions
+- [x] Remove use of arrow functions
 - [ ] Remove got, use fetch
 - [ ] Remove Jest, use spekk
 
@@ -38,3 +38,14 @@ BREAKING CHANGES
   - move markdown from loader
   - move validator from loader
   - add tools to global._ and global.Waveorb
+
+TOOLS
+
+- [ ] MongoDB-lib called metaldb
+  - wrapper around the native lib
+  - auto-connect
+  - room for utilities
+  - db.project proxy syntax
+  - global ObjectId
+    - or autoObjectId? if typeof 'string' then ObjectID(string)?
+  - autoId on create?
