@@ -1,6 +1,6 @@
 #!/usr/bin/env -S node --experimental-repl-await
-const path = require('path')
-const commands = {
+var path = require('path')
+var commands = {
   generate: ['generate'],
   waveorb: [
     'create',
@@ -17,7 +17,7 @@ const commands = {
     'locales'
   ]
 }
-const command = (process.argv[2] || 'help').trim()
+var command = (process.argv[2] || 'help').trim()
 
 if (commands.generate.includes(command)) {
   require('waveorb-generate')
