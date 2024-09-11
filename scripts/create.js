@@ -1,9 +1,9 @@
-const path = require('path')
-const os = require('os')
-const extras = require('extras')
-const t = require('terminal-kit').terminal
+var path = require('path')
+var os = require('os')
+var extras = require('extras')
+var t = require('terminal-kit').terminal
 
-const name = process.argv[3]
+var name = process.argv[3]
 
 if (!name) {
   console.log(`\nUsage: waveorb create [name]`)
@@ -20,8 +20,8 @@ if (name != '.') {
 }
 
 // Clone the template repo
-const tmp = path.join(os.tmpdir(), extras.hex())
-const template = process.argv[4] || 'default'
+var tmp = path.join(os.tmpdir(), extras.hex())
+var template = process.argv[4] || 'default'
 let repo = 'https://github.com/eldoy/waveorb-templates.git'
 let dir = path.join(tmp, template)
 

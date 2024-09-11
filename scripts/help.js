@@ -1,6 +1,6 @@
-const path = require('path')
-const package = require(path.join(__dirname, '..', 'package.json'))
-const t = require('terminal-kit').terminal
+var path = require('path')
+var package = require(path.join(__dirname, '..', 'package.json'))
+var t = require('terminal-kit').terminal
 
 t.bold(`\nWaveorb command line interface v${package.version}\n\n`)
 

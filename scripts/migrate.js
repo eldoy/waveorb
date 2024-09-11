@@ -1,7 +1,7 @@
-const path = require('path')
-const extras = require('extras')
-const base = path.join(process.cwd(), 'migrations')
-const t = require('terminal-kit').terminal
+var path = require('path')
+var extras = require('extras')
+var base = path.join(process.cwd(), 'migrations')
+var t = require('terminal-kit').terminal
 
 let files = []
 try {
@@ -11,12 +11,12 @@ try {
   process.exit()
 }
 
-const loader = require('../lib/loader.js')
+var loader = require('../lib/loader.js')
 
 async function migrate() {
-  const app = await loader()
-  for (const file of files) {
-    const script = require(path.join(base, file))
+  var app = await loader()
+  for (var file of files) {
+    var script = require(path.join(base, file))
     if (typeof script === 'function') {
       t.bold(`* Migrating: ${file}\n`)
       await script(app)

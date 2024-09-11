@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-const lodash = require('lodash')
-const loader = require('../lib/loader.js')
-const builder = require('../lib/sitemap.js')
-const CONFIG = require('../lib/config.js')()
+var lodash = require('lodash')
+var loader = require('../lib/loader.js')
+var builder = require('../lib/sitemap.js')
+var CONFIG = require('../lib/config.js')()
 
 async function sitemap() {
-  const app = await loader()
+  var app = await loader()
   let config = lodash.get(app, 'config.sitemap')
   if (typeof config == 'function') {
     config = await config(app)

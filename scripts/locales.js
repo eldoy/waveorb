@@ -1,25 +1,25 @@
-const extras = require('extras')
-const root = process.cwd()
+var extras = require('extras')
+var root = process.cwd()
 
 // Find missing translations in all locale files
 
-const locales = {}
-const all = []
+var locales = {}
+var all = []
 extras.tree('app/locales').forEach(function (file) {
-  const [base, ext] = extras.basext(file)
+  var [base, ext] = extras.basext(file)
   locales[base] = extras.dot(extras.read(file))
-  const keys = Object.keys(locales[base])
-  for (const key of keys) {
+  var keys = Object.keys(locales[base])
+  for (var key of keys) {
     if (!all.includes(key)) {
       all.push(key)
     }
   }
 })
 
-const missing = {}
-for (const lang in locales) {
-  const langKeys = Object.keys(locales[lang])
-  for (const key of all) {
+var missing = {}
+for (var lang in locales) {
+  var langKeys = Object.keys(locales[lang])
+  for (var key of all) {
     // Check if key is in all
     if (!langKeys.includes(key)) {
       if (!missing[lang]) {
@@ -39,16 +39,16 @@ if (Object.keys(missing).length) {
 
 // Find missing translations in actions, pages, filters, setups
 
-const files = extras.tree('app').filter((f) => f.endsWith('.js'))
-const matcher = /\$\.t\(\s*['"](.+?)['"]\s*\)/gs
+var files = extras.tree('app').filter((f) => f.endsWith('.js'))
+var matcher = /\$\.t\(\s*['"](.+?)['"]\s*\)/gs
 
-const translations = {}
-for (const file of files) {
-  const content = extras.read(file, 'utf8')
-  const name = file.replace(root, '')
-  const matches = [...content.matchAll(matcher)]
-  for (const match of matches) {
-    const key = match[1]
+var translations = {}
+for (var file of files) {
+  var content = extras.read(file, 'utf8')
+  var name = file.replace(root, '')
+  var matches = [...content.matchAll(matcher)]
+  for (var match of matches) {
+    var key = match[1]
     if (!all.includes(key)) {
       if (!translations[name]) {
         translations[name] = []

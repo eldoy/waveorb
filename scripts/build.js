@@ -1,26 +1,26 @@
 #!/usr/bin/env node
-const fs = require('fs')
-const path = require('path')
-const URL = require('url').URL
-const stream = require('stream')
-const { promisify } = require('util')
-const lodash = require('lodash')
-const extras = require('extras')
-const got = require('got')
-const terser = require('terser')
-const sass = require('sass')
-const fport = require('fport')
-const util = require('../lib/util.js')
-const loader = require('../lib/loader.js')
-const serve = require('../lib/serve.js')
-const ROOT = process.cwd()
-const APP_ROOT = process.env.WAVEORB_APP || 'app'
-const DIST = path.join(ROOT, 'dist')
+var fs = require('fs')
+var path = require('path')
+var URL = require('url').URL
+var stream = require('stream')
+var { promisify } = require('util')
+var lodash = require('lodash')
+var extras = require('extras')
+var got = require('got')
+var terser = require('terser')
+var sass = require('sass')
+var fport = require('fport')
+var util = require('../lib/util.js')
+var loader = require('../lib/loader.js')
+var serve = require('../lib/serve.js')
+var ROOT = process.cwd()
+var APP_ROOT = process.env.WAVEORB_APP || 'app'
+var DIST = path.join(ROOT, 'dist')
 
 async function build() {
-  const app = await loader(APP_ROOT)
-  const builder = process.argv[3] || 'build.js'
-  const config = extras.exist(builder) ? await extras.read(builder)(app) : {}
+  var app = await loader(APP_ROOT)
+  var builder = process.argv[3] || 'build.js'
+  var config = extras.exist(builder) ? await extras.read(builder)(app) : {}
 
   let { urls } = config
 
@@ -34,9 +34,9 @@ async function build() {
   // No hostname means start localhost on random port
   let { protocol, hostname, port } = new URL(config.host || 'http://localhost')
   port = port || (await fport.port())
-  const host = `${protocol}//${hostname}:${port}`
+  var host = `${protocol}//${hostname}:${port}`
 
-  const { server } = await serve({ port }, app)
+  var { server } = await serve({ port }, app)
 
   // Wait for server start
   await extras.sleep(1)
@@ -46,22 +46,22 @@ async function build() {
     extras.exec(`mkdir -p ${DIST}`)
   }
 
-  const pipeline = promisify(stream.pipeline)
+  var pipeline = promisify(stream.pipeline)
 
-  for (const url of urls) {
+  for (var url of urls) {
     let name = url
     if (name.endsWith('/')) {
       name += 'index.html'
     }
 
-    const dir = path.dirname(name)
-    const file = path.basename(name)
+    var dir = path.dirname(name)
+    var file = path.basename(name)
     extras.exec(`mkdir -p ${path.join(DIST, dir)}`)
 
-    const address = `${host}${url}`
+    var address = `${host}${url}`
     console.log(`Building ${name}`)
     try {
-      const writer = fs.createWriteStream(path.join(DIST, dir, file))
+      var writer = fs.createWriteStream(path.join(DIST, dir, file))
       await pipeline(got.stream(address), writer)
     } catch (e) {
       console.log(`Can't build ${name}, skipping...`)
@@ -75,16 +75,16 @@ async function build() {
   extras.exec(`cp -R ${path.join(APP_ROOT, 'assets', '*')} dist`)
 
   // Build assets
-  const assets = lodash.get(app, 'config.assets.bundle')
+  var assets = lodash.get(app, 'config.assets.bundle')
 
   if (assets) {
-    for (const type of Object.keys(assets)) {
+    for (var type of Object.keys(assets)) {
       console.log(`Bundling ${type} files...`)
-      const files = assets[type] || []
-      const bundle = files
+      var files = assets[type] || []
+      var bundle = files
         .map(function (file) {
-          const inpath = path.join(APP_ROOT, 'assets', file)
-          const content = extras.read(inpath, 'utf8')
+          var inpath = path.join(APP_ROOT, 'assets', file)
+          var content = extras.read(inpath, 'utf8')
           if (type == 'css') {
             return util.rewriteCSSUrl(file, content)
           }
@@ -93,19 +93,19 @@ async function build() {
         .join(type == 'js' ? ';' : '\n')
 
       // Write bundle uncompressed to bundle path
-      const bundlePath = path.join(DIST, `bundle.${type}`)
+      var bundlePath = path.join(DIST, `bundle.${type}`)
       extras.write(bundlePath, bundle)
 
       // Source map path
-      const mapPath = bundlePath + '.map'
+      var mapPath = bundlePath + '.map'
 
       // Compress Javascript bundle
       if (type == 'js') {
-        const code = {}
+        var code = {}
         files.forEach((file) => {
           code[file] = extras.read(path.join(DIST, file), 'utf8')
         })
-        const result = await terser.minify(code, {
+        var result = await terser.minify(code, {
           sourceMap: {
             filename: 'bundle.js',
             url: 'bundle.js.map'
@@ -117,7 +117,7 @@ async function build() {
 
       // Compress CSS bundle
       if (type == 'css') {
-        const result = sass.renderSync({
+        var result = sass.renderSync({
           file: bundlePath,
           outFile: bundlePath,
           outputStyle: 'compressed',

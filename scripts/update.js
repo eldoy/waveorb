@@ -1,10 +1,8 @@
-const dns = require('dns')
-const extras = require('extras')
-const config = require('../lib/config.js')()
+var dns = require('dns')
+var extras = require('extras')
+var config = require('../lib/config.js')()
 
-const domain = (config.domains || config.domains?.[0]?.names || '').split(
-  ' '
-)[0]
+var domain = (config.domains || config.domains?.[0]?.names || '').split(' ')[0]
 if (!domain) {
   extras.exit(`No valid domain name was found!`)
 }

@@ -1,7 +1,7 @@
-const path = require('path')
-const repl = require('repl')
-const { loader } = require(path.join(__dirname, '..', 'index.js'))
-const package = require(path.join(__dirname, '..', 'package.json'))
+var path = require('path')
+var repl = require('repl')
+var { loader } = require(path.join(__dirname, '..', 'index.js'))
+var package = require(path.join(__dirname, '..', 'package.json'))
 
 console.log(`
   Waveorb cmd v${package.version}
@@ -16,7 +16,7 @@ async function start() {
   // Indicate that we are running a cmd session
   process.env.WAVEORB_CMD = 1
 
-  const app = await loader()
+  var app = await loader()
 
   let objects
   if (typeof app.hooks.cmd == 'function') {
@@ -24,16 +24,16 @@ async function start() {
   }
 
   // Load db if it exists
-  const db = app.objects.db
+  var db = app.objects.db
 
   // Load these objects into the cmd context
-  const api = {
+  var api = {
     app,
     db,
     ...objects
   }
 
-  const cmd = repl.start('ᚠ ')
+  var cmd = repl.start('ᚠ ')
   Object.assign(cmd.context, api)
 }
 start()

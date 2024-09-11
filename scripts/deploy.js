@@ -1,14 +1,14 @@
-const dns = require('dns')
-const extras = require('extras')
+var dns = require('dns')
+var extras = require('extras')
 
-const mode = process.argv[3]
-const config = require('../lib/config.js')(mode)
+var mode = process.argv[3]
+var config = require('../lib/config.js')(mode)
 
 console.log(`Using config:`)
 console.log(config)
 
 // Find git repo address
-const repo = config?.git || extras.capture(`git config --get remote.origin.url`)
+var repo = config?.git || extras.capture(`git config --get remote.origin.url`)
 
 if (!repo) {
   extras.exit('Git repository URL not found!')
