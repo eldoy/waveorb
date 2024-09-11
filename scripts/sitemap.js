@@ -6,7 +6,7 @@ var CONFIG = require('../lib/config.js')()
 
 async function sitemap() {
   var app = await loader()
-  let config = lodash.get(app, 'config.sitemap')
+  var config = lodash.get(app, 'config.sitemap')
   if (typeof config == 'function') {
     config = await config(app)
   }

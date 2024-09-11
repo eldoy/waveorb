@@ -22,7 +22,7 @@ async function build() {
   var builder = process.argv[3] || 'build.js'
   var config = extras.exist(builder) ? await extras.read(builder)(app) : {}
 
-  let { urls } = config
+  var { urls } = config
 
   // If urls not found, build from routes
   if (!urls) {
@@ -32,7 +32,7 @@ async function build() {
   }
 
   // No hostname means start localhost on random port
-  let { protocol, hostname, port } = new URL(config.host || 'http://localhost')
+  var { protocol, hostname, port } = new URL(config.host || 'http://localhost')
   port = port || (await fport.port())
   var host = `${protocol}//${hostname}:${port}`
 
@@ -49,7 +49,7 @@ async function build() {
   var pipeline = promisify(stream.pipeline)
 
   for (var url of urls) {
-    let name = url
+    var name = url
     if (name.endsWith('/')) {
       name += 'index.html'
     }

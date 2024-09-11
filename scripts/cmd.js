@@ -18,7 +18,7 @@ async function start() {
 
   var app = await loader()
 
-  let objects
+  var objects
   if (typeof app.hooks.cmd == 'function') {
     objects = await app.hooks.cmd(app)
   }

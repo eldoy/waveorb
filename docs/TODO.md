@@ -6,8 +6,10 @@ https://github.com/eldoy/waveorb/issues
 
 REFACTOR
 
-- [ ] Use var instead of var and let
+- [x] Use var instead of var and let
 - [ ] Remove use of arrow functions
+- [ ] Remove got, use fetch
+- [ ] Remove Jest, use spekk
 
 BREAKING CHANGES
 

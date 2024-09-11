@@ -16,7 +16,7 @@ if (!repo) {
 
 // ssh into domain and run deploy.js
 function deploy(address) {
-  let args = ''
+  var args = ''
   if (mode) {
     args += ` WAVEORB_DEPLOY_ENV=${mode}`
   }
@@ -34,7 +34,7 @@ if (config.address) {
 }
 
 // Find main domain name
-let domain = config.domains || ''
+var domain = config.domains || ''
 if (typeof domain == 'object') {
   domain = domain[0] || ''
   if (typeof domain != 'string') {

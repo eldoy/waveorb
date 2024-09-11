@@ -1,6 +1,6 @@
 var got = require('got')
 var config = require('../lib/config.js')()
-let sitemap = process.argv[3]
+var sitemap = process.argv[3]
 
 if (typeof config.sitemap == 'string') {
   sitemap = config.sitemap

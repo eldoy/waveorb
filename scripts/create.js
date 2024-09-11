@@ -22,8 +22,8 @@ if (name != '.') {
 // Clone the template repo
 var tmp = path.join(os.tmpdir(), extras.hex())
 var template = process.argv[4] || 'default'
-let repo = 'https://github.com/eldoy/waveorb-templates.git'
-let dir = path.join(tmp, template)
+var repo = 'https://github.com/eldoy/waveorb-templates.git'
+var dir = path.join(tmp, template)
 
 // Support http and git templates
 if (/^(https?:|\w+@)/.test(template)) {

@@ -3,7 +3,7 @@ var extras = require('extras')
 var base = path.join(process.cwd(), 'migrations')
 var t = require('terminal-kit').terminal
 
-let files = []
+var files = []
 try {
   files = extras.dir(base)
 } catch (e) {
