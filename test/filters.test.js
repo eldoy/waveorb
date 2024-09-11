@@ -1,16 +1,16 @@
-const { i18n, loader, dispatch, locales } = require('../index.js')
+var { i18n, loader, dispatch, locales } = require('../index.js')
 
 describe('filters', () => {
   it('should run filters', async () => {
-    const app = await loader({ path: 'test/apps/app6', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app6', locales })
+    var $ = {
       app,
       req: {
         route: 'createProject'
       },
       params: {}
     }
-    const result = await dispatch($)
+    var result = await dispatch($)
     expect(result.hello).toBe('bye')
     expect(result.logger).toBe('log')
   })

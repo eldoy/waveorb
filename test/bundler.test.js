@@ -1,29 +1,29 @@
-const bundler = require('../lib/bundler.js')
-let assets
+var bundler = require('../lib/bundler.js')
+var assets
 
 describe('script', () => {
   beforeEach(() => {
     assets = bundler()
   })
   it('should create a root js tag', async () => {
-    const tag = assets.script('/app.js')
+    var tag = assets.script('/app.js')
     expect(tag).toBe('<script src="/app.js"></script>')
   })
 
   it('should create a root js tag', async () => {
-    const tag = assets.script('app.js')
+    var tag = assets.script('app.js')
     expect(tag).toBe('<script src="app.js"></script>')
   })
 
   it('should create multiple js tags', async () => {
-    const tag = assets.script('app.js', 'hello.js')
+    var tag = assets.script('app.js', 'hello.js')
     expect(tag).toBe(
       '<script src="app.js"></script><script src="hello.js"></script>'
     )
   })
 
   it('should expand bundle files', async () => {
-    const app = {
+    var app = {
       config: {
         assets: {
           js: ['app.js']
@@ -31,12 +31,12 @@ describe('script', () => {
       }
     }
     assets = bundler(app.config.assets)
-    const tag = assets.script('bundle.js')
+    var tag = assets.script('bundle.js')
     expect(tag).toBe('<script src="app.js"></script>')
   })
 
   it('should not expand bundle files', async () => {
-    const app = {
+    var app = {
       config: {
         assets: {
           js: ['app.js']
@@ -44,26 +44,26 @@ describe('script', () => {
       }
     }
     assets = bundler(app.config.assets, { compress: true })
-    const tag = assets.script('bundle.js')
+    var tag = assets.script('bundle.js')
     expect(tag).toBe('<script src="bundle.js"></script>')
   })
 })
 
 describe('style', () => {
   it('should create a css tag', async () => {
-    const tag = assets.style('app.css')
+    var tag = assets.style('app.css')
     expect(tag).toBe('<link href="app.css" rel="stylesheet" type="text/css">')
   })
 
   it('should create multiple css tags', async () => {
-    const tag = assets.style('app.css', 'hello.css')
+    var tag = assets.style('app.css', 'hello.css')
     expect(tag).toBe(
       '<link href="app.css" rel="stylesheet" type="text/css"><link href="hello.css" rel="stylesheet" type="text/css">'
     )
   })
 
   it('should expand bundle files', async () => {
-    const app = {
+    var app = {
       config: {
         assets: {
           css: ['app.css']
@@ -71,12 +71,12 @@ describe('style', () => {
       }
     }
     assets = bundler(app.config.assets)
-    const tag = assets.style('bundle.css')
+    var tag = assets.style('bundle.css')
     expect(tag).toBe('<link href="app.css" rel="stylesheet" type="text/css">')
   })
 
   it('should not expand bundle files', async () => {
-    const app = {
+    var app = {
       config: {
         assets: {
           css: ['app.css']
@@ -84,7 +84,7 @@ describe('style', () => {
       }
     }
     assets = bundler(app.config.assets, { compress: true })
-    const tag = assets.style('bundle.css')
+    var tag = assets.style('bundle.css')
     expect(tag).toBe(
       '<link href="bundle.css" rel="stylesheet" type="text/css">'
     )

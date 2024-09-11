@@ -1,6 +1,6 @@
-const got = require('got')
-const { loader, locales } = require('../index.js')
-const base = `http://localhost:${process.env.WAVEORB_PORT}`
+var got = require('got')
+var { loader, locales } = require('../index.js')
+var base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('hooks', () => {
   beforeAll(async () => {
@@ -8,22 +8,22 @@ describe('hooks', () => {
   })
 
   it('should run init hook', async () => {
-    const app = await loader({ path: 'test/apps/app25', locales })
+    var app = await loader({ path: 'test/apps/app25', locales })
     expect(app.init).toBe(true)
   })
 
   it('should run load hook', async () => {
-    const app = await loader({ path: 'test/apps/app25', locales })
+    var app = await loader({ path: 'test/apps/app25', locales })
     expect(app.load).toBe(true)
   })
 
   it('should run file hook', async () => {
-    const app = await loader({ path: 'test/apps/app25', locales })
+    var app = await loader({ path: 'test/apps/app25', locales })
     expect(app.filehook).toBe(true)
   })
 
   it('should run before hook', async () => {
-    const result = await got(`${base}/hooks/before`, {
+    var result = await got(`${base}/hooks/before`, {
       method: 'POST',
       responseType: 'json'
     })
@@ -32,7 +32,7 @@ describe('hooks', () => {
   })
 
   it('should run after hook', async () => {
-    const result = await got(`${base}/hooks/after`, {
+    var result = await got(`${base}/hooks/after`, {
       method: 'POST',
       responseType: 'json'
     })
@@ -41,7 +41,7 @@ describe('hooks', () => {
   })
 
   it('should run error hook', async () => {
-    const result = await got(`${base}/hooks/error`, {
+    var result = await got(`${base}/hooks/error`, {
       method: 'POST',
       responseType: 'json'
     })

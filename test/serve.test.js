@@ -1,5 +1,5 @@
-const got = require('got')
-const base = `http://localhost:${process.env.WAVEORB_PORT}`
+var got = require('got')
+var base = `http://localhost:${process.env.WAVEORB_PORT}`
 
 describe('serve', () => {
   beforeAll(async () => {
@@ -7,7 +7,7 @@ describe('serve', () => {
   })
 
   it('should return 404 with post to empty app', async () => {
-    let result
+    var result
     try {
       result = await got(`${base}/project/create`, {
         method: 'POST',
@@ -21,34 +21,34 @@ describe('serve', () => {
   })
 
   it('should serve plain HTML', async () => {
-    const result = await got(`${base}/about.html`)
+    var result = await got(`${base}/about.html`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
   })
 
   it('should serve HTML extension', async () => {
-    const result = await got(`${base}/contact`)
+    var result = await got(`${base}/contact`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
   })
 
   it('should serve XML files', async () => {
-    const result = await got(`${base}/sitemap.xml`)
+    var result = await got(`${base}/sitemap.xml`)
     expect(result.body).toContain('xml>')
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('application/xml')
   })
 
   it('should serve markdown pages', async () => {
-    const result = await got(`${base}/markdown.html`)
+    var result = await got(`${base}/markdown.html`)
     expect(result.body).toContain('html>')
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
   })
 
   it('should serve actions', async () => {
-    const result = await got(`${base}/project/find`, {
+    var result = await got(`${base}/project/find`, {
       method: 'POST',
       responseType: 'json'
     })
@@ -60,7 +60,7 @@ describe('serve', () => {
   })
 
   it('should return from middleware', async () => {
-    const result = await got(`${base}/middleware`, {
+    var result = await got(`${base}/middleware`, {
       responseType: 'json'
     })
     expect(result.body).toEqual({ hello: 'middle' })
@@ -69,7 +69,7 @@ describe('serve', () => {
   })
 
   it('should return from filter', async () => {
-    const result = await got(`${base}/project/get`, {
+    var result = await got(`${base}/project/get`, {
       method: 'POST',
       responseType: 'json'
     })
@@ -81,7 +81,7 @@ describe('serve', () => {
   })
 
   it('should not have a layout', async () => {
-    const result = await got(`${base}/nolayout`)
+    var result = await got(`${base}/nolayout`)
     expect(result.body).toEqual('<div>NoLayout</div>')
     expect(result.statusCode).toBe(200)
     expect(result.headers['content-type']).toBe('text/html; charset=utf-8')

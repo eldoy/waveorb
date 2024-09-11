@@ -1,4 +1,4 @@
-const loader = require('../lib/loader.js')
+var loader = require('../lib/loader.js')
 
 describe('loader', () => {
   beforeEach(() => {
@@ -6,32 +6,32 @@ describe('loader', () => {
   })
 
   it('should load an application', async () => {
-    const app = await loader()
+    var app = await loader()
     expect(typeof app).toBe('object')
   })
 
   it('should load an application from process env', async () => {
     process.env.WAVEORB_APP = 'test/apps/app1'
-    const app = await loader()
+    var app = await loader()
     expect(typeof app).toBe('object')
     expect(app.config.env.hello).toBe('bye')
   })
 
   it('should load markdown files', async () => {
     process.env.WAVEORB_APP = 'test/apps/app21'
-    const app = await loader()
+    var app = await loader()
     expect(typeof app.pages.article).toBe('function')
     expect(typeof app.pages.data).toBe('function')
-    const $ = { page: { title: 'hello' } }
-    const page1 = await app.pages.article($)
+    var $ = { page: { title: 'hello' } }
+    var page1 = await app.pages.article($)
     expect(page1.includes('Hello!')).toEqual(true)
-    const page2 = await app.pages.data($)
+    var page2 = await app.pages.data($)
     expect(page2.includes('Nice!')).toEqual(true)
   })
 
   it('should load routes', async () => {
     process.env.WAVEORB_APP = 'test/apps/app24'
-    const { routes } = await loader()
+    var { routes } = await loader()
     expect(Object.keys(routes).length).toBe(14)
     expect(routes['get#/']).toBe('index')
     expect(routes['get#/about']).toBe('about')

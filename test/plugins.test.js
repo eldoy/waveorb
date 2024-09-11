@@ -1,8 +1,8 @@
-const { loader, orb } = require('../index.js')
+var { loader, orb } = require('../index.js')
 
 describe('plugins', () => {
   it('should load plugins', async () => {
-    const app = await loader({ path: 'test/apps/app5' })
+    var app = await loader({ path: 'test/apps/app5' })
     expect(typeof app.plugins).toBe('object')
     expect(typeof app.plugins.db).toBe('object')
     expect(app.hello).toBe('hello')
@@ -11,12 +11,12 @@ describe('plugins', () => {
   })
 
   it('should unpack plugin objects into orb', async () => {
-    const app = await loader({ path: 'test/apps/app5' })
-    const req = {
+    var app = await loader({ path: 'test/apps/app5' })
+    var req = {
       cookie: () => {},
       pathname: '/'
     }
-    const $ = orb(app, req)
+    var $ = orb(app, req)
     expect($.db.bye).toBe('bye')
   })
 })

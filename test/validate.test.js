@@ -1,6 +1,6 @@
-const lodash = require('lodash')
-const { i18n, loader, dispatch, locales } = require('../index.js')
-const db = require('configdb')
+var lodash = require('lodash')
+var { i18n, loader, dispatch, locales } = require('../index.js')
+var db = require('configdb')
 
 /** Testing validate functions */
 
@@ -11,8 +11,8 @@ describe('validate', () => {
 
   // Test validate data
   it('should validate data', async () => {
-    const app = await loader({ path: 'test/apps/app7', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app7', locales })
+    var $ = {
       app,
       req: {
         route: 'createProject'
@@ -26,7 +26,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.query.name).toEqual(['minimum length is 5'])
     expect(result.query.key).toEqual(['must be one of 7, 8'])
@@ -40,8 +40,8 @@ describe('validate', () => {
 
   // Test unique on create
   it('should validate unique user on create', async () => {
-    const app = await loader({ path: 'test/apps/app27', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app27', locales })
+    var $ = {
       app,
       req: {
         route: 'createUser'
@@ -55,7 +55,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Create
@@ -68,11 +68,11 @@ describe('validate', () => {
 
   // Test unique on update
   it('should validate unique user on update', async () => {
-    const app = await loader({ path: 'test/apps/app28', locales })
-    const user1 = db('user').create({ email: 'test1@example.com' })
-    const user2 = db('user').create({ email: 'test2@example.com' })
+    var app = await loader({ path: 'test/apps/app28', locales })
+    var user1 = db('user').create({ email: 'test1@example.com' })
+    var user2 = db('user').create({ email: 'test2@example.com' })
 
-    const $ = {
+    var $ = {
       app,
       req: {
         route: 'updateUser'
@@ -89,7 +89,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Update
@@ -109,8 +109,8 @@ describe('validate', () => {
 
   // Test unique on create, narrowed with ids
   it('should validate unique user on create, narrowed', async () => {
-    const app = await loader({ path: 'test/apps/app31', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app31', locales })
+    var $ = {
       app,
       req: {
         route: 'createUser'
@@ -124,7 +124,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Create
@@ -148,13 +148,13 @@ describe('validate', () => {
 
   // Test unique on update, narrowed with ids
   it('should validate unique user on update, narrowed', async () => {
-    const app = await loader({ path: 'test/apps/app32', locales })
-    const user1 = db('user').create({
+    var app = await loader({ path: 'test/apps/app32', locales })
+    var user1 = db('user').create({
       email: 'test1@example.com',
       site_id: '1234'
     })
 
-    const $ = {
+    var $ = {
       app,
       req: {
         route: 'updateUser'
@@ -171,7 +171,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.hello).toBe('bye')
 
     // Update
@@ -190,8 +190,8 @@ describe('validate', () => {
 
   // Test exist
   it('should fail if not exist', async () => {
-    const app = await loader({ path: 'test/apps/app29', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app29', locales })
+    var $ = {
       app,
       req: {
         route: 'getProject'
@@ -205,11 +205,11 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.query.id).toEqual(['does not exist'])
 
-    const project = db('project').create({})
+    var project = db('project').create({})
     $.params.query.id = project.id
 
     result = await dispatch($)
@@ -218,8 +218,8 @@ describe('validate', () => {
 
   // Test multiple required
   it('should work with multiple required fields', async () => {
-    const app = await loader({ path: 'test/apps/app30', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app30', locales })
+    var $ = {
       app,
       req: {
         route: 'createProject'
@@ -229,7 +229,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['is required'])
     expect(result.values.email).toEqual(['is required'])
@@ -237,14 +237,14 @@ describe('validate', () => {
 
   // Test custom validations
   it('should use custom validations', async () => {
-    const customLocales = lodash.cloneDeep(locales)
+    var customLocales = lodash.cloneDeep(locales)
     customLocales.en.validation.required = 'custom required'
 
-    const app = await loader({
+    var app = await loader({
       path: 'test/apps/app30',
       locales: customLocales
     })
-    const $ = {
+    var $ = {
       app,
       req: {
         route: 'createProject'
@@ -254,7 +254,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['custom required'])
     expect(result.values.email).toEqual(['custom required'])
@@ -262,18 +262,18 @@ describe('validate', () => {
 
   // Test custom validations, other language
   it('should use custom validations', async () => {
-    const customLocales = Object.assign({}, locales)
+    var customLocales = Object.assign({}, locales)
     customLocales.no = {
       validation: {
         required: 'er påkrevet'
       }
     }
 
-    const app = await loader({
+    var app = await loader({
       path: 'test/apps/app30',
       locales: customLocales
     })
-    const $ = {
+    var $ = {
       app,
       lang: 'no',
       req: {
@@ -284,7 +284,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['er påkrevet'])
     expect(result.values.email).toEqual(['er påkrevet'])
@@ -292,8 +292,8 @@ describe('validate', () => {
 
   // Test string validations
   it('should support string validations', async () => {
-    const app = await loader({ path: 'test/apps/app34', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app34', locales })
+    var $ = {
       app,
       req: {
         route: 'createProject'
@@ -303,7 +303,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['is required'])
     expect(result.values.email).toEqual(['is required'])
@@ -311,8 +311,8 @@ describe('validate', () => {
 
   // Test array validations
   it('should support array validations', async () => {
-    const app = await loader({ path: 'test/apps/app35', locales })
-    const $ = {
+    var app = await loader({ path: 'test/apps/app35', locales })
+    var $ = {
       app,
       req: {
         route: 'createProject'
@@ -322,7 +322,7 @@ describe('validate', () => {
       t: i18n.t()
     }
 
-    let result = await dispatch($)
+    var result = await dispatch($)
 
     expect(result.error.message).toBe('validation error')
     expect(result.values.name).toEqual(['is required'])

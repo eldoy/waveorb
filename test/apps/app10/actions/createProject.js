@@ -1,6 +1,6 @@
-module.exports = async function($) {
+module.exports = async function ($) {
   await $.deny({ query: ['evil'] })
   await $.allow({ query: ['something'] })
-  const query = $.params.query || { hello: 'bye' }
+  var query = $.params.query || { hello: 'bye' }
   return { query }
 }
