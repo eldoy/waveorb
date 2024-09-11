@@ -1,5 +1,4 @@
-var tools = require('extras')
-var { validate } = require('d8a')
+var tools = require('./lib/tools.js')
 var validator = require('./lib/validator.js')
 var env = require('./lib/env.js')
 var version = require('./lib/version.js')
@@ -23,7 +22,6 @@ var deny = require('./lib/deny.js')
 
 module.exports = {
   tools,
-  validate,
   validator,
   env,
   version,
