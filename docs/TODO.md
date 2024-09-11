@@ -9,7 +9,7 @@ REFACTOR
 - [x] Use var instead of var and let
 - [x] Remove use of arrow functions
 - [ ] Remove got, use fetch
-- [ ] Remove Jest, use spekk
+- [x] Remove Jest, use spekk
 
 BREAKING CHANGES
 
@@ -42,6 +42,9 @@ BREAKING CHANGES
 - [ ] Move validator.js into d8a? Or into mongowave?
   - we need some way of doing data validations from scripts
   - coupling is too tight with globa, app and $ right now
+
+- [ ] Remove sass and use postCSS instead for build
+  - get from @waveorb/server
 
 TOOLS
 
