@@ -27,16 +27,16 @@
     "fport": "^0.4.0",
     "furu": "^0.4.4",
     "got": "^11.8.6",
-    "html6": "^0.2.0",
+    "html6": "^0.2.1",
     "lavkode": "^0.2.3",
     "sass": "^1.78.0",
     "sitemap": "^8.0.0",
     "skjema": "^0.8.8",
     "terminal-kit": "^3.1.1",
     "terser": "^5.32.0",
-    "tomarkup": "^0.10.1",
+    "tomarkup": "^0.10.2",
     "waveorb-generate": "^0.11.4",
-    "waveorb-validations": "^0.2.0"
+    "waveorb-validations": "^0.2.2"
   },
   "devDependencies": {
     "configdb": "^0.2.5"
