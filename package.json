@@ -23,7 +23,7 @@
     "brainmatter": "^0.1.0",
     "conficurse": "0.5.10",
     "d8a": "^0.10.1",
-    "extras": "^0.14.5",
+    "extras": "^0.14.6",
     "fport": "^0.4.0",
     "furu": "^0.4.3",
     "got": "^11.8.6",
@@ -34,7 +34,7 @@
     "sitemap": "^8.0.0",
     "skjema": "^0.8.8",
     "terminal-kit": "^3.1.1",
-    "terser": "^5.31.6",
+    "terser": "^5.32.0",
     "tomarkup": "^0.10.1",
     "waveorb-generate": "^0.11.1",
     "waveorb-validations": "^0.2.0"
