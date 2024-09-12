@@ -2,10 +2,7 @@
 var fs = require('node:fs')
 var path = require('node:path')
 var URL = require('node:url').URL
-var stream = require('node:stream')
-var { promisify } = require('node:util')
 var extras = require('extras')
-var got = require('got')
 var terser = require('terser')
 var sass = require('sass')
 var fport = require('fport')
@@ -45,8 +42,6 @@ async function build() {
     extras.exec(`mkdir -p ${DIST}`)
   }
 
-  var pipeline = promisify(stream.pipeline)
-
   for (var url of urls) {
     var name = url
     if (name.endsWith('/')) {
@@ -60,8 +55,9 @@ async function build() {
     var address = `${host}${url}`
     console.log(`Building ${name}`)
     try {
-      var writer = fs.createWriteStream(path.join(DIST, dir, file))
-      await pipeline(got.stream(address), writer)
+      var response = await fetch(address)
+      var html = await response.text()
+      extras.write(path.join(DIST, dir, file), html)
     } catch (e) {
       console.log(`Can't build ${name}, skipping...`)
     }
