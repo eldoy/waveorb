@@ -1,7 +1,7 @@
 var bundler = require('../../lib/bundler.js')
 var assets
 
-setup(() => {
+beforeEach(() => {
   assets = bundler()
   process.env.WAVEORB_APP_VERSION = ''
 })

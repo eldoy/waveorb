@@ -1,6 +1,6 @@
 var loader = require('../../lib/loader.js')
 
-setup(() => {
+beforeEach(() => {
   delete process.env.WAVEORB_APP
 })
 

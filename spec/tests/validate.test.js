@@ -5,7 +5,7 @@ var dispatch = require('../../lib/dispatch.js')
 var locales = require('../../lib/locales.js')
 var db = require('configdb')
 
-setup(() => {
+beforeEach(() => {
   db('user').clear()
 })
 
