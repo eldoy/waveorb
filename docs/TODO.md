@@ -8,17 +8,17 @@ REFACTOR
 
 - [x] Use var instead of var and let
 - [x] Remove use of arrow functions
-- [ ] Remove got, use fetch
 - [x] Remove Jest, use spekk
+- [ ] Remove got, use fetch
 
 BREAKING CHANGES
 
-- [ ] Rename functions in extras that crash with lodash
+- [x] Rename functions in extras that crash with lodash
   - release across chain
   - isDate can be hybrid? Or does it work with string in lodash?
   - rename transform to convert
 
-- [ ] Remove all of the imports in index.js
+- [x] Remove all of the imports in index.js
   - neew to use var loader = require('waveorb/lib/loader.js')
   - include a global.Waveorb object that we return in exports
     - should include all functions from extras
