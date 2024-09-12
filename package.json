@@ -10,7 +10,6 @@
     "serve:test": "WAVEORB_APP=spec/apps/app WAVEORB_PORT=5060 nodemon ./bin/waveorb.js serve",
     "serve": "nodemon ./bin/waveorb.js serve",
     "build": "rm -rf ./dist && node ./bin/waveorb.js build",
-    "update": "ncu -u -x got && npm i",
     "help": "node ./bin/waveorb.js help"
   },
   "repository": {
