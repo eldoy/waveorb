@@ -1,4 +1,4 @@
-var lodash = require('lodash')
+var extras = require('extras')
 var i18n = require('../../lib/i18n.js')
 var loader = require('../../lib/loader.js')
 var dispatch = require('../../lib/dispatch.js')
@@ -237,7 +237,7 @@ it('should work with multiple required fields', async ({ t }) => {
 
 // Test custom validations
 it('should use custom validations', async ({ t }) => {
-  var customLocales = lodash.cloneDeep(locales)
+  var customLocales = extras.cloneDeep(locales)
   customLocales.en.validation.required = 'custom required'
 
   var app = await loader({

@@ -4,7 +4,6 @@ var path = require('node:path')
 var URL = require('node:url').URL
 var stream = require('node:stream')
 var { promisify } = require('node:util')
-var lodash = require('lodash')
 var extras = require('extras')
 var got = require('got')
 var terser = require('terser')
@@ -75,7 +74,7 @@ async function build() {
   extras.exec(`cp -R ${path.join(APP_ROOT, 'assets', '*')} dist`)
 
   // Build assets
-  var assets = lodash.get(app, 'config.assets.bundle')
+  var assets = extras.get(app, 'config.assets.bundle')
 
   if (assets) {
     for (var type of Object.keys(assets)) {
