@@ -1,4 +1,3 @@
-var got = require('got')
 var config = require('../lib/config.js')()
 var sitemap = process.argv[3]
 
@@ -21,6 +20,6 @@ var bing = `http://bing.com/ping?sitemap=${sitemap}`
 var google = `http://www.google.com/ping?sitemap=${sitemap}`
 
 ;(async function () {
-  got.get(bing)
-  got.post(google)
+  fetch(bing)
+  fetch(google, { method: 'POST' })
 })()
