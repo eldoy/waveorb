@@ -1,4 +1,3 @@
-var got = require('got')
 var loader = require('../../lib/loader.js')
 var locales = require('../../lib/locales.js')
 var base = `http://localhost:${process.env.WAVEORB_PORT}`
@@ -19,29 +18,29 @@ it('should run file hook', async ({ t }) => {
 })
 
 it('should run before hook', async ({ t }) => {
-  var result = await got(`${base}/hooks/before`, {
-    method: 'POST',
-    responseType: 'json'
+  var response = await fetch(`${base}/hooks/before`, {
+    method: 'POST'
   })
-  t.equal(result.body.before, 'before')
-  t.equal(result.statusCode, 200)
+  var result = await response.json()
+  t.equal(result.before, 'before')
+  t.equal(response.status, 200)
 })
 
 it('should run after hook', async ({ t }) => {
-  var result = await got(`${base}/hooks/after`, {
-    method: 'POST',
-    responseType: 'json'
+  var response = await fetch(`${base}/hooks/after`, {
+    method: 'POST'
   })
-  t.equal(result.body.hello, 'bye')
-  t.equal(result.statusCode, 200)
+  var result = await response.json()
+  t.equal(result.hello, 'bye')
+  t.equal(response.status, 200)
 })
 
 it('should run error hook', async ({ t }) => {
-  var result = await got(`${base}/hooks/error`, {
-    method: 'POST',
-    responseType: 'json'
+  var response = await fetch(`${base}/hooks/error`, {
+    method: 'POST'
   })
-  t.equal(result.body.error.message, 'bad action')
-  t.equal(result.body.something, 'something')
-  t.equal(result.statusCode, 200)
+  var result = await response.json()
+  t.equal(result.error.message, 'bad action')
+  t.equal(result.something, 'something')
+  t.equal(response.status, 200)
 })

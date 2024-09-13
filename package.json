@@ -6,8 +6,8 @@
     "waveorb": "bin/waveorb.js"
   },
   "scripts": {
-    "test": "WAVEORB_PORT=5060 nodemon -q --exec spekk",
-    "serve:test": "WAVEORB_APP=spec/apps/app WAVEORB_PORT=5060 nodemon ./bin/waveorb.js serve",
+    "test": "WAVEORB_PORT=5062 nodemon -q --exec spekk",
+    "serve:test": "WAVEORB_APP=spec/apps/app WAVEORB_PORT=5062 nodemon ./bin/waveorb.js serve",
     "serve": "nodemon ./bin/waveorb.js serve",
     "build": "rm -rf ./dist && node ./bin/waveorb.js build",
     "help": "node ./bin/waveorb.js help"

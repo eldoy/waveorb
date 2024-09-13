@@ -9,7 +9,7 @@ REFACTOR
 - [x] Use var instead of var and let
 - [x] Remove use of arrow functions
 - [x] Remove Jest, use spekk
-- [ ] Remove got, use fetch
+- [x] Remove got, use fetch
 
 BREAKING CHANGES
 
