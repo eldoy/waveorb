@@ -33,26 +33,44 @@ BREAKING CHANGES
     - var lowcode = require('lavkode')
 
 - [ ] Add tools to index
-  - include extras
-  - include lodash functions
-  - move markdown from loader
-  - move validator from loader
-  - add tools to global._ and global.Waveorb
+  - [x] include extras
+  - [x] include lodash functions
+  - [ ] move markdown from loader
+  - [ ] move validator from loader
+  - [ ] add tools to global._ and global.Waveorb
+  - [ ] lazy load tools with proxy
 
-- [ ] Move validator.js into d8a? Or into mongowave?
-  - we need some way of doing data validations from scripts
-  - coupling is too tight with globa, app and $ right now
+- [ ] Move validator.js into tools (_.validate)
+  - $.validate throws
+  - _.validate doesn't throw
 
 - [ ] Remove sass and use postCSS instead for build
-  - get from @waveorb/server
+  - get from @waveorb
 
 TOOLS
 
-- [ ] MongoDB-lib called metaldb
-  - wrapper around the native lib
-  - auto-connect
-  - room for utilities
-  - db.project proxy syntax
-  - global ObjectId
-    - or autoObjectId? if typeof 'string' then ObjectID(string)?
-  - autoId on create?
+- [x] MongoDB-lib called metaldb
+
+- [ ] Front-end libs
+  - [ ] dev.js
+  - [ ] haka.js
+  - [ ] waveorb-frontend
+  - [ ] waveorb-client
+    - remove taarn from it
+  - [ ] waveorb-form
+    - adapt existing repo to new form tags
+    - https://vidar.eldoy.com/html6
+
+- Isomorphic / SSR:
+  - waveorb-ssr
+  - contains the functions from front-end that we can use on the backend
+    - esc
+    - num
+    - time
+    - raw
+  - if they are global in the front-end, they should be global on the backend, if not they go in _.
+
+
+DISCUSSION:
+
+- should we have _ on the front-end? and $? env? Some other stuff?
