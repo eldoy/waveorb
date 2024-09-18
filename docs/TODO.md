@@ -36,9 +36,8 @@ BREAKING CHANGES
   - [x] include extras
   - [x] include lodash functions
   - [ ] move markdown from loader
-  - [ ] move validator from loader
   - [ ] add tools to global._ and global.Waveorb
-  - [ ] lazy load tools with proxy
+    - [ ] lazy load tools with proxy
 
 - [ ] Move validator.js into tools (_.validate)
   - $.validate throws
