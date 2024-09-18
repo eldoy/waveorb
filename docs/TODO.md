@@ -47,6 +47,13 @@ BREAKING CHANGES
 - [ ] Remove sass and use postCSS instead for build
   - get from @waveorb
 
+CLI
+
+- [ ] waveorb update rename to upgrade
+  - add warning when upgrading [Y/n]
+- [ ] Add waveorb update command
+  - updates front-end dependencies
+
 TOOLS
 
 - [x] MongoDB-lib called metaldb
