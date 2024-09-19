@@ -23,9 +23,8 @@ BREAKING CHANGES
   - include a global.Waveorb object that we return in exports
     - should include all functions from extras
 
-- [ ] Clean up loader
+- [x] Clean up loader
   - refactor all the load functions
-  - enable lazy conficurse load in production for faster startup
   - lazy load:
     - var tomarkup = require('tomarkup')
     - var brainmatter = require('brainmatter')
@@ -35,9 +34,8 @@ BREAKING CHANGES
 - [ ] Add tools to index
   - [x] include extras
   - [x] include lodash functions
-  - [ ] move markdown from loader
-  - [ ] add tools to global._ and global.Waveorb
-    - [ ] lazy load tools with proxy
+  - [x] move markdown from loader
+  - [x] add tools to global._ and global.Waveorb
 
 - [ ] Move validator.js into tools (_.validate)
   - $.validate throws
