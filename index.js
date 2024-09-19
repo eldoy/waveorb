@@ -1,3 +1,3 @@
-global.Waveorb = global._ = {}
+global.Waveorb = require('./lib/tools.js')
 
-module.exports = {}
+module.exports = global.Waveorb
