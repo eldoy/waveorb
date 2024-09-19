@@ -43,7 +43,7 @@ BREAKING CHANGES
   - $.validate throws
   - _.validate doesn't throw
 
-- [ ] Remove sass and use postCSS instead for build
+- [x] Remove sass and use postCSS instead for build
   - get from @waveorb
 
 CLI

@@ -3,8 +3,6 @@ var fs = require('node:fs')
 var path = require('node:path')
 var URL = require('node:url').URL
 var extras = require('extras')
-var terser = require('terser')
-var sass = require('sass')
 var fport = require('fport')
 var util = require('../lib/util.js')
 var loader = require('../lib/loader.js')
@@ -35,7 +33,7 @@ async function build() {
   var { server } = await serve({ port }, app)
 
   // Wait for server start
-  await extras.sleep(1)
+  await extras.sleep(0.5)
 
   extras.exec(`rm -rf ${DIST}`)
   if (!extras.exist(DIST)) {
@@ -100,6 +98,7 @@ async function build() {
         files.forEach((file) => {
           code[file] = extras.read(path.join(DIST, file), 'utf8')
         })
+        var terser = require('terser')
         var result = await terser.minify(code, {
           sourceMap: {
             filename: 'bundle.js',
@@ -112,14 +111,14 @@ async function build() {
 
       // Compress CSS bundle
       if (type == 'css') {
-        var result = sass.renderSync({
-          file: bundlePath,
-          outFile: bundlePath,
-          outputStyle: 'compressed',
-          sourceMap: true
+        var postcss = require('postcss')
+        var postcssNesting = require('postcss-nesting')
+        var css = extras.read(bundlePath)
+        var result = await postcss([postcssNesting()]).process(css, {
+          from: bundlePath,
+          to: bundlePath
         })
         extras.write(bundlePath, result.css)
-        extras.write(mapPath, result.map)
       }
     }
   }
