@@ -1,11 +1,7 @@
-var validator = require('../../lib/validator.js')
-var locales = require('../../lib/locales.js')
+var tools = require('../../lib/tools.js')
 
 // Test validator no error
 it('should pass validate if no error', async ({ t }) => {
-  var app = { locales }
-  app.validator = validator({ app })
-
   var validation = {
     values: {
       name: {
@@ -18,7 +14,7 @@ it('should pass validate if no error', async ({ t }) => {
     name: 'hello'
   }
 
-  var result = await app.validator(validation, { values })
+  var result = await tools.validate(validation, { values })
 
   t.equal(typeof result, 'object')
   t.equal(Object.keys(result).length, 0)
@@ -26,9 +22,6 @@ it('should pass validate if no error', async ({ t }) => {
 
 // Test validator error
 it('should validate data on error', async ({ t }) => {
-  var app = { locales }
-  app.validator = validator({ app })
-
   var validation = {
     values: {
       name: {
@@ -38,8 +31,7 @@ it('should validate data on error', async ({ t }) => {
   }
 
   var values = {}
-
-  var result = await app.validator(validation, { values })
+  var result = await tools.validate(validation, { values })
 
   t.equal(result.error.message, 'validation error')
   t.deepEqual(result.values.name, ['is required'])

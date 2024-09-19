@@ -31,7 +31,7 @@ BREAKING CHANGES
     - var skjema = require('skjema')
     - var lowcode = require('lavkode')
 
-- [ ] Add tools to index
+- [x] Add tools to index
   - [x] include extras
   - [x] include lodash functions
   - [x] move markdown from loader
