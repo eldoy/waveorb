@@ -86,3 +86,8 @@ TOOLS
 DISCUSSION:
 
 - should we have _ on the front-end? and $? env? Some other stuff?
+
+DOCS
+  - [ ] Update for all features
+  - [ ] Add info for new features
+  - [ ] Redesign more fancy
