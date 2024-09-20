@@ -35,19 +35,42 @@ CLI
 - [ ] Add waveorb update command
   - updates front-end dependencies
 
+EXTRAS
+
+- [ ] _.log > console.log
+- [ ] _.err > console.error
+- [ ] _.start > console.time
+- [ ] _.end > console.timeEnd
+- [ ] _.mode > process.env.NODE_ENV
+- [ ] _.json > JSON.stringify
+- [ ] _.parse > JSON.parse
+- [ ] await _.file('something').read()
+- [ ] await _.file('something').write()
+- [ ] await stream.json() > jsonstrom
+- [ ] await stream.dump() > dumpjson
+- [ ] _.load > conficurse.load
+_ [ ] _.terminal > xecutor?
+  - var { $ } = _.terminal()
+
 TOOLS
 
+- [ ] waveorb-mailer
+  - [ ] remove '$' passing into template
+  - [ ] do not rely on $.app
+
 - [x] MongoDB-lib called metaldb
+  - var db = await _.database('firmalisten')
 
 - [ ] Front-end libs
   - [ ] dev.js
   - [ ] haka.js
-  - [ ] waveorb-frontend
+  - [ ] waveorb-assets
   - [ ] waveorb-client
     - remove taarn from it
   - [ ] waveorb-form
     - adapt existing repo to new form tags
     - https://vidar.eldoy.com/html6
+    - modify client side or on require?
 
 - Isomorphic / SSR:
   - waveorb-ssr
