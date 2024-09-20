@@ -14,35 +14,11 @@ REFACTOR
 BREAKING CHANGES
 
 - [x] Rename functions in extras that crash with lodash
-  - release across chain
-  - isDate can be hybrid? Or does it work with string in lodash?
-  - rename transform to convert
-
 - [x] Remove all of the imports in index.js
-  - neew to use var loader = require('waveorb/lib/loader.js')
-  - include a global.Waveorb object that we return in exports
-    - should include all functions from extras
-
 - [x] Clean up loader
-  - refactor all the load functions
-  - lazy load:
-    - var tomarkup = require('tomarkup')
-    - var brainmatter = require('brainmatter')
-    - var skjema = require('skjema')
-    - var lowcode = require('lavkode')
-
 - [x] Add tools to index
-  - [x] include extras
-  - [x] include lodash functions
-  - [x] move markdown from loader
-  - [x] add tools to global._ and global.Waveorb
-
-- [ ] Move validator.js into tools (_.validate)
-  - $.validate throws
-  - _.validate doesn't throw
-
+- [x] Move validator.js into tools (_.validate)
 - [x] Remove sass and use postCSS instead for build
-  - get from @waveorb
 
 CLI
 
