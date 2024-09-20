@@ -20,6 +20,14 @@ BREAKING CHANGES
 - [x] Move validator.js into tools (_.validate)
 - [x] Remove sass and use postCSS instead for build
 
+- [ ] Move all config to waveorb.json or index file?
+  - bundle
+  - markdown
+  - env
+  - lang
+  - routes
+  - sitemap
+
 CLI
 
 - [ ] waveorb update rename to upgrade
