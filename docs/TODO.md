@@ -57,6 +57,7 @@ TOOLS
 - [ ] waveorb-mailer
   - [ ] remove '$' passing into template
   - [ ] do not rely on $.app
+  - [ ] _.mail
 
 - [x] MongoDB-lib called metaldb
   - var db = await _.database('firmalisten')
