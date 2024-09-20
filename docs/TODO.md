@@ -73,7 +73,7 @@ TOOLS
     - https://vidar.eldoy.com/html6
     - modify client side or on require?
 
-- Isomorphic / SSR:
+- [x] Isomorphic / SSR:
   - waveorb-ssr
   - contains the functions from front-end that we can use on the backend
     - esc
