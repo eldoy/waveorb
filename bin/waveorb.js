@@ -5,7 +5,7 @@ var commands = {
   waveorb: [
     'create',
     'boot',
-    'update',
+    'upgrade',
     'deploy',
     'help',
     'cmd',

@@ -14,8 +14,8 @@ t.green('     Create new app\n')
 t.green.bold('  boot')
 t.green('       Boot new app server\n')
 
-t.green.bold('  update')
-t.green('     Update app server\n')
+t.green.bold('  upgrade')
+t.green('     Upgrade app server\n')
 
 t.green.bold('  deploy')
 t.green('     Deploy app to server\n')
