@@ -22,8 +22,7 @@ BREAKING CHANGES
 
 CLI
 
-- [ ] waveorb update rename to upgrade
-  - add warning when upgrading [Y/n]
+- [x] waveorb update rename to upgrade
 - [ ] Add waveorb update command
   - updates front-end dependencies
 
@@ -41,8 +40,8 @@ EXTRAS
 - [ ] await stream.json() > jsonstrom
 - [ ] await stream.dump() > dumpjson
 - [ ] _.load > conficurse.load
-_ [ ] _.terminal > xecutor?
-  - var { $ } = _.terminal()
+_ [ ] _.term > xecutor?
+  - var { $ } = _.term()
 
 TOOLS
 
