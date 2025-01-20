@@ -41,8 +41,8 @@ if (!extras.exist(dir)) {
   process.exit(1)
 }
 
-extras.copy(path.join(dir, '*'), '.')
-extras.copy(path.join(dir, '.*'), '.')
+var source = path.join(dir, '*')
+extras.run(`cp -r ${source} .`)
 
 t('\nInstalling packages, please wait...\n\n')
 extras.run('npm install', { silent: true })
