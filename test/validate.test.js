@@ -328,4 +328,24 @@ describe('validate', () => {
     expect(result.values.name).toEqual(['is required'])
     expect(result.values.email).toEqual(['is required'])
   })
+
+  // Test empty query params
+  it('should validate empty params', async () => {
+    const app = await loader({ path: 'test/apps/app36', locales })
+    const $ = {
+      app,
+      req: {
+        route: 'createProject'
+      },
+      db,
+      params: {},
+      t: i18n.t()
+    }
+
+    let result = await dispatch($)
+
+    expect(result.error.message).toBe('validation error')
+    expect(result.query.id).toEqual(['is required'])
+    expect(result.values.name).toEqual(['is required'])
+  })
 })
