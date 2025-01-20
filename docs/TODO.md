@@ -1,4 +1,0 @@
-- [ ] Create has some issues with not selecting correct template
-- [ ] Update template packages
-- [x] Security audit for validate to avoid possible bypass
-- [-] Lazy load heavy packages in serve
