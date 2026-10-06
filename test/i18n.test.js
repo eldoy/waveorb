@@ -67,6 +67,33 @@ describe('t', () => {
     const result = $t('eq', 'hello')
     expect(result).toBe('must be equal to hello')
   })
+
+  it('should allow nested locales', async () => {
+    const $t = i18n.t({
+      lang: 'en',
+      locales: {
+        en: {
+          first: {
+            second: 'something'
+          },
+          not_nested: 'something else'
+        }
+      }
+    })
+
+    const result1 = $t('first.second')
+    expect(result1).toBe('something')
+
+    const result2 = $t('not_nested')
+    expect(result2).toBe('something else')
+  })
+
+  it('should not allow access to arbitrary properties', async () => {
+    const $t = i18n.t({ locales: LOCALES })
+    // Note that __proto__ is another "magic" property, but it appears to be undefined in Node (compared to some/all browsers)
+    const result = $t('__defineGetter__')
+    expect(result).toBe('__defineGetter__')
+  })
 })
 
 describe('link', () => {
