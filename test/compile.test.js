@@ -45,7 +45,7 @@ describe('compile', () => {
     expect($.page.content).toBe("hello ${'wordbye'} bye ${'wordbye'}")
   })
 
-  it('should disallow most characters for t', async () => {
+  it('should compile translation keys with punctuation', async () => {
     const $ = {
       page: { content: "hello ${$.t('invalid/chars')}" },
       t: i18n.t({
@@ -54,10 +54,10 @@ describe('compile', () => {
       })
     }
     compile($)
-    expect($.page.content).toBe("hello ${'invalid/chars'}")
+    expect($.page.content).toBe("hello ${'something'}")
   })
 
-  it('should disallow "__" lookups for t', async () => {
+  it('should compile explicitly defined "__" translation keys', async () => {
     const $ = {
       page: { content: "hello ${$.t('__whatever')}" },
       t: i18n.t({
@@ -66,6 +66,6 @@ describe('compile', () => {
       })
     }
     compile($)
-    expect($.page.content).toBe("hello ${'__whatever'}")
+    expect($.page.content).toBe("hello ${'something'}")
   })
 })

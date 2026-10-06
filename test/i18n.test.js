@@ -88,9 +88,73 @@ describe('t', () => {
     expect(result2).toBe('something else')
   })
 
+  it('should translate unrestricted own keys', async () => {
+    const entries = {
+      Welcome: 'hello',
+      'welcome!': 'hello!',
+      'blåbær': 'blueberries',
+      'invalid/chars': 'slash',
+      __whatever: 'explicit',
+      '': 'empty'
+    }
+    const $t = i18n.t({ locales: { en: entries } })
+    for (const [key, value] of Object.entries(entries)) {
+      expect($t(key)).toBe(value)
+    }
+  })
+
+  it('should interpolate missing keys with punctuation', async () => {
+    const $t = i18n.t({ locales: { en: {} } })
+    expect($t('Hello, %s!', 'Ada')).toBe('Hello, Ada!')
+  })
+
+  it('should resolve array indices and bracket paths', async () => {
+    const $t = i18n.t({
+      locales: { en: { items: ['one', 'two'], nested: { 'a.b': 'quoted' } } }
+    })
+    expect($t('items.0')).toBe('one')
+    expect($t('items[1]')).toBe('two')
+    expect($t('nested["a.b"]')).toBe('quoted')
+  })
+
+  it('should prefer literal dotted keys over nested paths', async () => {
+    const $t = i18n.t({
+      locales: { en: { 'a.b': 'literal', a: { b: 'nested' } } }
+    })
+    expect($t('a.b')).toBe('literal')
+  })
+
+  it('should format missing paths and falsy translations', async () => {
+    const $t = i18n.t({
+      locales: { en: { empty: '', zero: 0, disabled: false, nil: null } }
+    })
+    for (const key of ['empty', 'zero', 'disabled', 'nil']) {
+      expect($t(key)).toBe(key)
+    }
+    expect($t('missing.path %s', 'value')).toBe('missing.path value')
+    expect($t('nil.path %s', 'value')).toBe('nil.path value')
+  })
+
+  it('should block inherited properties at every path segment', async () => {
+    const $t = i18n.t({ locales: { en: { nested: {}, items: [] } } })
+    for (const key of [
+      '__proto__',
+      'constructor',
+      'toString',
+      'nested.__proto__',
+      'nested.constructor',
+      'nested.toString',
+      'items.map',
+      'nested["constructor"]'
+    ]) {
+      expect($t(key)).toBe(key)
+    }
+    const missingLanguage = i18n.t({ lang: 'constructor', locales: {} })
+    expect(missingLanguage('name')).toBe('name')
+  })
+
   it('should not allow access to arbitrary properties', async () => {
     const $t = i18n.t({ locales: LOCALES })
-    // Note that __proto__ is another "magic" property, but it appears to be undefined in Node (compared to some/all browsers)
     const result = $t('__defineGetter__')
     expect(result).toBe('__defineGetter__')
   })
