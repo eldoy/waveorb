@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const { i18n, loader, dispatch, locales } = require('../index.js')
 
 describe('action', () => {
@@ -9,7 +11,7 @@ describe('action', () => {
       params: {}
     }
     const result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   it('should match request pathname', async () => {
@@ -20,7 +22,7 @@ describe('action', () => {
       params: {}
     }
     let result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   it('should match nested action', async () => {
@@ -31,7 +33,7 @@ describe('action', () => {
       params: {}
     }
     let result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   it('should match deeply nested action', async () => {
@@ -42,7 +44,7 @@ describe('action', () => {
       params: {}
     }
     let result = await dispatch($)
-    expect(result.hello).toBe('hello')
+    assert.strictEqual(result.hello, 'hello')
   })
 
   it('should match action from pathname for index', async () => {
@@ -56,7 +58,7 @@ describe('action', () => {
       t: i18n.t({ locales })
     }
     let result = await dispatch($)
-    expect(result.hello).toBe('index')
+    assert.strictEqual(result.hello, 'index')
   })
 
   it('should match action from pathname for about', async () => {
@@ -70,7 +72,7 @@ describe('action', () => {
       t: i18n.t({ locales })
     }
     let result = await dispatch($)
-    expect(result.hello).toBe('about')
+    assert.strictEqual(result.hello, 'about')
   })
 
   it('should match action from pathname for project/create', async () => {
@@ -84,6 +86,6 @@ describe('action', () => {
       t: i18n.t({ locales })
     }
     let result = await dispatch($)
-    expect(result.hello).toBe('project/create')
+    assert.strictEqual(result.hello, 'project/create')
   })
 })

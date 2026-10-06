@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const { i18n, loader, dispatch, locales } = require('../index.js')
 
 describe('deny', () => {
@@ -16,9 +18,9 @@ describe('deny', () => {
     try {
       await dispatch($)
     } catch (e) {
-      expect(e.data.error.message).toBe('field error')
-      expect(e.data.query.length).toBe(1)
-      expect(e.data.query[0]).toBe('evil')
+      assert.strictEqual(e.data.error.message, 'field error')
+      assert.strictEqual(e.data.query.length, 1)
+      assert.strictEqual(e.data.query[0], 'evil')
     }
   })
 
@@ -32,8 +34,8 @@ describe('deny', () => {
       params: {}
     }
     const result = await dispatch($)
-    expect(result.error).toBeUndefined()
-    expect(result.query.evil).toBeUndefined()
+    assert.strictEqual(result.error, undefined)
+    assert.strictEqual(result.query.evil, undefined)
   })
 
   it('should deny parameter keys in function', async () => {
@@ -51,9 +53,9 @@ describe('deny', () => {
     try {
       await dispatch($)
     } catch (e) {
-      expect(e.data.error.message).toBe('field error')
-      expect(e.data.query.length).toBe(1)
-      expect(e.data.query[0]).toBe('evil')
+      assert.strictEqual(e.data.error.message, 'field error')
+      assert.strictEqual(e.data.query.length, 1)
+      assert.strictEqual(e.data.query[0], 'evil')
     }
   })
 })

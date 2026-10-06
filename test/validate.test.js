@@ -1,3 +1,5 @@
+const { describe, it, beforeEach } = require('node:test')
+const assert = require('node:assert/strict')
 const lodash = require('lodash')
 const { i18n, loader, dispatch, locales } = require('../index.js')
 const db = require('configdb')
@@ -27,15 +29,15 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.query.name).toEqual(['minimum length is 5'])
-    expect(result.query.key).toEqual(['must be one of 7, 8'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.query.name, ['minimum length is 5'])
+    assert.deepStrictEqual(result.query.key, ['must be one of 7, 8'])
 
     $.params.query.name = 'hello'
     $.params.query.key = 7
 
     result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   // Test unique on create
@@ -56,14 +58,14 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
 
     // Create
     db('user').create({ email: 'test@example.com' })
 
     result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual(['has been taken'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.email, ['has been taken'])
   })
 
   // Test unique on update
@@ -90,21 +92,21 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
 
     // Update
     result = null
     $.params.values.email = 'new@example.com'
 
     result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
 
     $.params.values.email = 'test2@example.com'
 
     result = await dispatch($)
 
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual(['has been taken'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.email, ['has been taken'])
   })
 
   // Test unique on create, narrowed with ids
@@ -125,25 +127,25 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
 
     // Create
     db('user').create({ email: 'test@example.com', site_id: '1234' })
 
     result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual(['has been taken'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.email, ['has been taken'])
 
     $.params.values.site_id = '1234'
 
     result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.email).toEqual(['has been taken'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.email, ['has been taken'])
 
     $.params.values.site_id = '4321'
     result = await dispatch($)
 
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   // Test unique on update, narrowed with ids
@@ -172,20 +174,20 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
 
     // Update
     result = null
     $.params.values.email = 'new@example.com'
 
     result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
 
     result = null
     $.params.values.email = 'test2@example.com'
 
     result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   // Test exist
@@ -206,14 +208,14 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.query.id).toEqual(['does not exist'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.query.id, ['does not exist'])
 
     const project = db('project').create({})
     $.params.query.id = project.id
 
     result = await dispatch($)
-    expect(result.hello).toBe('bye')
+    assert.strictEqual(result.hello, 'bye')
   })
 
   // Test multiple required
@@ -230,9 +232,9 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual(['is required'])
-    expect(result.values.email).toEqual(['is required'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.name, ['is required'])
+    assert.deepStrictEqual(result.values.email, ['is required'])
   })
 
   // Test custom validations
@@ -255,9 +257,9 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual(['custom required'])
-    expect(result.values.email).toEqual(['custom required'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.name, ['custom required'])
+    assert.deepStrictEqual(result.values.email, ['custom required'])
   })
 
   // Test custom validations, other language
@@ -285,9 +287,9 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual(['er påkrevet'])
-    expect(result.values.email).toEqual(['er påkrevet'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.name, ['er påkrevet'])
+    assert.deepStrictEqual(result.values.email, ['er påkrevet'])
   })
 
   // Test string validations
@@ -304,9 +306,9 @@ describe('validate', () => {
     }
 
     let result = await dispatch($)
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual(['is required'])
-    expect(result.values.email).toEqual(['is required'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.name, ['is required'])
+    assert.deepStrictEqual(result.values.email, ['is required'])
   })
 
   // Test array validations
@@ -324,9 +326,9 @@ describe('validate', () => {
 
     let result = await dispatch($)
 
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual(['is required'])
-    expect(result.values.email).toEqual(['is required'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.name, ['is required'])
+    assert.deepStrictEqual(result.values.email, ['is required'])
   })
 
   // Test empty query params
@@ -344,8 +346,8 @@ describe('validate', () => {
 
     let result = await dispatch($)
 
-    expect(result.error.message).toBe('validation error')
-    expect(result.query.id).toEqual(['is required'])
-    expect(result.values.name).toEqual(['is required'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.query.id, ['is required'])
+    assert.deepStrictEqual(result.values.name, ['is required'])
   })
 })

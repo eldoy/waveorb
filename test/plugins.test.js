@@ -1,13 +1,15 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const { loader, orb } = require('../index.js')
 
 describe('plugins', () => {
   it('should load plugins', async () => {
     const app = await loader({ path: 'test/apps/app5' })
-    expect(typeof app.plugins).toBe('object')
-    expect(typeof app.plugins.db).toBe('object')
-    expect(app.hello).toBe('hello')
-    expect(typeof app.objects.db).toBe('object')
-    expect(app.objects.db.bye).toBe('bye')
+    assert.strictEqual(typeof app.plugins, 'object')
+    assert.strictEqual(typeof app.plugins.db, 'object')
+    assert.strictEqual(app.hello, 'hello')
+    assert.strictEqual(typeof app.objects.db, 'object')
+    assert.strictEqual(app.objects.db.bye, 'bye')
   })
 
   it('should unpack plugin objects into orb', async () => {
@@ -17,6 +19,6 @@ describe('plugins', () => {
       pathname: '/'
     }
     const $ = orb(app, req)
-    expect($.db.bye).toBe('bye')
+    assert.strictEqual($.db.bye, 'bye')
   })
 })

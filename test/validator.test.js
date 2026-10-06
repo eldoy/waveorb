@@ -1,3 +1,5 @@
+const { describe, it, beforeEach } = require('node:test')
+const assert = require('node:assert/strict')
 const { validator, locales } = require('../index.js')
 
 /** Testing validator functions */
@@ -24,8 +26,8 @@ describe('validator', () => {
 
     const result = await app.validator(validation, { values })
 
-    expect(typeof result).toEqual('object')
-    expect(Object.keys(result).length).toEqual(0)
+    assert.deepStrictEqual(typeof result, 'object')
+    assert.deepStrictEqual(Object.keys(result).length, 0)
   })
 
   // Test validator error
@@ -45,7 +47,7 @@ describe('validator', () => {
 
     const result = await app.validator(validation, { values })
 
-    expect(result.error.message).toBe('validation error')
-    expect(result.values.name).toEqual(['is required'])
+    assert.strictEqual(result.error.message, 'validation error')
+    assert.deepStrictEqual(result.values.name, ['is required'])
   })
 })

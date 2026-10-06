@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const { loader, dispatch, locales } = require('../index.js')
 
 describe('setups', () => {
@@ -12,6 +14,6 @@ describe('setups', () => {
       params: {}
     }
     const result = await dispatch($)
-    expect(result).toBe('bye#log')
+    assert.strictEqual(result, 'bye#log')
   })
 })

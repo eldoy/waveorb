@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const { loader, locales } = require('../index.js')
 
 describe('transform', () => {
@@ -14,7 +16,8 @@ describe('transform', () => {
       .split('\n')
       .map((x) => x.trim())
       .join('')
-    expect(result).toEqual(
+    assert.deepStrictEqual(
+      result,
       '<h3>Listing products</h3><ul><li>Hoover</li><li>Socks</li><li>Janitor</li></ul>'
     )
   })

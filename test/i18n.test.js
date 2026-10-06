@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const i18n = require('../lib/i18n.js')
 const LOCALES = {
   en: {
@@ -11,7 +13,7 @@ describe('t', () => {
   it('should translate a string', async () => {
     const $t = i18n.t({ lang: 'en', locales: LOCALES })
     const result = $t('validation_failed')
-    expect(result).toBe('validation failed')
+    assert.strictEqual(result, 'validation failed')
   })
 
   it('should support merging of locales', async () => {
@@ -22,7 +24,7 @@ describe('t', () => {
     }
     const $t = i18n.t({ lang: 'en', locales })
     const result = $t('merged')
-    expect(result).toBe('merged')
+    assert.strictEqual(result, 'merged')
   })
 
   it('should support interpolation', async () => {
@@ -33,19 +35,19 @@ describe('t', () => {
     }
     const $t = i18n.t({ lang: 'en', locales })
     const result = $t('interpolation', 'hello', 5)
-    expect(result).toBe('interpolation hello 5')
+    assert.strictEqual(result, 'interpolation hello 5')
   })
 
   it('should not fail and return key if locale missing', async () => {
     const $t = i18n.t()
     const result = $t('non-existant %s', 5)
-    expect(result).toBe('non-existant 5')
+    assert.strictEqual(result, 'non-existant 5')
   })
 
   it('should not fail and return key if language missing', async () => {
     const $t = i18n.t({ lang: 'no' })
     const result = $t('non-existant')
-    expect(result).toBe('non-existant')
+    assert.strictEqual(result, 'non-existant')
   })
 
   it('should not fail and return correct locale', async () => {
@@ -59,13 +61,13 @@ describe('t', () => {
     }
     const $t = i18n.t({ lang: 'es', locales })
     const result = $t('greeting')
-    expect(result).toBe('hola')
+    assert.strictEqual(result, 'hola')
   })
 
   it('should format translations', async () => {
     const $t = i18n.t({ locales: LOCALES })
     const result = $t('eq', 'hello')
-    expect(result).toBe('must be equal to hello')
+    assert.strictEqual(result, 'must be equal to hello')
   })
 
   it('should allow nested locales', async () => {
@@ -82,10 +84,10 @@ describe('t', () => {
     })
 
     const result1 = $t('first.second')
-    expect(result1).toBe('something')
+    assert.strictEqual(result1, 'something')
 
     const result2 = $t('not_nested')
-    expect(result2).toBe('something else')
+    assert.strictEqual(result2, 'something else')
   })
 
   it('should translate unrestricted own keys', async () => {
@@ -99,29 +101,29 @@ describe('t', () => {
     }
     const $t = i18n.t({ locales: { en: entries } })
     for (const [key, value] of Object.entries(entries)) {
-      expect($t(key)).toBe(value)
+      assert.strictEqual($t(key), value)
     }
   })
 
   it('should interpolate missing keys with punctuation', async () => {
     const $t = i18n.t({ locales: { en: {} } })
-    expect($t('Hello, %s!', 'Ada')).toBe('Hello, Ada!')
+    assert.strictEqual($t('Hello, %s!', 'Ada'), 'Hello, Ada!')
   })
 
   it('should resolve array indices and bracket paths', async () => {
     const $t = i18n.t({
       locales: { en: { items: ['one', 'two'], nested: { 'a.b': 'quoted' } } }
     })
-    expect($t('items.0')).toBe('one')
-    expect($t('items[1]')).toBe('two')
-    expect($t('nested["a.b"]')).toBe('quoted')
+    assert.strictEqual($t('items.0'), 'one')
+    assert.strictEqual($t('items[1]'), 'two')
+    assert.strictEqual($t('nested["a.b"]'), 'quoted')
   })
 
   it('should prefer literal dotted keys over nested paths', async () => {
     const $t = i18n.t({
       locales: { en: { 'a.b': 'literal', a: { b: 'nested' } } }
     })
-    expect($t('a.b')).toBe('literal')
+    assert.strictEqual($t('a.b'), 'literal')
   })
 
   it('should format missing paths and falsy translations', async () => {
@@ -129,10 +131,10 @@ describe('t', () => {
       locales: { en: { empty: '', zero: 0, disabled: false, nil: null } }
     })
     for (const key of ['empty', 'zero', 'disabled', 'nil']) {
-      expect($t(key)).toBe(key)
+      assert.strictEqual($t(key), key)
     }
-    expect($t('missing.path %s', 'value')).toBe('missing.path value')
-    expect($t('nil.path %s', 'value')).toBe('nil.path value')
+    assert.strictEqual($t('missing.path %s', 'value'), 'missing.path value')
+    assert.strictEqual($t('nil.path %s', 'value'), 'nil.path value')
   })
 
   it('should block inherited properties at every path segment', async () => {
@@ -147,16 +149,16 @@ describe('t', () => {
       'items.map',
       'nested["constructor"]'
     ]) {
-      expect($t(key)).toBe(key)
+      assert.strictEqual($t(key), key)
     }
     const missingLanguage = i18n.t({ lang: 'constructor', locales: {} })
-    expect(missingLanguage('name')).toBe('name')
+    assert.strictEqual(missingLanguage('name'), 'name')
   })
 
   it('should not allow access to arbitrary properties', async () => {
     const $t = i18n.t({ locales: LOCALES })
     const result = $t('__defineGetter__')
-    expect(result).toBe('__defineGetter__')
+    assert.strictEqual(result, '__defineGetter__')
   })
 })
 
@@ -164,37 +166,37 @@ describe('link', () => {
   it('should return the correct link for index', async () => {
     const link = i18n.link()
     const result = link('index')
-    expect(result).toBe('/')
+    assert.strictEqual(result, '/')
   })
 
   it('should return the correct link for page', async () => {
     const link = i18n.link()
     const result = link('about')
-    expect(result).toBe('/about')
+    assert.strictEqual(result, '/about')
   })
 
   it('should return the correct link for deep page', async () => {
     const link = i18n.link()
     const result = link('docs/about')
-    expect(result).toBe('/docs/about')
+    assert.strictEqual(result, '/docs/about')
   })
 
   it('should support url parameters', async () => {
     const link = i18n.link()
     const result = link('about?test=1')
-    expect(result).toBe('/about?test=1')
+    assert.strictEqual(result, '/about?test=1')
   })
 
   it('should support hash link', async () => {
     const link = i18n.link()
     const result = link('about#contact')
-    expect(result).toBe('/about#contact')
+    assert.strictEqual(result, '/about#contact')
   })
 
   it('should support url parameters and hash', async () => {
     const link = i18n.link()
     const result = link('about?test=1#hello')
-    expect(result).toBe('/about?test=1#hello')
+    assert.strictEqual(result, '/about?test=1#hello')
   })
 
   it('should return the correct link for routes', async () => {
@@ -203,7 +205,7 @@ describe('link', () => {
     }
     const link = i18n.link(routes, 'no')
     const result = link('about')
-    expect(result).toBe('/om-oss')
+    assert.strictEqual(result, '/om-oss')
   })
 
   it('should return the correct link for routes config with language', async () => {
@@ -213,13 +215,13 @@ describe('link', () => {
     }
     const link = i18n.link(routes)
     let result = link('about')
-    expect(result).toBe('/about')
+    assert.strictEqual(result, '/about')
 
     result = link('en@about')
-    expect(result).toBe('/about')
+    assert.strictEqual(result, '/about')
 
     result = link('no@about')
-    expect(result).toBe('/om-oss')
+    assert.strictEqual(result, '/om-oss')
   })
 
   it('should return the correct link for routes config index', async () => {
@@ -229,24 +231,24 @@ describe('link', () => {
     }
     const link = i18n.link(routes, 'no')
     let result = link('index')
-    expect(result).toBe('/')
+    assert.strictEqual(result, '/')
 
     result = link('en@index')
-    expect(result).toBe('/en/')
+    assert.strictEqual(result, '/en/')
   })
 
   it('should return the correct link with dynamic routes', async () => {
     const link = i18n.link()
     let result = link('about')
-    expect(result).toBe('/about')
+    assert.strictEqual(result, '/about')
   })
 
   it('should return the correct link with dynamic deep routes', async () => {
     const link = i18n.link()
     let result = link('_month/_year/post')
-    expect(result).toBe('/_month/_year/post')
+    assert.strictEqual(result, '/_month/_year/post')
 
     result = link('_month/_year/post', 12, 20)
-    expect(result).toBe('/12/20/post')
+    assert.strictEqual(result, '/12/20/post')
   })
 })

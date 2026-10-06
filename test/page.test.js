@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const { loader, dispatch, locales } = require('../index.js')
 
 describe('page', () => {
@@ -15,6 +17,6 @@ describe('page', () => {
       params: {}
     }
     const result = await dispatch($)
-    expect(result).toBe('404 not found')
+    assert.strictEqual(result, '404 not found')
   })
 })

@@ -1,25 +1,43 @@
+const { describe, it, before, after } = require('node:test')
+const assert = require('node:assert/strict')
 const got = require('got')
 const { loader, locales } = require('../index.js')
-const base = `http://localhost:${process.env.WAVEORB_PORT}`
+const { once } = require('node:events')
+const serve = require('../lib/serve.js')
+let server
+let base
 
 describe('hooks', () => {
-  beforeAll(async () => {
-    await new Promise((r) => setTimeout(r, 500))
+  before(async () => {
+    const app = await loader({ path: 'test/apps/app' })
+    // Furu defaults numeric 0 to port 9090; a string preserves port 0.
+    const result = await serve({ port: '0', dir: 'test/apps/app/assets' }, app)
+    server = result.server
+    if (!server.listening) await once(server, 'listening')
+    base = `http://127.0.0.1:${server.address().port}`
+  })
+
+  after(async () => {
+    if (server) {
+      await new Promise((resolve, reject) => {
+        server.close((error) => (error ? reject(error) : resolve()))
+      })
+    }
   })
 
   it('should run init hook', async () => {
     const app = await loader({ path: 'test/apps/app25', locales })
-    expect(app.init).toBe(true)
+    assert.strictEqual(app.init, true)
   })
 
   it('should run load hook', async () => {
     const app = await loader({ path: 'test/apps/app25', locales })
-    expect(app.load).toBe(true)
+    assert.strictEqual(app.load, true)
   })
 
   it('should run file hook', async () => {
     const app = await loader({ path: 'test/apps/app25', locales })
-    expect(app.filehook).toBe(true)
+    assert.strictEqual(app.filehook, true)
   })
 
   it('should run before hook', async () => {
@@ -27,8 +45,8 @@ describe('hooks', () => {
       method: 'POST',
       responseType: 'json'
     })
-    expect(result.body.before).toBe('before')
-    expect(result.statusCode).toBe(200)
+    assert.strictEqual(result.body.before, 'before')
+    assert.strictEqual(result.statusCode, 200)
   })
 
   it('should run after hook', async () => {
@@ -36,8 +54,8 @@ describe('hooks', () => {
       method: 'POST',
       responseType: 'json'
     })
-    expect(result.body.hello).toBe('bye')
-    expect(result.statusCode).toBe(200)
+    assert.strictEqual(result.body.hello, 'bye')
+    assert.strictEqual(result.statusCode, 200)
   })
 
   it('should run error hook', async () => {
@@ -45,8 +63,8 @@ describe('hooks', () => {
       method: 'POST',
       responseType: 'json'
     })
-    expect(result.body.error.message).toBe('bad action')
-    expect(result.body.something).toBe('something')
-    expect(result.statusCode).toBe(200)
+    assert.strictEqual(result.body.error.message, 'bad action')
+    assert.strictEqual(result.body.something, 'something')
+    assert.strictEqual(result.statusCode, 200)
   })
 })

@@ -1,3 +1,5 @@
+const { describe, it } = require('node:test')
+const assert = require('node:assert/strict')
 const compile = require('../lib/compile.js')
 const i18n = require('../lib/i18n.js')
 
@@ -5,35 +7,35 @@ describe('compile', () => {
   it('should not compile templates if no matches', async () => {
     const $ = { page: { content: 'hello' } }
     compile($)
-    expect($.page.content).toBe('hello')
+    assert.strictEqual($.page.content, 'hello')
   })
 
   it('should compile translations', async () => {
     const $ = { page: { content: "hello ${$.t('bye')}" } }
     $.t = () => 'word'
     compile($)
-    expect($.page.content).toBe("hello ${'word'}")
+    assert.strictEqual($.page.content, "hello ${'word'}")
   })
 
   it('should compile links', async () => {
     const $ = { page: { content: "hello ${$.link('bye')}" } }
     $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'wordbye'}")
+    assert.strictEqual($.page.content, "hello ${'wordbye'}")
   })
 
   it('should compile links with line breaks', async () => {
     const $ = { page: { content: "hello ${$.link(\n'bye'\n)}" } }
     $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'wordbye'}")
+    assert.strictEqual($.page.content, "hello ${'wordbye'}")
   })
 
   it('should compile links with line breaks and spaces', async () => {
     const $ = { page: { content: "hello ${$.link(     \n'bye'\n)}" } }
     $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'wordbye'}")
+    assert.strictEqual($.page.content, "hello ${'wordbye'}")
   })
 
   it('should compile multiple links', async () => {
@@ -42,7 +44,7 @@ describe('compile', () => {
     }
     $.link = (a) => 'word' + a
     compile($)
-    expect($.page.content).toBe("hello ${'wordbye'} bye ${'wordbye'}")
+    assert.strictEqual($.page.content, "hello ${'wordbye'} bye ${'wordbye'}")
   })
 
   it('should compile translation keys with punctuation', async () => {
@@ -54,7 +56,7 @@ describe('compile', () => {
       })
     }
     compile($)
-    expect($.page.content).toBe("hello ${'something'}")
+    assert.strictEqual($.page.content, "hello ${'something'}")
   })
 
   it('should compile explicitly defined "__" translation keys', async () => {
@@ -66,6 +68,6 @@ describe('compile', () => {
       })
     }
     compile($)
-    expect($.page.content).toBe("hello ${'something'}")
+    assert.strictEqual($.page.content, "hello ${'something'}")
   })
 })

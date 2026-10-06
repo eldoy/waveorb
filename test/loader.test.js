@@ -1,3 +1,5 @@
+const { describe, it, beforeEach } = require('node:test')
+const assert = require('node:assert/strict')
 const loader = require('../lib/loader.js')
 
 describe('loader', () => {
@@ -7,45 +9,51 @@ describe('loader', () => {
 
   it('should load an application', async () => {
     const app = await loader()
-    expect(typeof app).toBe('object')
+    assert.strictEqual(typeof app, 'object')
   })
 
   it('should load an application from process env', async () => {
     process.env.WAVEORB_APP = 'test/apps/app1'
     const app = await loader()
-    expect(typeof app).toBe('object')
-    expect(app.config.env.hello).toBe('bye')
+    assert.strictEqual(typeof app, 'object')
+    assert.strictEqual(app.config.env.hello, 'bye')
   })
 
   it('should load markdown files', async () => {
     process.env.WAVEORB_APP = 'test/apps/app21'
     const app = await loader()
-    expect(typeof app.pages.article).toBe('function')
-    expect(typeof app.pages.data).toBe('function')
+    assert.strictEqual(typeof app.pages.article, 'function')
+    assert.strictEqual(typeof app.pages.data, 'function')
     const $ = { page: { title: 'hello' } }
     const page1 = await app.pages.article($)
-    expect(page1.includes('Hello!')).toEqual(true)
+    assert.deepStrictEqual(page1.includes('Hello!'), true)
     const page2 = await app.pages.data($)
-    expect(page2.includes('Nice!')).toEqual(true)
+    assert.deepStrictEqual(page2.includes('Nice!'), true)
   })
 
   it('should load routes', async () => {
     process.env.WAVEORB_APP = 'test/apps/app24'
     const { routes } = await loader()
-    expect(Object.keys(routes).length).toBe(14)
-    expect(routes['get#/']).toBe('index')
-    expect(routes['get#/about']).toBe('about')
-    expect(routes['get#/page']).toBe('page')
-    expect(routes['get#/articles/']).toBe('articles/index')
-    expect(routes['get#/articles/way']).toBe('articles/way')
-    expect(routes['get#/docs/hello']).toBe('docs/hello')
-    expect(routes['get#/articles/_show']).toBe('articles/_show')
-    expect(routes['get#/docs/_something/']).toBe('docs/_something/index')
-    expect(routes['get#/_category/']).toBe('_category/index')
-    expect(routes['get#/_link']).toBe('_link')
-    expect(routes['get#/_mix/trix/_flix/deep']).toBe('_mix/trix/_flix/deep')
-    expect(routes['get#/_category/_article']).toBe('_category/_article')
-    expect(routes['get#/_year/_date/_day/']).toBe('_year/_date/_day/index')
-    expect(routes['get#/_year/_date/']).toBe('_year/_date/index')
+    assert.strictEqual(Object.keys(routes).length, 14)
+    assert.strictEqual(routes['get#/'], 'index')
+    assert.strictEqual(routes['get#/about'], 'about')
+    assert.strictEqual(routes['get#/page'], 'page')
+    assert.strictEqual(routes['get#/articles/'], 'articles/index')
+    assert.strictEqual(routes['get#/articles/way'], 'articles/way')
+    assert.strictEqual(routes['get#/docs/hello'], 'docs/hello')
+    assert.strictEqual(routes['get#/articles/_show'], 'articles/_show')
+    assert.strictEqual(routes['get#/docs/_something/'], 'docs/_something/index')
+    assert.strictEqual(routes['get#/_category/'], '_category/index')
+    assert.strictEqual(routes['get#/_link'], '_link')
+    assert.strictEqual(
+      routes['get#/_mix/trix/_flix/deep'],
+      '_mix/trix/_flix/deep'
+    )
+    assert.strictEqual(routes['get#/_category/_article'], '_category/_article')
+    assert.strictEqual(
+      routes['get#/_year/_date/_day/'],
+      '_year/_date/_day/index'
+    )
+    assert.strictEqual(routes['get#/_year/_date/'], '_year/_date/index')
   })
 })

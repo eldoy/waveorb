@@ -1,9 +1,27 @@
+const { describe, it, before, after } = require('node:test')
+const assert = require('node:assert/strict')
 const got = require('got')
-const base = `http://localhost:${process.env.WAVEORB_PORT}`
+const { once } = require('node:events')
+const { loader, serve } = require('../index.js')
+let server
+let base
 
 describe('serve', () => {
-  beforeAll(async () => {
-    await new Promise((r) => setTimeout(r, 500))
+  before(async () => {
+    const app = await loader({ path: 'test/apps/app' })
+    // Furu defaults numeric 0 to port 9090; a string preserves port 0.
+    const result = await serve({ port: '0', dir: 'test/apps/app/assets' }, app)
+    server = result.server
+    if (!server.listening) await once(server, 'listening')
+    base = `http://127.0.0.1:${server.address().port}`
+  })
+
+  after(async () => {
+    if (server) {
+      await new Promise((resolve, reject) => {
+        server.close((error) => (error ? reject(error) : resolve()))
+      })
+    }
   })
 
   it('should return 404 with post to empty app', async () => {
@@ -16,35 +34,41 @@ describe('serve', () => {
     } catch (e) {
       result = e.response
     }
-    expect(result.body).toEqual({})
-    expect(result.statusCode).toBe(404)
+    assert.deepStrictEqual(result.body, {})
+    assert.strictEqual(result.statusCode, 404)
   })
 
   it('should serve plain HTML', async () => {
     const result = await got(`${base}/about.html`)
-    expect(result.body).toContain('html>')
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
+    assert.ok(result.body.includes('html>'))
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(
+      result.headers['content-type'],
+      'text/html; charset=utf-8'
+    )
   })
 
   it('should serve HTML extension', async () => {
     const result = await got(`${base}/contact`)
-    expect(result.body).toContain('html>')
-    expect(result.statusCode).toBe(200)
+    assert.ok(result.body.includes('html>'))
+    assert.strictEqual(result.statusCode, 200)
   })
 
   it('should serve XML files', async () => {
     const result = await got(`${base}/sitemap.xml`)
-    expect(result.body).toContain('xml>')
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('application/xml')
+    assert.ok(result.body.includes('xml>'))
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(result.headers['content-type'], 'application/xml')
   })
 
   it('should serve markdown pages', async () => {
     const result = await got(`${base}/markdown.html`)
-    expect(result.body).toContain('html>')
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
+    assert.ok(result.body.includes('html>'))
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(
+      result.headers['content-type'],
+      'text/html; charset=utf-8'
+    )
   })
 
   it('should serve actions', async () => {
@@ -52,9 +76,10 @@ describe('serve', () => {
       method: 'POST',
       responseType: 'json'
     })
-    expect(result.body).toEqual({ hello: 'project/find' })
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe(
+    assert.deepStrictEqual(result.body, { hello: 'project/find' })
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(
+      result.headers['content-type'],
       'application/json; charset=utf-8'
     )
   })
@@ -63,9 +88,12 @@ describe('serve', () => {
     const result = await got(`${base}/middleware`, {
       responseType: 'json'
     })
-    expect(result.body).toEqual({ hello: 'middle' })
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
+    assert.deepStrictEqual(result.body, { hello: 'middle' })
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(
+      result.headers['content-type'],
+      'text/html; charset=utf-8'
+    )
   })
 
   it('should return from filter', async () => {
@@ -73,17 +101,21 @@ describe('serve', () => {
       method: 'POST',
       responseType: 'json'
     })
-    expect(result.body).toEqual({ hello: 'filter' })
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe(
+    assert.deepStrictEqual(result.body, { hello: 'filter' })
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(
+      result.headers['content-type'],
       'application/json; charset=utf-8'
     )
   })
 
   it('should not have a layout', async () => {
     const result = await got(`${base}/nolayout`)
-    expect(result.body).toEqual('<div>NoLayout</div>')
-    expect(result.statusCode).toBe(200)
-    expect(result.headers['content-type']).toBe('text/html; charset=utf-8')
+    assert.deepStrictEqual(result.body, '<div>NoLayout</div>')
+    assert.strictEqual(result.statusCode, 200)
+    assert.strictEqual(
+      result.headers['content-type'],
+      'text/html; charset=utf-8'
+    )
   })
 })
